@@ -228,9 +228,9 @@ class HomeScreen extends StatelessWidget {
           },
           body: GetBuilder<UserController>(
               init: userController,
-              initState: (child) {
-                getStudentDashboardData();
-                getResponseIdFromLocaldb();
+              initState: (child) async{
+              await  getStudentDashboardData();
+               await getResponseIdFromLocaldb();
               },
               builder: (_) {
                 if (userDashboardVMResponse == null) {

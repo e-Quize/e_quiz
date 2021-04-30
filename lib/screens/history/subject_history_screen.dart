@@ -73,7 +73,8 @@ class SubjectHistoryScreen extends StatelessWidget {
       );
     } else {
       return ListView.builder(
-        reverse: true,
+
+      //  reverse: true,
         itemCount: historyController.attemptedQuizModelList.length,
         itemBuilder: (context, index) {
           return Container(

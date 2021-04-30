@@ -50,7 +50,7 @@ class BarChartScreen extends StatelessWidget {
 
   getQuizPercentageForGraph() async {
     Result res = await graphController.getQuizPercentageForGraph();
-    if (res != null) {
+    if (res.body != null) {
       graphController.barGraphChartList = res.body;
       graphController.barGraphChartList.forEach((element) {
         barChartList.add(BarGraphModel(
@@ -67,7 +67,10 @@ class BarChartScreen extends StatelessWidget {
               return charts.MaterialPalette.green.shadeDefault;
             }),
       ];
-      graphController.updateGraphBuilder();
+    }else{
+      barChartList = [];
     }
+    graphController.updateGraphBuilder();
+
   }
 }

@@ -216,6 +216,12 @@ class QuizController extends GetxController {
     }
   }
 
+  void previousQuestion() {
+    if (questionIndex > 0) {
+      questionIndex--;
+    }
+  }
+
   void nextQuestionSkipped(int index) {
     // if (questionIndex <= lastIndex) {
     //   questionIndex++;

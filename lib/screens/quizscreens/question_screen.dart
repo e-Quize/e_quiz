@@ -943,7 +943,7 @@ class QuestionScreen extends StatelessWidget {
   }
 
   void goBackToPreviousQuestion() {
-    _quizController.questionIndex = _quizController.questionIndex - 1;
+    _quizController.previousQuestion();
     _quizController.updateBuilder();
   }
 }
