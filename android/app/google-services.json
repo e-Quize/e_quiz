@@ -1,0 +1,91 @@
+{
+  "project_info": {
+    "project_number": "62136109585",
+    "firebase_url": "https://schoolchat-8a555.firebaseio.com",
+    "project_id": "schoolchat-8a555",
+    "storage_bucket": "schoolchat-8a555.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62136109585:android:178f6543abad48f648bfb0",
+        "android_client_info": {
+          "package_name": "Chat.Rom_142"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "62136109585-ri2e6donjlhrqa0q0e94casqari6m459.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHJPO44MxRuQMewQsimkF3_QIwLlro0LQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "62136109585-ri2e6donjlhrqa0q0e94casqari6m459.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "62136109585-rekk5ronq2s3qsckqlk07pb0bdjja3b7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "Chat.RoomIos142"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62136109585:android:ba81287b8fb8b37548bfb0",
+        "android_client_info": {
+          "package_name": "com.cyberisol.e_quiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "62136109585-aj8tqbvml1atmhjilf6q2ipjh35cq1e4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cyberisol.e_quiz",
+            "certificate_hash": "5b14099b7693cfe8d834346cf5af2bebe2fb21ab"
+          }
+        },
+        {
+          "client_id": "62136109585-ri2e6donjlhrqa0q0e94casqari6m459.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHJPO44MxRuQMewQsimkF3_QIwLlro0LQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "62136109585-ri2e6donjlhrqa0q0e94casqari6m459.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "62136109585-rekk5ronq2s3qsckqlk07pb0bdjja3b7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "Chat.RoomIos142"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

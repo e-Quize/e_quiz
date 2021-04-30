@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist  "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<String>$(DEVELOPMENT_LANGUAGE)</String>
+	<key>CFBundleExecutable</key>
+	<String>$(EXECUTABLE_NAME)</String>
+	<key>CFBundleIdentifier</key>
+	<String>$(PRODUCT_BUNDLE_IDENTIFIER)</String>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<String>6.0</String>
+	<key>CFBundleName</key>
+	<String>e_quiz</String>
+	<key>CFBundlePackageType</key>
+	<String>APPL</String>
+	<key>CFBundleShortVersionString</key>
+	<String>$(FLUTTER_BUILD_NAME)</String>
+	<key>CFBundleSignature</key>
+	<String>????</String>
+	<key>CFBundleVersion</key>
+	<String>$(FLUTTER_BUILD_NUMBER)</String>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UILaunchStoryboardName</key>
+	<String>LaunchScreen</String>
+	<key>UIMainStoryboardFile</key>
+	<String>Main</String>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<String>UIInterfaceOrientationPortrait</String>
+		<String>UIInterfaceOrientationLandscapeLeft</String>
+		<String>UIInterfaceOrientationLandscapeRight</String>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<String>UIInterfaceOrientationPortrait</String>
+		<String>UIInterfaceOrientationPortraitUpsideDown</String>
+		<String>UIInterfaceOrientationLandscapeLeft</String>
+		<String>UIInterfaceOrientationLandscapeRight</String>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+</dict>
+</plist>
