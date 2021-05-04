@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:e_quiz/models/common/result_model.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:sqflite/sqlite_api.dart';
 
 import 'exception_codes_messages.dart';
 
