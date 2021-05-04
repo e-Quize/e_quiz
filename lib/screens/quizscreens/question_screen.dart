@@ -31,6 +31,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:get_it/get_it.dart';
+import 'tab_bar.dart';
 
 class QuestionScreen extends StatelessWidget {
   var _quizController = Get.find<QuizController>();
@@ -800,7 +801,7 @@ class QuestionScreen extends StatelessWidget {
           _resultController.quizQuestionList = _quizController.quizQuestionList;
 
           Navigator.of(Get.context)
-              .pushReplacement(MaterialPageRoute(builder: (_) => TabbarView()));
+              .pushReplacement(MaterialPageRoute(builder: (_) => TabbarViewResult()));
         }
       }
     }
