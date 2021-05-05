@@ -46,7 +46,7 @@ class QuestionScreen extends StatelessWidget {
 
   BuildContext buildContext;
   bool flaggedAsDifficult = false;
-  bool hasButtonSeenExplanation = false;
+  bool hasButtonSeenExplanation = true;
   bool flaggedAsSkipped = false;
   bool hasSeenExplanation = false;
   bool toggle = false;
@@ -80,7 +80,7 @@ class QuestionScreen extends StatelessWidget {
             //   getPreviousAnswer();
             // }
             if (_subjectController.isCheckedCorrectAnswer) {
-              hasButtonSeenExplanation = false;
+              hasButtonSeenExplanation = true;
             } else {
               hasSeenExplanation = false;
               hasButtonSeenExplanation = true;
@@ -862,7 +862,7 @@ class QuestionScreen extends StatelessWidget {
             if (_subjectController.isCheckedCorrectAnswer) {
               toggle = true;
             }
-            hasButtonSeenExplanation = true;
+            hasButtonSeenExplanation = false;
             isAttempted = true;
 
             answerId = _quizController
@@ -1092,10 +1092,10 @@ class QuestionScreen extends StatelessWidget {
       isAttempted =
           _quizController.quizQuestionList[_quizController.questionIndex]
               .isAttempted;
-      hasSeenExplanation =  _quizController.quizQuestionList[_quizController.questionIndex]
-          .HasSeenExplanation;
-      hasButtonSeenExplanation = _quizController.quizQuestionList[_quizController.questionIndex]
-          .HasSeenExplanation;
+      // hasSeenExplanation =  _quizController.quizQuestionList[_quizController.questionIndex]
+      //     .HasSeenExplanation;
+      // hasButtonSeenExplanation = _quizController.quizQuestionList[_quizController.questionIndex]
+      //     .HasSeenExplanation;
       toggle = _quizController.quizQuestionList[_quizController.questionIndex]
           .isAttempted;
       //hasButtonSeenExplanation = true;
@@ -1112,31 +1112,31 @@ class QuestionScreen extends StatelessWidget {
     }
   }
 
-  getPreviousAnswer() {
-    var value = _quizController
-        .quizQuestionList[_quizController.questionIndex].ActualAnswerId;
-    if (_subjectController.isCheckedCorrectAnswer) {
-      toggle = true;
-    }
-    hasButtonSeenExplanation = true;
-    isAttempted = true;
-
-    answerId = value;
-    quizQuestionAnswer = _quizController
-        .quizQuestionList[_quizController.questionIndex].QuestionAnswerList
-        .where((element) => element.Id == answerId)
-        .first;
-    quizQuestionAnswer.isChecked = true;
-
-    if (_subjectController.isCheckedCorrectAnswer ||
-        (!_subjectController.isCheckedCorrectAnswer && !hasSeenExplanation)) {
-      _quizController.quizQuestionList[_quizController.questionIndex]
-          .isUserAnswer = quizQuestionAnswer.isCorrect;
-    }
-    _quizController.quizQuestionList[_quizController.questionIndex]
-        .isAttempted = isAttempted;
-
-    _groupValue = value;
-    _quizController.updateUserBuilder();
-  }
+  // getPreviousAnswer() {
+  //   var value = _quizController
+  //       .quizQuestionList[_quizController.questionIndex].ActualAnswerId;
+  //   if (_subjectController.isCheckedCorrectAnswer) {
+  //     toggle = true;
+  //   }
+  //   hasButtonSeenExplanation = true;
+  //   isAttempted = true;
+  //
+  //   answerId = value;
+  //   quizQuestionAnswer = _quizController
+  //       .quizQuestionList[_quizController.questionIndex].QuestionAnswerList
+  //       .where((element) => element.Id == answerId)
+  //       .first;
+  //   quizQuestionAnswer.isChecked = true;
+  //
+  //   if (_subjectController.isCheckedCorrectAnswer ||
+  //       (!_subjectController.isCheckedCorrectAnswer && !hasSeenExplanation)) {
+  //     _quizController.quizQuestionList[_quizController.questionIndex]
+  //         .isUserAnswer = quizQuestionAnswer.isCorrect;
+  //   }
+  //   _quizController.quizQuestionList[_quizController.questionIndex]
+  //       .isAttempted = isAttempted;
+  //
+  //   _groupValue = value;
+  //   _quizController.updateUserBuilder();
+  // }
 }
