@@ -46,7 +46,6 @@ class QuestionScreen extends StatelessWidget {
 
   BuildContext buildContext;
   bool flaggedAsDifficult = false;
-  bool hasButtonSeenExplanation = false;
   bool flaggedAsSkipped = false;
   bool hasSeenExplanation = false;
   bool toggle = false;
@@ -80,10 +79,8 @@ class QuestionScreen extends StatelessWidget {
             //   getPreviousAnswer();
             // }
             if (_subjectController.isCheckedCorrectAnswer) {
-              hasButtonSeenExplanation = false;
             } else {
               hasSeenExplanation = false;
-              hasButtonSeenExplanation = true;
             }
           },
           builder: (_) {
@@ -401,15 +398,11 @@ class QuestionScreen extends StatelessWidget {
                                                         width: 130.0,
                                                         radius: AppValues
                                                             .commonButtonCornerRadius,
-                                                        gradient: hasButtonSeenExplanation
-                                                            ? AppColors
-                                                                .primaryBtnColor
-                                                            : AppColors
-                                                                .startNowTextColor,
+                                                        gradient: AppColors
+                                                                .primaryBtnColor,
                                                         title:
                                                             'See Explanation',
                                                         onPressed: () {
-                                                          if (hasButtonSeenExplanation) {
                                                             hasSeenExplanation =
                                                                 true;
                                                             _quizController
@@ -445,7 +438,6 @@ class QuestionScreen extends StatelessWidget {
                                                             //         .Explanation,
                                                             //     context);
                                                             //hasSeenExplanation = true;
-                                                          }
                                                         },
                                                       ),
                                                       HeroButton(
@@ -618,7 +610,11 @@ class QuestionScreen extends StatelessWidget {
                                                 child: Center(
                                                   child: Textview2(
                                                     title:
-                                                        (index + 1).toString(),
+                                                    _quizController
+                                                        .quizQuestionList
+                                                        .indexOf(_quizController
+                                                        .skippedQuestionObjectList[
+                                                    index]).toString(),
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 14.0,
                                                     color:
@@ -779,7 +775,6 @@ class QuestionScreen extends StatelessWidget {
       flaggedAsSkipped = false;
       toggle = false;
       hasSeenExplanation = false;
-      hasButtonSeenExplanation = false;
       flaggedAsDifficult = false;
       isAttempted = false;
       if (_quizController.isSkippedSelected) {
@@ -862,7 +857,6 @@ class QuestionScreen extends StatelessWidget {
             if (_subjectController.isCheckedCorrectAnswer) {
               toggle = true;
             }
-            hasButtonSeenExplanation = true;
             isAttempted = true;
 
             answerId = _quizController
@@ -962,7 +956,6 @@ class QuestionScreen extends StatelessWidget {
             if (_subjectController.isCheckedCorrectAnswer) {
               toggle = true;
             }
-            hasButtonSeenExplanation = true;
             isAttempted = true;
 
             answerId = value;
@@ -1094,8 +1087,6 @@ class QuestionScreen extends StatelessWidget {
               .isAttempted;
       hasSeenExplanation =  _quizController.quizQuestionList[_quizController.questionIndex]
           .HasSeenExplanation;
-      hasButtonSeenExplanation = _quizController.quizQuestionList[_quizController.questionIndex]
-          .HasSeenExplanation;
       toggle = _quizController.quizQuestionList[_quizController.questionIndex]
           .isAttempted;
       //hasButtonSeenExplanation = true;
@@ -1118,7 +1109,6 @@ class QuestionScreen extends StatelessWidget {
     if (_subjectController.isCheckedCorrectAnswer) {
       toggle = true;
     }
-    hasButtonSeenExplanation = true;
     isAttempted = true;
 
     answerId = value;

@@ -250,7 +250,7 @@ class SelfResultScreen extends StatelessWidget {
                     color: Color(0xFF536BB1),
                     onPressed: () {
                       // contrller.dispose();
-                      Get.to(DashboardScreen());
+                      Get.to(()=>DashboardScreen());
                       Get.find<DashboardController>().currentIndex = 0;
                       Get.find<DashboardController>().update();
                       // WidgetProperties.goToNextPage(context, Dashboard());
