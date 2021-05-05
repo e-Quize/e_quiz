@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
-
 import 'package:e_quiz/controllers/animate_view_controller.dart';
 import 'package:e_quiz/controllers/splash_controller.dart';
 import 'package:e_quiz/db/user_crud.dart';
@@ -10,15 +9,17 @@ import 'package:e_quiz/models/splash/mobile_connect.dart';
 import 'package:e_quiz/models/user/user_entity_copy.dart';
 import 'package:e_quiz/screens/authentication/signin_screen.dart';
 import 'package:e_quiz/screens/dashboard/dashboard_screen.dart';
+import 'package:e_quiz/screens/history/subject_history_screen.dart';
+import 'package:e_quiz/screens/notification/notification_plugin.dart';
+import 'package:e_quiz/screens/quizscreens/question_screen.dart';
 import 'package:e_quiz/utils/animation_controller_ids.dart';
 import 'package:e_quiz/utils/checkInternetconnectivity.dart';
 import 'package:e_quiz/utils/colors.dart';
 import 'package:e_quiz/utils/widgetproperties.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
-
-import 'subscriptions/subscription_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -93,11 +94,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void checkUserToken() async {
     UserEntityCopy userEntityCopy = await UserCrud.getUserCopy();
     if (userEntityCopy.Token != null) {
-      if (userEntityCopy.SubjectIdsString.isEmpty) {
-        getSettings(SubscriptionScreen());
-      } else {
-        getSettings(DashboardScreen());
-      }
+      getSettings(DashboardScreen());
     } else {
       getSettings(SigninScreen());
     }

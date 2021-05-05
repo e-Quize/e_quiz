@@ -1,9 +1,11 @@
-
+import 'dart:async';
 import 'package:e_quiz/db/init_db.dart';
+
 import 'package:e_quiz/db/sembast/singleton_sambest.dart';
-import 'package:e_quiz/models/user/user_model.dart';
 import 'package:e_quiz/screens/splash_screen.dart';
 import 'package:e_quiz/utils/widgetproperties.dart';
+import 'package:e_quiz/models/user/user_model.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sembast/sembast.dart';

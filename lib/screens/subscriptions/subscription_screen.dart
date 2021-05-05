@@ -37,6 +37,7 @@ class SubscriptionScreen extends StatelessWidget {
         init: _subjectScriptionController,
         initState: (child) {
           getSubjectList();
+          getBankInfoSetting();
         },
         builder: (_) {
           return Stack(
@@ -446,7 +447,7 @@ class SubscriptionScreen extends StatelessWidget {
   }
 
   void saveSubscription(BuildContext buildContext) async {
-    List<SubscriptionDetailModel> list = [];
+    var list = List<SubscriptionDetailModel>();
 
     _subjectScriptionController.userSubscriptionSubjectList.forEach((element) {
       if (element.userSubscriptionModel != null) {
@@ -471,7 +472,7 @@ class SubscriptionScreen extends StatelessWidget {
           .saveSubscription(saveSubscriptionModel);
       if (res != null) {
         if (res.code > 0) {
-          ToastClass.showToast(res.message, ToastGravity.BOTTOM, Colors.green,
+          ToastClass.showToast(res.message, ToastGravity.BOTTOM, Colors.red,
               Colors.white, 15.0, Toast.LENGTH_SHORT);
           Result result = await _subjectScriptionController.logoutUser();
           if (result != null)
@@ -495,16 +496,18 @@ class SubscriptionScreen extends StatelessWidget {
     }
   }
 
-
-
-  getSubjectList() async {
-    Result subjectList = await _subjectScriptionController.loadSubjectList();
-    _subjectScriptionController.userSubscriptionSubjectList = subjectList.body;
+  getBankInfoSetting() async {
     var bankInfoData = await UserCrud.getBankInfoData();
     if (bankInfoData != null) {
       bankAccountInfo = bankInfoData.BankAccountInfo;
       supportEmailAddress = bankInfoData.SupportEmailAddress;
     }
+    _subjectScriptionController.updateUserBuilder();
+  }
+
+  getSubjectList() async {
+    Result subjectList = await _subjectScriptionController.loadSubjectList();
+    _subjectScriptionController.userSubscriptionSubjectList = subjectList.body;
     _subjectScriptionController.updateUserBuilder();
   }
 }
