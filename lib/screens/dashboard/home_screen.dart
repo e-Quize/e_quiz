@@ -228,9 +228,9 @@ class HomeScreen extends StatelessWidget {
           },
           body: GetBuilder<UserController>(
               init: userController,
-              initState: (child) async{
-              await  getStudentDashboardData();
-               await getResponseIdFromLocaldb();
+              initState: (child) {
+                getStudentDashboardData();
+                getResponseIdFromLocaldb();
               },
               builder: (_) {
                 if (userDashboardVMResponse == null) {
@@ -439,36 +439,32 @@ class HomeScreen extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
           child: Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 10.0),
+            padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
             width: 100.0,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  child: Textview2(
-                    title: userDashboardVMResponse
-                        .DashBaordSubjects[index].SubjectName,
-                    fontSize: 10.0,
-                    color: AppColors.textWhiteColor,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: AppValues.fontFamily,
-                    textAlign: TextAlign.center,
-                  ),
+                Textview2(
+                  title: userDashboardVMResponse
+                      .DashBaordSubjects[index].SubjectName,
+                  fontSize: 10.0,
+                  color: AppColors.textWhiteColor,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: AppValues.fontFamily,
+                  textAlign: TextAlign.center,
                 ),
-                Container(
-                  child: Textview2(
-                    title: userDashboardVMResponse
-                            .DashBaordSubjects[index].AttemptedQuestions
-                            .toString() +
-                        " / " +
-                        userDashboardVMResponse
-                            .DashBaordSubjects[index].USTotalQuestions
-                            .toString(),
-                    fontSize: 12.0,
-                    color: AppColors.textWhiteColor,
-                    fontWeight: FontWeight.w800,
-                    fontFamily: AppValues.fontFamily,
-                  ),
+                Textview2(
+                  title: userDashboardVMResponse
+                          .DashBaordSubjects[index].AttemptedQuestions
+                          .toString() +
+                      " / " +
+                      userDashboardVMResponse
+                          .DashBaordSubjects[index].USTotalQuestions
+                          .toString(),
+                  fontSize: 12.0,
+                  color: AppColors.textWhiteColor,
+                  fontWeight: FontWeight.w800,
+                  fontFamily: AppValues.fontFamily,
                 ),
               ],
             ),

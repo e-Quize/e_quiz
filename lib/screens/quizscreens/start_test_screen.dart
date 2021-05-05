@@ -193,28 +193,26 @@ class StartTestScreen extends StatelessWidget {
                 }
               }
             },
-            child: Container(
-              child: Material(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0)),
-                elevation: 6.0,
-                child: Row(
-                  children: [
-                    Container(
-                      height: 25,
-                      width: 25,
-                      decoration: BoxDecoration(
-                          color: id == Constants.SELF_QUIZ
-                              ? (isSelfChecked
-                                  ? AppColors.forgotPasswordTextColor
-                                  : AppColors.textWhiteColor)
-                              : (isComptetionChecked
-                                  ? AppColors.forgotPasswordTextColor
-                                  : AppColors.textWhiteColor),
-                          shape: BoxShape.circle),
-                    ),
-                  ],
-                ),
+            child: Material(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0)),
+              elevation: 6.0,
+              child: Row(
+                children: [
+                  Container(
+                    height: 25,
+                    width: 25,
+                    decoration: BoxDecoration(
+                        color: id == Constants.SELF_QUIZ
+                            ? (isSelfChecked
+                                ? AppColors.forgotPasswordTextColor
+                                : AppColors.textWhiteColor)
+                            : (isComptetionChecked
+                                ? AppColors.forgotPasswordTextColor
+                                : AppColors.textWhiteColor),
+                        shape: BoxShape.circle),
+                  ),
+                ],
               ),
             ),
           ),
