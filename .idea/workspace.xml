@@ -13,11 +13,11 @@
     <list default="true" id="31ed38ee-efc6-4097-a38f-15df9cf1e594" name="Default Changelist" comment="usman_merging">
       <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/question_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/question_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/self_result_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/self_result_screen.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +37,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -69,7 +69,7 @@
       <method v="2" />
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -107,60 +107,6 @@
     <MESSAGE value="usman_merging" />
     <option name="LAST_COMMIT_MESSAGE" value="usman_merging" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="137" y="18" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1620192923666">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="137" y="18" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1620192923666" />
-    <state x="100" y="100" width="1166" height="528" key="AVDManager" timestamp="1620236835153">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="100" y="100" width="1166" height="528" key="AVDManager/0.0.1366.728@0.0.1366.728" timestamp="1620236835153" />
-    <state width="543" height="438" key="DebuggerActiveHint" timestamp="1620194767549">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="543" height="438" key="DebuggerActiveHint/0.0.1366.728@0.0.1366.728" timestamp="1620194767549" />
-    <state x="463" y="105" key="FileChooserDialogImpl" timestamp="1620193060686">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="463" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1620193060686" />
-    <state width="1306" height="339" key="GridCell.Tab.0.bottom" timestamp="1620239054616">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1306" height="339" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1620239054616" />
-    <state width="1306" height="339" key="GridCell.Tab.0.center" timestamp="1620239054615">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1306" height="339" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1620239054615" />
-    <state width="1306" height="339" key="GridCell.Tab.0.left" timestamp="1620239054615">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1306" height="339" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1620239054615" />
-    <state width="1306" height="339" key="GridCell.Tab.0.right" timestamp="1620239054616">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1306" height="339" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1620239054616" />
-    <state x="129" y="55" key="MergeDialog" timestamp="1620192695712">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="129" y="55" key="MergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1620192695712" />
-    <state x="321" y="125" key="MultipleFileMergeDialog" timestamp="1620192725315">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="321" y="125" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1620192725315" />
-    <state x="184" y="8" key="SettingsEditor" timestamp="1620193073122">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="184" y="8" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1620193073122" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1620193798697">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1620193798697" />
-    <state x="483" y="265" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1620193625325">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="483" y="265" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1366.728@0.0.1366.728" timestamp="1620193625325" />
-  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -170,22 +116,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
           <url>file://$PROJECT_DIR$/lib/screens/quizscreens/question_screen.dart</url>
-          <line>836</line>
+          <line>834</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
           <url>file://$PROJECT_DIR$/lib/screens/quizscreens/question_screen.dart</url>
-          <line>854</line>
+          <line>884</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
           <url>file://$PROJECT_DIR$/lib/screens/quizscreens/question_screen.dart</url>
-          <line>857</line>
+          <line>887</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
           <url>file://$PROJECT_DIR$/lib/screens/quizscreens/question_screen.dart</url>
-          <line>861</line>
+          <line>891</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>

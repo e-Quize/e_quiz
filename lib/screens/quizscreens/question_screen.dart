@@ -168,7 +168,7 @@ class QuestionScreen extends StatelessWidget {
                                                                 WidgetProperties
                                                                     .goToNextPage(
                                                                         Get.context,
-                                                                        TabbarView());
+                                                                        TabbarViewResult());
                                                                 // _quizController.update();
                                                               },
                                                               duration: Duration(
@@ -711,9 +711,19 @@ class QuestionScreen extends StatelessWidget {
   }
 
   updateQuizAnswer() async {
-    if (!isAttempted) {
-      if (hasSeenExplanation) {
+
+      if (isAttempted) {
         flaggedAsSkipped = false;
+        int removable = 0;
+        _quizController.skippedQuestionObjectList.forEach((element) {
+          if (element.QuestionId ==
+              _quizController
+                  .quizQuestionList[_quizController.questionIndex].QuestionId) {
+            removable = element.QuestionId;
+          }
+        });
+        _quizController.skippedQuestionObjectList
+            .removeWhere((element) => element.QuestionId == removable);
       } else {
 
         ToastClass.showToast("Question marked as skipped", ToastGravity.BOTTOM,
@@ -736,19 +746,7 @@ class QuestionScreen extends StatelessWidget {
               _quizController.quizQuestionList[_quizController.questionIndex]);
         }
       }
-    } else {
-      flaggedAsSkipped = false;
-      int removable = 0;
-      _quizController.skippedQuestionObjectList.forEach((element) {
-        if (element.QuestionId ==
-            _quizController
-                .quizQuestionList[_quizController.questionIndex].QuestionId) {
-          removable = element.QuestionId;
-        }
-      });
-      _quizController.skippedQuestionObjectList
-          .removeWhere((element) => element.QuestionId == removable);
-    }
+
     await attemptedQuiz();
   }
 
@@ -852,33 +850,67 @@ class QuestionScreen extends StatelessWidget {
           //   }
           // }
 
-          if (!_quizController
-              .quizQuestionList[_quizController.questionIndex].isAttempted) {
-            if (_subjectController.isCheckedCorrectAnswer) {
-              toggle = true;
-            }
-            isAttempted = true;
+          if(!_subjectController.isCheckedCorrectAnswer)
+            {
+              /*if (_subjectController.isCheckedCorrectAnswer) {
+                toggle = true;
+              }*/
+              _quizController
+                  .quizQuestionList[_quizController.questionIndex].QuestionAnswerList.forEach((element) {
+                 element.isChecked = false;
+              });
+              isAttempted = true;
 
-            answerId = _quizController
-                .quizQuestionList[_quizController.questionIndex].QuestionAnswerList[answerIndex].Id;
-            quizQuestionAnswer = _quizController
-                .quizQuestionList[_quizController.questionIndex]
-                .QuestionAnswerList
-                .where((element) => element.Id == answerId)
-                .first;
-            quizQuestionAnswer.isChecked = true;
+              answerId = _quizController
+                  .quizQuestionList[_quizController.questionIndex].QuestionAnswerList[answerIndex].Id;
+              quizQuestionAnswer = _quizController
+                  .quizQuestionList[_quizController.questionIndex]
+                  .QuestionAnswerList
+                  .where((element) => element.Id == answerId)
+                  .first;
+              quizQuestionAnswer.isChecked = true;
 
-            if (_subjectController.isCheckedCorrectAnswer ||
-                (!_subjectController.isCheckedCorrectAnswer &&
-                    !hasSeenExplanation)) {
+              if (_subjectController.isCheckedCorrectAnswer ||
+                  (!_subjectController.isCheckedCorrectAnswer &&
+                      !hasSeenExplanation)) {
+                _quizController.quizQuestionList[_quizController.questionIndex]
+                    .isUserAnswer = quizQuestionAnswer.isCorrect;
+              }
               _quizController.quizQuestionList[_quizController.questionIndex]
-                  .isUserAnswer = quizQuestionAnswer.isCorrect;
-            }
-            _quizController.quizQuestionList[_quizController.questionIndex]
-                .isAttempted = isAttempted;
+                  .isAttempted = isAttempted;
 
-            _groupValue = answerId;
-            _quizController.updateUserBuilder();
+              _groupValue = answerId;
+              _quizController.updateUserBuilder();
+            }else {
+            if (!_quizController
+                .quizQuestionList[_quizController.questionIndex].isAttempted) {
+              if (_subjectController.isCheckedCorrectAnswer) {
+                toggle = true;
+              }
+              isAttempted = true;
+
+              answerId = _quizController
+                  .quizQuestionList[_quizController.questionIndex]
+                  .QuestionAnswerList[answerIndex].Id;
+              quizQuestionAnswer = _quizController
+                  .quizQuestionList[_quizController.questionIndex]
+                  .QuestionAnswerList
+                  .where((element) => element.Id == answerId)
+                  .first;
+              quizQuestionAnswer.isChecked = true;
+
+              if (_subjectController.isCheckedCorrectAnswer ||
+                  (!_subjectController.isCheckedCorrectAnswer &&
+                      !hasSeenExplanation)) {
+                _quizController.quizQuestionList[_quizController.questionIndex]
+                    .isUserAnswer = quizQuestionAnswer.isCorrect;
+              }
+              _quizController.quizQuestionList[_quizController.questionIndex]
+                  .isAttempted = isAttempted;
+
+              _groupValue = answerId;
+              _quizController.updateUserBuilder();
+            }
           }
         },
         child: Container(
