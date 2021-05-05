@@ -448,7 +448,7 @@ class HomeScreen extends StatelessWidget {
                   child: Textview2(
                     title: userDashboardVMResponse
                         .DashBaordSubjects[index].SubjectName,
-                    fontSize: 10.0,
+                    fontSize: 8.0,
                     color: AppColors.textWhiteColor,
                     fontWeight: FontWeight.bold,
                     fontFamily: AppValues.fontFamily,

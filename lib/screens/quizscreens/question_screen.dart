@@ -25,11 +25,13 @@ import 'package:e_quiz/utils/widgetproperties.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_html/rich_text_parser.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:get_it/get_it.dart';
+import 'tab_bar.dart';
 
 class QuestionScreen extends StatelessWidget {
   var _quizController = Get.find<QuizController>();
@@ -44,7 +46,7 @@ class QuestionScreen extends StatelessWidget {
 
   BuildContext buildContext;
   bool flaggedAsDifficult = false;
-  bool hasButtonSeenExplanation = false;
+  bool hasButtonSeenExplanation = true;
   bool flaggedAsSkipped = false;
   bool hasSeenExplanation = false;
   bool toggle = false;
@@ -72,9 +74,13 @@ class QuestionScreen extends StatelessWidget {
           initState: (child) {
             _quizController.ini();
             getQuestionList();
-            // getList();
+            // if( _quizController
+            //     .quizQuestionList[_quizController.questionIndex]
+            //     .isAttempted){
+            //   getPreviousAnswer();
+            // }
             if (_subjectController.isCheckedCorrectAnswer) {
-              hasButtonSeenExplanation = false;
+              hasButtonSeenExplanation = true;
             } else {
               hasSeenExplanation = false;
               hasButtonSeenExplanation = true;
@@ -94,64 +100,32 @@ class QuestionScreen extends StatelessWidget {
                             WidgetProperties.screenHeight(context) * 0.4,
                         body: Container(),
                       ),
-                      Container(
-                        alignment: Alignment.topCenter,
-                        margin: EdgeInsets.only(top: 30.0),
-                        child: _quizController.quizQuestionList[0].TotalTime
-                                .toString()
-                                .isNotEmpty
-                            ? CountdownFormatted(
-                                onFinish: () {
-                                  WidgetProperties.goToNextPage(
-                                      Get.context, TabbarView());
-                                  // _quizController.update();
-                                },
-                                duration: Duration(
-                                    seconds: _quizController
-                                        .quizQuestionList[0].TotalTime),
-                                builder: (BuildContext buildContext,
-                                    String remaining) {
-                                  return Textview2(
-                                    // title: "04-00-98",
-                                    title: remaining,
-                                    fontSize: 20.0,
-                                    color: AppColors.textWhiteColor,
-                                    fontWeight: FontWeight.bold,
-                                    textAlign: TextAlign.left,
-                                    fontFamily: AppValues.fontFamily,
-                                  );
-                                },
-                              )
-                            : Container(),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(top: 80.0),
-                            alignment: Alignment.topCenter,
-                            child: SvgPicture.asset(
-                              Constants.BASE_PATH_IMAGE + "test.svg",
-                              height: 100.0,
-                              width: 100.0,
+                      Positioned(
+                        top: 30.0,
+                        left: 0.0,
+                        right: 0.0,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              alignment: Alignment.topCenter,
+                              child: SvgPicture.asset(
+                                Constants.BASE_PATH_IMAGE + "test.svg",
+                                height: 75.0,
+                                width: 75.0,
+                              ),
                             ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(top: 10.0, bottom: 20.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.only(
-                                    left: AppValues.horizontalMargin,
-                                    right: AppValues.horizontalMargin,
-                                    top: 15.0,
-                                  ),
-                                  child: CommonCard(
-                                    child: Container(
-                                      height: WidgetProperties.screenHeight(
-                                              context) *
-                                          0.6,
+                            Container(
+                              margin: EdgeInsets.only(top: 10.0, bottom: 20.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.only(
+                                      left: AppValues.horizontalMargin,
+                                      right: AppValues.horizontalMargin,
+                                    ),
+                                    child: CommonCard(
                                       child: Form(
                                         child: Container(
                                           margin: EdgeInsets.only(
@@ -159,193 +133,262 @@ class QuestionScreen extends StatelessWidget {
                                           child: SingleChildScrollView(
                                             child: Column(
                                               children: [
-                                                Container(
-                                                  margin: EdgeInsets.only(
-                                                      top: 14.0),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Container(
+                                                SizedBox(
+                                                  height: 5.0,
+                                                ),
+                                                _quizController
+                                                        .quizQuestionList[0]
+                                                        .TotalTime
+                                                        .toString()
+                                                        .isNotEmpty
+                                                    ? Container(
+                                                        padding:
+                                                            EdgeInsets.all(5.0),
                                                         child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
                                                           children: [
-                                                            Container(
-                                                                alignment:
-                                                                    Alignment
-                                                                        .center,
-                                                                height: 20,
-                                                                width: 20,
-                                                                decoration:
-                                                                    WidgetProperties
-                                                                        .selectedSubjectDecoration,
-                                                                child:
-                                                                    Textview2(
-                                                                  title: _quizController
+                                                            Textview2(
+                                                              // title: "04-00-98",
+                                                              title:
+                                                                  "Time Remaining:",
+                                                              fontSize: 14.0,
+                                                              color: AppColors
+                                                                  .primaryColor,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .left,
+                                                              fontFamily:
+                                                                  AppValues
+                                                                      .fontFamily,
+                                                            ),
+                                                            CountdownFormatted(
+                                                              onFinish: () {
+                                                                WidgetProperties
+                                                                    .goToNextPage(
+                                                                        Get.context,
+                                                                        TabbarView());
+                                                                // _quizController.update();
+                                                              },
+                                                              duration: Duration(
+                                                                  seconds: _quizController
                                                                       .quizQuestionList[
-                                                                          _quizController
-                                                                              .questionIndex]
-                                                                      .Serial
-                                                                      .toString(),
+                                                                          0]
+                                                                      .TotalTime),
+                                                              builder: (BuildContext
+                                                                      buildContext,
+                                                                  String
+                                                                      remaining) {
+                                                                return Textview2(
+                                                                  // title: "04-00-98",
+                                                                  title:
+                                                                      remaining,
+                                                                  fontSize:
+                                                                      16.0,
                                                                   color: AppColors
-                                                                      .textWhiteColor,
+                                                                      .primaryColor,
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .bold,
-                                                                )),
-                                                            Container(
+                                                                          .normal,
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .left,
+                                                                  fontFamily:
+                                                                      AppValues
+                                                                          .fontFamily,
+                                                                );
+                                                              },
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      )
+                                                    : Container(),
+                                                Container(
+                                                  margin: EdgeInsets.only(
+                                                      top: 15.0),
+                                                  padding: EdgeInsets.only(
+                                                      top: 15.0, left: 15.0),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                5.0)),
+                                                    border: Border.all(
+                                                      color: AppColors
+                                                          .primaryColor,
+                                                    ),
+                                                  ),
+                                                  child: Column(
+                                                    children: [
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Container(
+                                                            alignment: Alignment
+                                                                .center,
+                                                            height: 20,
+                                                            width: 20,
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                                    left: 10.0),
+                                                            decoration:
+                                                                WidgetProperties
+                                                                    .selectedSubjectDecoration,
+                                                            child: Textview2(
+                                                              title: _quizController
+                                                                  .quizQuestionList[
+                                                                      _quizController
+                                                                          .questionIndex]
+                                                                  .Serial
+                                                                  .toString(),
+                                                              color: AppColors
+                                                                  .textWhiteColor,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                          ),
+                                                          Flexible(
+                                                            child: Container(
                                                               margin: EdgeInsets
                                                                   .only(
                                                                       left:
                                                                           5.0),
-                                                              child: Textview2(
-                                                                title:
-                                                                    "Questions:",
-                                                                fontSize: 15.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                color: AppColors
-                                                                    .commoneadingtextColor,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Container(
-                                                  margin: EdgeInsets.only(
-                                                      top: 10.0),
-                                                  alignment:
-                                                      Alignment.centerLeft,
-                                                  child: Html(
-                                                    data: _quizController
-                                                                .quizQuestionList[
-                                                                    _quizController
-                                                                        .questionIndex]
-                                                                .Statement !=
-                                                            null
-                                                        ? _quizController
-                                                            .quizQuestionList[
-                                                                _quizController
-                                                                    .questionIndex]
-                                                            .Statement
-                                                        : "What is this?",
-                                                  ),
-                                                ),
-                                                Container(
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    children: [
-                                                      Container(
-                                                        child: addRadioButton(
-                                                            0,
-                                                            _quizController
-                                                                    .quizQuestionList[
-                                                                        _quizController
-                                                                            .questionIndex]
-                                                                    .QuestionAnswerList
-                                                                    .isNotEmpty
-                                                                ? _quizController
+                                                              child: Html(
+                                                                defaultTextStyle: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontSize:
+                                                                        14.0,
+                                                                    color: AppColors
+                                                                        .primaryColor),
+                                                                data: _quizController
                                                                             .quizQuestionList[_quizController
                                                                                 .questionIndex]
-                                                                            .QuestionAnswerList[
-                                                                                0]
                                                                             .Statement !=
                                                                         null
                                                                     ? _quizController
-                                                                        .quizQuestionList[_quizController
-                                                                            .questionIndex]
-                                                                        .QuestionAnswerList[
-                                                                            0]
+                                                                        .quizQuestionList[
+                                                                            _quizController.questionIndex]
                                                                         .Statement
-                                                                    : "Dummy Text"
-                                                                : "Dummy Text",
-                                                            context),
+                                                                    : "What is this?",
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                      addRadioButton(
-                                                          1,
-                                                          _quizController
-                                                                  .quizQuestionList[
-                                                                      _quizController
-                                                                          .questionIndex]
-                                                                  .QuestionAnswerList
-                                                                  .isNotEmpty
-                                                              ? _quizController
+                                                      Column(
+                                                        children: [
+                                                          addRadioButton(
+                                                              0,
+                                                              _quizController
+                                                                      .quizQuestionList[
+                                                                          _quizController
+                                                                              .questionIndex]
+                                                                      .QuestionAnswerList
+                                                                      .isNotEmpty
+                                                                  ? _quizController
+                                                                              .quizQuestionList[_quizController
+                                                                                  .questionIndex]
+                                                                              .QuestionAnswerList[
+                                                                                  0]
+                                                                              .Statement !=
+                                                                          null
+                                                                      ? _quizController
+                                                                          .quizQuestionList[_quizController
+                                                                              .questionIndex]
+                                                                          .QuestionAnswerList[
+                                                                              0]
+                                                                          .Statement
+                                                                      : "Dummy Text"
+                                                                  : "Dummy Text",
+                                                              context),
+                                                          addRadioButton(
+                                                              1,
+                                                              _quizController
+                                                                      .quizQuestionList[
+                                                                          _quizController
+                                                                              .questionIndex]
+                                                                      .QuestionAnswerList
+                                                                      .isNotEmpty
+                                                                  ? _quizController
+                                                                              .quizQuestionList[_quizController
+                                                                                  .questionIndex]
+                                                                              .QuestionAnswerList[
+                                                                                  1]
+                                                                              .Statement !=
+                                                                          null
+                                                                      ? _quizController
                                                                           .quizQuestionList[_quizController
                                                                               .questionIndex]
                                                                           .QuestionAnswerList[
                                                                               1]
-                                                                          .Statement !=
-                                                                      null
-                                                                  ? _quizController
+                                                                          .Statement
+                                                                      : "Dummy Text"
+                                                                  : "Dummy Text",
+                                                              context),
+                                                          addRadioButton(
+                                                              2,
+                                                              _quizController
                                                                       .quizQuestionList[
                                                                           _quizController
                                                                               .questionIndex]
-                                                                      .QuestionAnswerList[
-                                                                          1]
-                                                                      .Statement
-                                                                  : "Dummy Text"
-                                                              : "Dummy Text",
-                                                          context),
-                                                      addRadioButton(
-                                                          2,
-                                                          _quizController
-                                                                  .quizQuestionList[
-                                                                      _quizController
-                                                                          .questionIndex]
-                                                                  .QuestionAnswerList
-                                                                  .isNotEmpty
-                                                              ? _quizController
+                                                                      .QuestionAnswerList
+                                                                      .isNotEmpty
+                                                                  ? _quizController
+                                                                              .quizQuestionList[_quizController
+                                                                                  .questionIndex]
+                                                                              .QuestionAnswerList[
+                                                                                  2]
+                                                                              .Statement !=
+                                                                          null
+                                                                      ? _quizController
                                                                           .quizQuestionList[_quizController
                                                                               .questionIndex]
                                                                           .QuestionAnswerList[
                                                                               2]
-                                                                          .Statement !=
-                                                                      null
-                                                                  ? _quizController
+                                                                          .Statement
+                                                                      : "Dummy Text"
+                                                                  : "Dummy Text",
+                                                              context),
+                                                          addRadioButton(
+                                                              3,
+                                                              _quizController
                                                                       .quizQuestionList[
                                                                           _quizController
                                                                               .questionIndex]
-                                                                      .QuestionAnswerList[
-                                                                          2]
-                                                                      .Statement
-                                                                  : "Dummy Text"
-                                                              : "Dummy Text",
-                                                          context),
-                                                      addRadioButton(
-                                                          3,
-                                                          _quizController
-                                                                  .quizQuestionList[
-                                                                      _quizController
-                                                                          .questionIndex]
-                                                                  .QuestionAnswerList
-                                                                  .isNotEmpty
-                                                              ? _quizController
+                                                                      .QuestionAnswerList
+                                                                      .isNotEmpty
+                                                                  ? _quizController
+                                                                              .quizQuestionList[_quizController
+                                                                                  .questionIndex]
+                                                                              .QuestionAnswerList[
+                                                                                  3]
+                                                                              .Statement !=
+                                                                          null
+                                                                      ? _quizController
                                                                           .quizQuestionList[_quizController
                                                                               .questionIndex]
                                                                           .QuestionAnswerList[
                                                                               3]
-                                                                          .Statement !=
-                                                                      null
-                                                                  ? _quizController
-                                                                      .quizQuestionList[
-                                                                          _quizController
-                                                                              .questionIndex]
-                                                                      .QuestionAnswerList[
-                                                                          3]
-                                                                      .Statement
-                                                                  : "Dummy Text"
-                                                              : "Dummy Text",
-                                                          context),
+                                                                          .Statement
+                                                                      : "Dummy Text"
+                                                                  : "Dummy Text",
+                                                              context),
+                                                        ],
+                                                      ),
                                                     ],
                                                   ),
                                                 ),
                                                 SizedBox(
-                                                  height: 30.0,
+                                                  height: 10.0,
                                                 ),
                                                 Container(
                                                   child: Row(
@@ -360,7 +403,7 @@ class QuestionScreen extends StatelessWidget {
                                                             .commonButtonCornerRadius,
                                                         gradient: hasButtonSeenExplanation
                                                             ? AppColors
-                                                                .progressbarColor
+                                                                .primaryBtnColor
                                                             : AppColors
                                                                 .startNowTextColor,
                                                         title:
@@ -369,6 +412,11 @@ class QuestionScreen extends StatelessWidget {
                                                           if (hasButtonSeenExplanation) {
                                                             hasSeenExplanation =
                                                                 true;
+                                                            _quizController
+                                                                .quizQuestionList[
+                                                            _quizController
+                                                                .questionIndex]
+                                                                .HasSeenExplanation = true;
                                                             if (!_subjectController
                                                                 .isCheckedCorrectAnswer) {
                                                               _quizController
@@ -421,9 +469,10 @@ class QuestionScreen extends StatelessWidget {
                                                     ],
                                                   ),
                                                 ),
+                                                SizedBox(
+                                                  height: 10.0,
+                                                ),
                                                 Container(
-                                                  margin: EdgeInsets.only(
-                                                      top: 30.0),
                                                   child: Row(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
@@ -440,7 +489,8 @@ class QuestionScreen extends StatelessWidget {
                                                                     .commonButtonCornerRadius,
                                                                 gradient: AppColors
                                                                     .progressbarColor,
-                                                                title: "Back",
+                                                                title:
+                                                                    "Previous",
                                                                 onPressed: () {
                                                                   goBackToPreviousQuestion();
 
@@ -458,7 +508,8 @@ class QuestionScreen extends StatelessWidget {
                                                                     .commonButtonCornerRadius,
                                                                 gradient: AppColors
                                                                     .progressbarColorPressed,
-                                                                title: "Back",
+                                                                title:
+                                                                    "Previous",
                                                                 onPressed:
                                                                     () {},
                                                               ),
@@ -476,7 +527,7 @@ class QuestionScreen extends StatelessWidget {
                                                                         .quizQuestionList
                                                                         .length -
                                                                     1
-                                                            ? 'Next Question'
+                                                            ? 'Next'
                                                             : ' Submit',
                                                         onPressed: () {
                                                           updateQuizAnswer();
@@ -496,86 +547,95 @@ class QuestionScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                      _quizController.skippedQuestionObjectList.length > 0
-                          ? Align(
-                              alignment: AlignmentDirectional.bottomEnd,
-                              child: Container(
-                                padding: EdgeInsets.all(5.0),
-                                decoration: BoxDecoration(
-                                  color: AppColors.primaryBtnColor,
-                                ),
-                                height: WidgetProperties.screenHeight(context) *
-                                    0.12,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Textview2(
-                                      title: "Skipped Questions",
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14.0,
-                                      color: AppColors.textWhiteColor,
-                                    ),
-                                    Container(
-                                      height: 50.0,
-                                      width:
-                                          WidgetProperties.screenWidth(context),
-                                      child: ListView.builder(
-                                        itemCount: _quizController
-                                            .skippedQuestionObjectList.length,
-                                        scrollDirection: Axis.horizontal,
-                                        itemBuilder: (context, index) {
-                                          return InkWell(
-                                            onTap: () {
-                                              _quizController
-                                                  .isSkippedSelected = true;
-                                              _quizController.nextQuestionSkipped(
-                                                  _quizController
-                                                      .quizQuestionList
-                                                      .indexOf(_quizController
-                                                              .skippedQuestionObjectList[
-                                                          index]));
+                      Positioned(
+                        left: 0.0,
+                        right: 0.0,
+                        bottom: 0.0,
+                        child: _quizController
+                                    .skippedQuestionObjectList.length >
+                                0
+                            ? Align(
+                                alignment: AlignmentDirectional.bottomEnd,
+                                child: Container(
+                                  padding: EdgeInsets.all(5.0),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.primaryBtnColor,
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Textview2(
+                                        title: "Skipped Questions",
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14.0,
+                                        color: AppColors.textWhiteColor,
+                                      ),
+                                      Container(
+                                        height: 40.0,
+                                        width: WidgetProperties.screenWidth(
+                                            context),
+                                        child: ListView.builder(
+                                          itemCount: _quizController
+                                              .skippedQuestionObjectList.length,
+                                          scrollDirection: Axis.horizontal,
+                                          itemBuilder: (context, index) {
+                                            return InkWell(
+                                              onTap: () {
+                                                _quizController
+                                                    .isSkippedSelected = true;
+                                                _quizController.nextQuestionSkipped(
+                                                    _quizController
+                                                        .quizQuestionList
+                                                        .indexOf(_quizController
+                                                                .skippedQuestionObjectList[
+                                                            index]));
 
-                                              flaggedAsSkipped = false;
-                                              toggle = false;
-                                              hasSeenExplanation = false;
-                                              flaggedAsDifficult = false;
-                                              isAttempted = false;
-                                              _quizController
-                                                  .updateUserBuilder();
-                                            },
-                                            splashColor: AppColors.primaryColor,
-                                            child: Container(
-                                              padding: EdgeInsets.all(8.0),
-                                              margin:
-                                                  EdgeInsets.only(left: 5.0),
-                                              decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  shape: BoxShape.circle),
-                                              child: Center(
-                                                child: Textview2(
-                                                  title: (index + 1).toString(),
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 14.0,
-                                                  color: AppColors.primaryColor,
+                                                flaggedAsSkipped = false;
+                                                toggle = false;
+                                                hasSeenExplanation = false;
+                                                flaggedAsDifficult = false;
+                                                isAttempted = false;
+                                                _quizController
+                                                    .updateUserBuilder();
+                                              },
+                                              splashColor:
+                                                  AppColors.primaryColor,
+                                              child: Container(
+                                                padding: EdgeInsets.all(8.0),
+                                                margin:
+                                                    EdgeInsets.only(left: 5.0),
+                                                decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    shape: BoxShape.circle),
+                                                child: Center(
+                                                  child: Textview2(
+                                                    title:
+                                                        (index + 1).toString(),
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 14.0,
+                                                    color:
+                                                        AppColors.primaryColor,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          );
-                                        },
+                                            );
+                                          },
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            )
-                          : Container(),
+                              )
+                            : Container(),
+                      ),
                     ],
                   ),
                 ),
@@ -659,25 +719,25 @@ class QuestionScreen extends StatelessWidget {
       if (hasSeenExplanation) {
         flaggedAsSkipped = false;
       } else {
+
         ToastClass.showToast("Question marked as skipped", ToastGravity.BOTTOM,
             Colors.red, Colors.white, 15.0, Toast.LENGTH_SHORT);
         flaggedAsSkipped = true;
-        if (flaggedAsSkipped) {
-          _quizController.quizQuestionList[_quizController.questionIndex]
-              .FlaggedAsSkipped = flaggedAsSkipped;
-          found = false;
-          _quizController.skippedQuestionObjectList.forEach((element) {
-            if (element.QuestionId ==
-                _quizController.quizQuestionList[_quizController.questionIndex]
-                    .QuestionId) {
-              found = true;
-            }
-          });
 
-          if (!found) {
-            _quizController.skippedQuestionObjectList.add(_quizController
-                .quizQuestionList[_quizController.questionIndex]);
+        _quizController.quizQuestionList[_quizController.questionIndex]
+            .FlaggedAsSkipped = flaggedAsSkipped;
+        found = false;
+        _quizController.skippedQuestionObjectList.forEach((element) {
+          if (element.QuestionId ==
+              _quizController
+                  .quizQuestionList[_quizController.questionIndex].QuestionId) {
+            found = true;
           }
+        });
+
+        if (!found) {
+          _quizController.skippedQuestionObjectList.add(
+              _quizController.quizQuestionList[_quizController.questionIndex]);
         }
       }
     } else {
@@ -731,6 +791,8 @@ class QuestionScreen extends StatelessWidget {
         if (_quizController.questionIndex <
             _quizController.quizQuestionList.length - 1) {
           _quizController.nextQuestion();
+          isAttempted = _quizController.quizQuestionList[_quizController.questionIndex].isAttempted;
+          toggle = _quizController.quizQuestionList[_quizController.questionIndex].isAttempted;
           _quizController.updateUserBuilder();
         } else {
           _quizController.updateDashboardData();
@@ -739,7 +801,7 @@ class QuestionScreen extends StatelessWidget {
           _resultController.quizQuestionList = _quizController.quizQuestionList;
 
           Navigator.of(Get.context)
-              .pushReplacement(MaterialPageRoute(builder: (_) => TabbarView()));
+              .pushReplacement(MaterialPageRoute(builder: (_) => TabbarViewResult()));
         }
       }
     }
@@ -775,77 +837,156 @@ class QuestionScreen extends StatelessWidget {
 
   Widget addRadioButton(
       int answerIndex, String title, BuildContext buildContext) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        Flexible(
-            flex: 1,
-            child: AbsorbPointer(
-              absorbing: toggle,
-              child: RadioListTile(
-                title: Html(
-                  defaultTextStyle: getStyle(answerIndex),
-                  // backgroundColor: _quizController
-                  //         .quizQuestionList[answerIndex].QuestionAnswerList
-                  //     ? Colors.green
-                  //     : Colors.red,
-                  data: title,
-                ),
-                toggleable: toggle,
-                activeColor: AppColors.textBlackColor,
-                value: _quizController
-                        .quizQuestionList[_quizController.questionIndex]
-                        .QuestionAnswerList
-                        .isNotEmpty
-                    ? _quizController
-                        .quizQuestionList[_quizController.questionIndex]
-                        .QuestionAnswerList[answerIndex]
-                        .Id
-                    : "",
-                groupValue: _groupValue,
-                onChanged: (value) {
-                  if (_subjectController.isCheckedCorrectAnswer) {
-                    toggle = true;
-                  }
-                  hasButtonSeenExplanation = true;
-                  isAttempted = true;
+    return AbsorbPointer(
+      absorbing:  toggle,
+      child: InkWell(
+        onTap: () {
+          // if (id == Constants.SELF_QUIZ) {
+          //   if (!isSelfChecked) {
+          //     isSelfChecked = true;
+          //     isComptetionChecked = !isSelfChecked;
+          //     subjectController.isQuizType = false;
+          //     subjectController.update();
+          //   }
+          // } else {
+          //   if (!isComptetionChecked) {
+          //     isComptetionChecked = true;
+          //     subjectController.isQuizType = true;
+          //     isSelfChecked = !isComptetionChecked;
+          //     subjectController.update();
+          //   }
+          // }
 
-                  answerId = value;
-                  quizQuestionAnswer = _quizController
-                      .quizQuestionList[_quizController.questionIndex]
-                      .QuestionAnswerList
-                      .where((element) => element.Id == answerId)
-                      .first;
-                  quizQuestionAnswer.isChecked = true;
+          if (!_quizController
+              .quizQuestionList[_quizController.questionIndex].isAttempted) {
+            if (_subjectController.isCheckedCorrectAnswer) {
+              toggle = true;
+            }
+            hasButtonSeenExplanation = false;
+            isAttempted = true;
 
-                  if (_subjectController.isCheckedCorrectAnswer ||
-                      (!_subjectController.isCheckedCorrectAnswer &&
-                          !hasSeenExplanation)) {
-                    _quizController
-                        .quizQuestionList[_quizController.questionIndex]
-                        .isUserAnswer = quizQuestionAnswer.isCorrect;
-                  }
-                  _quizController
-                      .quizQuestionList[_quizController.questionIndex]
-                      .isAttempted = isAttempted;
+            answerId = _quizController
+                .quizQuestionList[_quizController.questionIndex].QuestionAnswerList[answerIndex].Id;
+            quizQuestionAnswer = _quizController
+                .quizQuestionList[_quizController.questionIndex]
+                .QuestionAnswerList
+                .where((element) => element.Id == answerId)
+                .first;
+            quizQuestionAnswer.isChecked = true;
 
-                  _groupValue = value;
-                  _quizController.updateUserBuilder();
-                },
+            if (_subjectController.isCheckedCorrectAnswer ||
+                (!_subjectController.isCheckedCorrectAnswer &&
+                    !hasSeenExplanation)) {
+              _quizController.quizQuestionList[_quizController.questionIndex]
+                  .isUserAnswer = quizQuestionAnswer.isCorrect;
+            }
+            _quizController.quizQuestionList[_quizController.questionIndex]
+                .isAttempted = isAttempted;
+
+            _groupValue = answerId;
+            _quizController.updateUserBuilder();
+          }
+        },
+        child: Container(
+          margin: EdgeInsets.all(10.0),
+          height: 40.0,
+          child: Material(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            elevation: 0.0,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal:10.0),
+              child: Row(
+                children: [
+                  Container(
+                    height: 20,
+                    width: 20,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: AppColors.primaryColor,width: 1.0),
+                        color:_quizController
+                            .quizQuestionList[_quizController.questionIndex].QuestionAnswerList[answerIndex].isChecked
+                            ? AppColors.primaryColor
+                            : AppColors.textWhiteColor,
+                        shape: BoxShape.circle),
+                  ),
+                  SizedBox(width: 10.0,),
+                  Flexible(
+                    child: Html(
+                      customTextAlign: (element) {
+                        return TextAlign.left;
+                      },
+                      defaultTextStyle: getStyle(answerIndex),
+                      // backgroundColor: _quizController
+                      //         .quizQuestionList[answerIndex].QuestionAnswerList
+                      //     ? Colors.green
+                      //     : Colors.red,
+                      data: title,
+                    ),
+                  )
+                ],
               ),
-            )),
-        // Flexible(
-        //   flex: 2,
-        //   child: Html(
-        //     defaultTextStyle: getStyle(answerIndex),
-        //     // backgroundColor: _quizController
-        //     //         .quizQuestionList[answerIndex].QuestionAnswerList
-        //     //     ? Colors.green
-        //     //     : Colors.red,
-        //     data: title,
-        //   ),
-        // ),
-      ],
+            ),
+          ),
+        ),
+      ),
+    );
+
+
+
+    return AbsorbPointer(
+      absorbing:  toggle,
+      child: RadioListTile(
+        contentPadding: EdgeInsets.all(0.0),
+        title: Html(
+          customTextAlign: (element) {
+            return TextAlign.left;
+          },
+          defaultTextStyle: getStyle(answerIndex),
+          // backgroundColor: _quizController
+          //         .quizQuestionList[answerIndex].QuestionAnswerList
+          //     ? Colors.green
+          //     : Colors.red,
+          data: title,
+        ),
+        toggleable: toggle,
+        activeColor: AppColors.textBlackColor,
+        value: _quizController.quizQuestionList[_quizController.questionIndex]
+                .QuestionAnswerList.isNotEmpty
+            ? _quizController.quizQuestionList[_quizController.questionIndex]
+                .QuestionAnswerList[answerIndex].Id
+            : "",
+        groupValue: _groupValue,
+        onChanged: (value) {
+          if (!_quizController
+              .quizQuestionList[_quizController.questionIndex].isAttempted) {
+            if (_subjectController.isCheckedCorrectAnswer) {
+              toggle = true;
+            }
+            hasButtonSeenExplanation = true;
+            isAttempted = true;
+
+            answerId = value;
+            quizQuestionAnswer = _quizController
+                .quizQuestionList[_quizController.questionIndex]
+                .QuestionAnswerList
+                .where((element) => element.Id == answerId)
+                .first;
+            quizQuestionAnswer.isChecked = true;
+
+            if (_subjectController.isCheckedCorrectAnswer ||
+                (!_subjectController.isCheckedCorrectAnswer &&
+                    !hasSeenExplanation)) {
+              _quizController.quizQuestionList[_quizController.questionIndex]
+                  .isUserAnswer = quizQuestionAnswer.isCorrect;
+            }
+            _quizController.quizQuestionList[_quizController.questionIndex]
+                .isAttempted = isAttempted;
+
+            _groupValue = value;
+            _quizController.updateUserBuilder();
+          }
+        },
+      ),
     );
   }
 
@@ -912,6 +1053,9 @@ class QuestionScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Html(
+                          customTextAlign: (element) {
+                            return TextAlign.center;
+                          },
                           data: message,
                           defaultTextStyle:
                               TextStyle(color: Colors.black, fontSize: 20.0),
@@ -943,7 +1087,56 @@ class QuestionScreen extends StatelessWidget {
   }
 
   void goBackToPreviousQuestion() {
-    _quizController.previousQuestion();
-    _quizController.updateBuilder();
+    if (_quizController.questionIndex > 0) {
+      _quizController.questionIndex = _quizController.questionIndex - 1;
+      isAttempted =
+          _quizController.quizQuestionList[_quizController.questionIndex]
+              .isAttempted;
+      // hasSeenExplanation =  _quizController.quizQuestionList[_quizController.questionIndex]
+      //     .HasSeenExplanation;
+      // hasButtonSeenExplanation = _quizController.quizQuestionList[_quizController.questionIndex]
+      //     .HasSeenExplanation;
+      toggle = _quizController.quizQuestionList[_quizController.questionIndex]
+          .isAttempted;
+      //hasButtonSeenExplanation = true;
+      // if(_quizController.quizQuestionList[_quizController.questionIndex].isAttempted){
+      //   if(_quizController.quizQuestionList[_quizController.questionIndex].ActualAnswerId ==answerId ){
+      //     print('Answer is true...................');
+      //   }
+      //   else{
+      //     print('Answer is false...................');
+      //   }
+      // }
+      //getStyle(_quizController.quizQuestionList[_quizController.questionIndex].SelectedAnswerId);
+      _quizController.updateBuilder();
+    }
   }
+
+  // getPreviousAnswer() {
+  //   var value = _quizController
+  //       .quizQuestionList[_quizController.questionIndex].ActualAnswerId;
+  //   if (_subjectController.isCheckedCorrectAnswer) {
+  //     toggle = true;
+  //   }
+  //   hasButtonSeenExplanation = true;
+  //   isAttempted = true;
+  //
+  //   answerId = value;
+  //   quizQuestionAnswer = _quizController
+  //       .quizQuestionList[_quizController.questionIndex].QuestionAnswerList
+  //       .where((element) => element.Id == answerId)
+  //       .first;
+  //   quizQuestionAnswer.isChecked = true;
+  //
+  //   if (_subjectController.isCheckedCorrectAnswer ||
+  //       (!_subjectController.isCheckedCorrectAnswer && !hasSeenExplanation)) {
+  //     _quizController.quizQuestionList[_quizController.questionIndex]
+  //         .isUserAnswer = quizQuestionAnswer.isCorrect;
+  //   }
+  //   _quizController.quizQuestionList[_quizController.questionIndex]
+  //       .isAttempted = isAttempted;
+  //
+  //   _groupValue = value;
+  //   _quizController.updateUserBuilder();
+  // }
 }

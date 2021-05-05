@@ -46,7 +46,7 @@ class SubjectController extends GetxController {
     selectedSubjectIds = StringBuffer();
     selectedStudentIds = StringBuffer();
 
-    isCheckedCorrectAnswer = false;
+    isCheckedCorrectAnswer = true;
     isCheckedDiffcultQuestion = false;
     isCheckedWrongQuestion = false;
     isCheckedSkippedQuestion = false;

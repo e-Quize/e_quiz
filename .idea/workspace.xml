@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="31ed38ee-efc6-4097-a38f-15df9cf1e594" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+    <list default="true" id="31ed38ee-efc6-4097-a38f-15df9cf1e594" name="Default Changelist" comment="3rd">
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Electronic-Quiz.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Electronic-Quiz.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/common/exception_manager/exception_handler.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/common/exception_manager/exception_handler.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/controllers/subject_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/controllers/subject_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/dashboard/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/dashboard/home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/question_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/question_screen.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Rebase.Settings">
+    <option name="NEW_BASE" value="test1" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="test1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1rsLvW6qwJyA7MRnGIFODmyviDl" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectReloadState">
     <option name="STATE" value="1" />
   </component>
@@ -70,6 +82,22 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/quizscreens/tab_bar.dart</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/quizscreens/question_screen.dart</url>
+          <line>1091</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/quizscreens/question_screen.dart</url>
+          <line>1098</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="dart-exception" />
       </default-breakpoints>
