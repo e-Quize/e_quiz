@@ -15,6 +15,7 @@ import 'package:e_quiz/utils/values.dart';
 import 'package:e_quiz/utils/widgetproperties.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:e_quiz/common/ui_widgets/get_push_replacement.dart';
 
 class CompetitionResultScreen extends StatelessWidget {
   var _resultController = Get.find<ResultController>();

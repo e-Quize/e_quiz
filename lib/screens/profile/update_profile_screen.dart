@@ -13,7 +13,10 @@ import 'package:e_quiz/screens/authentication/dropdown_country_widget.dart';
 import 'package:e_quiz/screens/authentication/dropdown_timezone_widget.dart';
 import 'package:e_quiz/screens/common/common_background.dart';
 import 'package:e_quiz/utils/colors.dart';
+import 'package:e_quiz/common/ui_widgets/get_push_replacement.dart';
 import 'package:e_quiz/utils/constants.dart';
+import 'package:e_quiz/utils/dialog/loader.dart';
+import 'package:e_quiz/utils/dialog/loadingcircle/lib/ball_scale_indicator.dart';
 import 'package:e_quiz/utils/dialog/toastclass.dart';
 import 'package:e_quiz/utils/values.dart';
 import 'package:e_quiz/utils/widgetproperties.dart';
@@ -33,6 +36,8 @@ class UpdateProfile extends StatelessWidget {
   var emailController = TextEditingController();
   var phoneNumberController = TextEditingController();
   var passwordController = TextEditingController();
+
+  var _isLoading = true;
 
   String firstName = "";
   String lastName = "";
@@ -102,272 +107,308 @@ class UpdateProfile extends StatelessWidget {
                             margin: EdgeInsets.only(
                                 right: 15.0, left: 15.0, top: 10.0),
                             child: GetBuilder<UserController>(
-                              initState: (child) {
+                              initState: (child) async {
+                                await getCountryList();
                                 setUser();
                               },
                               builder: (_) {
-                                return Form(
-                                  key: _formKey,
-                                  autovalidateMode: AutovalidateMode.disabled,
-                                  child: Column(
-                                    children: [
-                                      FormInput(
-                                        errorText: userController
-                                            .validityFirstName.message,
-                                        hint: 'First Name',
-                                        hintColor:
-                                            AppColors.commoneadingtextColor,
-                                        onSaved: (value) {
-                                          userController.checkFirstName(value);
-                                          userController.updateUserBuilder();
-                                        },
-                                        formatter:
-                                            FilteringTextInputFormatter.allow(
-                                          RegExp("[A-Z a-z _ .]"),
-                                        ),
-                                        obsecureText: false,
-                                        maxLength: 50,
-                                        myController: firstNameController,
-                                        focusNode: fnNode,
-                                      ),
-                                      FormInput(
-                                        errorText: userController
-                                            .validityLastName.message,
-                                        hint: 'Last Name',
-                                        hintColor:
-                                            AppColors.commoneadingtextColor,
-                                        onSaved: (value) {
-                                          userController.checkLastName(value);
-                                          userController.updateUserBuilder();
-                                        },
-                                        formatter:
-                                            FilteringTextInputFormatter.allow(
-                                          RegExp("[A-Z a-z _ .]"),
-                                        ),
-                                        obsecureText: false,
-                                        maxLength: 50,
-                                        myController: lastNameController,
-                                        focusNode: lnNode,
-                                      ),
-                                      FormInput(
-                                        enabled: false,
-                                        errorText: userController
-                                            .validityUserName.message,
-                                        hint: 'User Name',
-                                        hintColor:
-                                            AppColors.commoneadingtextColor,
-                                        onSaved: (value) {
-                                          userController.checkUsername(value);
-                                          userController.updateUserBuilder();
-                                        },
-                                        formatter:
-                                            FilteringTextInputFormatter.allow(
-                                          RegExp("[A-Z a-z _ .]"),
-                                        ),
-                                        obsecureText: false,
-                                        maxLength: 50,
-                                        myController: userNameController,
-                                        focusNode: unNode,
-                                      ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            PageRouteBuilder(
-                                              transitionDuration:
-                                                  Duration(milliseconds: 450),
-                                              transitionsBuilder: (context,
-                                                  animation,
-                                                  animationTime,
-                                                  child) {
-                                                return ScaleTransition(
-                                                  alignment: Alignment.center,
-                                                  scale: animation,
-                                                  child: child,
+                                return _isLoading
+                                    ? Center(child: Loader())
+                                    : Form(
+                                        key: _formKey,
+                                        autovalidateMode:
+                                            AutovalidateMode.disabled,
+                                        child: Column(
+                                          children: [
+                                            FormInput(
+                                              errorText: userController
+                                                  .validityFirstName.message,
+                                              hint: 'First Name',
+                                              hintColor: AppColors
+                                                  .commoneadingtextColor,
+                                              onSaved: (value) {
+                                                userController
+                                                    .checkFirstName(value);
+                                                userController
+                                                    .updateUserBuilder();
+                                              },
+                                              formatter:
+                                                  FilteringTextInputFormatter
+                                                      .allow(
+                                                RegExp("[A-Z a-z _ .]"),
+                                              ),
+                                              obsecureText: false,
+                                              maxLength: 50,
+                                              myController: firstNameController,
+                                              focusNode: fnNode,
+                                            ),
+                                            FormInput(
+                                              errorText: userController
+                                                  .validityLastName.message,
+                                              hint: 'Last Name',
+                                              hintColor: AppColors
+                                                  .commoneadingtextColor,
+                                              onSaved: (value) {
+                                                userController
+                                                    .checkLastName(value);
+                                                userController
+                                                    .updateUserBuilder();
+                                              },
+                                              formatter:
+                                                  FilteringTextInputFormatter
+                                                      .allow(
+                                                RegExp("[A-Z a-z _ .]"),
+                                              ),
+                                              obsecureText: false,
+                                              maxLength: 50,
+                                              myController: lastNameController,
+                                              focusNode: lnNode,
+                                            ),
+                                            FormInput(
+                                              enabled: false,
+                                              errorText: userController
+                                                  .validityUserName.message,
+                                              hint: 'User Name',
+                                              hintColor: AppColors
+                                                  .commoneadingtextColor,
+                                              onSaved: (value) {
+                                                userController
+                                                    .checkUsername(value);
+                                                userController
+                                                    .updateUserBuilder();
+                                              },
+                                              formatter:
+                                                  FilteringTextInputFormatter
+                                                      .allow(
+                                                RegExp("[A-Z a-z _ .]"),
+                                              ),
+                                              obsecureText: false,
+                                              maxLength: 50,
+                                              myController: userNameController,
+                                              focusNode: unNode,
+                                            ),
+                                            GestureDetector(
+                                              onTap: () {
+                                                Navigator.push(
+                                                  context,
+                                                  PageRouteBuilder(
+                                                    transitionDuration:
+                                                        Duration(
+                                                            milliseconds: 450),
+                                                    transitionsBuilder:
+                                                        (context,
+                                                            animation,
+                                                            animationTime,
+                                                            child) {
+                                                      return ScaleTransition(
+                                                        alignment:
+                                                            Alignment.center,
+                                                        scale: animation,
+                                                        child: child,
+                                                      );
+                                                    },
+                                                    pageBuilder: (context,
+                                                        animation,
+                                                        animationTime) {
+                                                      return DropDownCountryWidget();
+                                                    },
+                                                  ),
                                                 );
                                               },
-                                              pageBuilder: (context, animation,
-                                                  animationTime) {
-                                                return DropDownCountryWidget();
-                                              },
-                                            ),
-                                          );
-                                        },
-                                        child: Container(
-                                          child: Container(
-                                            margin: EdgeInsets.all(15.0),
-                                            padding: EdgeInsets.all(10.0),
-                                            decoration: BoxDecoration(
-                                              border: Border.all(
-                                                  color: Colors.grey),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Textview2(
-                                                  title: userController
-                                                          .currentSelectedCountry
-                                                          .isNullOrBlank
-                                                      ? Constants
-                                                          .SELECT_COUNTRY_TEXT
-                                                      : userController
-                                                          .currentSelectedCountry
-                                                          .Name,
-                                                  fontSize: 10.0,
-                                                  color: AppColors
-                                                      .forgotPasswordTextColor,
-                                                  fontWeight: FontWeight.bold,
-                                                  textAlign: TextAlign.left,
+                                              child: Container(
+                                                child: Container(
+                                                  margin: EdgeInsets.all(15.0),
+                                                  padding: EdgeInsets.all(10.0),
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        color: Colors.grey),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Textview2(
+                                                        title: userController
+                                                                .currentSelectedCountry
+                                                                .isNullOrBlank
+                                                            ? Constants
+                                                                .SELECT_COUNTRY_TEXT
+                                                            : userController
+                                                                .currentSelectedCountry
+                                                                .Name,
+                                                        fontSize: 10.0,
+                                                        color: AppColors
+                                                            .forgotPasswordTextColor,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        textAlign:
+                                                            TextAlign.left,
+                                                      ),
+                                                      Icon(
+                                                        Icons.arrow_forward_ios,
+                                                        color: Colors.grey,
+                                                        size: 15,
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
-                                                Icon(
-                                                  Icons.arrow_forward_ios,
-                                                  color: Colors.grey,
-                                                  size: 15,
-                                                ),
-                                              ],
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                      ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            PageRouteBuilder(
-                                              transitionDuration:
-                                                  Duration(milliseconds: 450),
-                                              transitionsBuilder: (context,
-                                                  animation,
-                                                  animationTime,
-                                                  child) {
-                                                return ScaleTransition(
-                                                  alignment: Alignment.center,
-                                                  scale: animation,
-                                                  child: child,
+                                            GestureDetector(
+                                              onTap: () {
+                                                Navigator.push(
+                                                  context,
+                                                  PageRouteBuilder(
+                                                    transitionDuration:
+                                                        Duration(
+                                                            milliseconds: 450),
+                                                    transitionsBuilder:
+                                                        (context,
+                                                            animation,
+                                                            animationTime,
+                                                            child) {
+                                                      return ScaleTransition(
+                                                        alignment:
+                                                            Alignment.center,
+                                                        scale: animation,
+                                                        child: child,
+                                                      );
+                                                    },
+                                                    pageBuilder: (context,
+                                                        animation,
+                                                        animationTime) {
+                                                      return DropDownTimezoneWidget();
+                                                    },
+                                                  ),
                                                 );
                                               },
-                                              pageBuilder: (context, animation,
-                                                  animationTime) {
-                                                return DropDownTimezoneWidget();
-                                              },
+                                              child: Container(
+                                                margin: EdgeInsets.all(15.0),
+                                                padding: EdgeInsets.all(10.0),
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Colors.grey),
+                                                ),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Textview2(
+                                                      title: userController
+                                                              .currentSelectedTimeZone
+                                                              .isNullOrBlank
+                                                          ? Constants
+                                                              .SELECT_TIMEZONE_TEXT
+                                                          : userController
+                                                              .currentSelectedTimeZone
+                                                              .DisplayName,
+                                                      fontSize: 10.0,
+                                                      color: AppColors
+                                                          .forgotPasswordTextColor,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      textAlign: TextAlign.left,
+                                                    ),
+                                                    Icon(
+                                                      Icons.arrow_forward_ios,
+                                                      color: Colors.grey,
+                                                      size: 15,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
                                             ),
-                                          );
-                                        },
-                                        child: Container(
-                                          margin: EdgeInsets.all(15.0),
-                                          padding: EdgeInsets.all(10.0),
-                                          decoration: BoxDecoration(
-                                            border:
-                                                Border.all(color: Colors.grey),
-                                          ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Textview2(
-                                                title: userController
-                                                        .currentSelectedTimeZone
-                                                        .isNullOrBlank
-                                                    ? Constants
-                                                        .SELECT_TIMEZONE_TEXT
-                                                    : userController
-                                                        .currentSelectedTimeZone
-                                                        .DisplayName,
-                                                fontSize: 10.0,
-                                                color: AppColors
-                                                    .forgotPasswordTextColor,
-                                                fontWeight: FontWeight.bold,
-                                                textAlign: TextAlign.left,
+                                            FormInput(
+                                              enabled: false,
+                                              errorText: userController
+                                                  .validityEmail.message,
+                                              hint: 'Email ',
+                                              hintColor: AppColors
+                                                  .commoneadingtextColor,
+                                              onSaved: (value) {
+                                                userController
+                                                    .checkEmail(value);
+                                                userController
+                                                    .updateUserBuilder();
+                                              },
+                                              formatter:
+                                                  FilteringTextInputFormatter
+                                                      .allow(
+                                                RegExp("[A-Z a-z _ . @ 0-9]"),
                                               ),
-                                              Icon(
-                                                Icons.arrow_forward_ios,
-                                                color: Colors.grey,
-                                                size: 15,
+                                              obsecureText: false,
+                                              maxLength: 50,
+                                              myController: emailController,
+                                              focusNode: emNode,
+                                            ),
+                                            FormInput(
+                                              errorText: userController
+                                                  .validityPhone.message,
+                                              hint: 'Phone Number',
+                                              hintColor: AppColors
+                                                  .commoneadingtextColor,
+                                              onSaved: (value) {
+                                                userController
+                                                    .checkPhone(value);
+                                                userController
+                                                    .updateUserBuilder();
+                                              },
+                                              formatter:
+                                                  FilteringTextInputFormatter
+                                                      .allow(
+                                                RegExp("[0-9]"),
                                               ),
-                                            ],
-                                          ),
+                                              obsecureText: false,
+                                              maxLength: 15,
+                                              myController:
+                                                  phoneNumberController,
+                                              focusNode: phNode,
+                                            ),
+                                            FormInput(
+                                              errorText: userController
+                                                  .validityPassword.message,
+                                              hint: 'Password',
+                                              hintColor: AppColors
+                                                  .commoneadingtextColor,
+                                              onSaved: (value) {
+                                                userController
+                                                    .checkPassword(value);
+                                                userController
+                                                    .updateUserBuilder();
+                                              },
+                                              formatter:
+                                                  FilteringTextInputFormatter
+                                                      .allow(
+                                                RegExp("[A-Z a-z _ . @ 0-9]"),
+                                              ),
+                                              obsecureText: true,
+                                              maxLength: 50,
+                                              myController: passwordController,
+                                              focusNode: pwNode,
+                                            ),
+                                            Container(
+                                              margin: EdgeInsets.symmetric(
+                                                  vertical: 18.0,
+                                                  horizontal: AppValues
+                                                      .horizontalMarginForm),
+                                              child: HeroButton(
+                                                width: WidgetProperties
+                                                    .screenWidth(context),
+                                                height: 40.0,
+                                                radius: 22.0,
+                                                gradient:
+                                                    AppColors.primaryColor,
+                                                title: 'Upadate',
+                                                onPressed: () {
+                                                  updateUser(context);
+                                                },
+                                              ),
+                                            )
+                                          ],
                                         ),
-                                      ),
-                                      FormInput(
-                                        enabled: false,
-                                        errorText: userController
-                                            .validityEmail.message,
-                                        hint: 'Email ',
-                                        hintColor:
-                                            AppColors.commoneadingtextColor,
-                                        onSaved: (value) {
-                                          userController.checkEmail(value);
-                                          userController.updateUserBuilder();
-                                        },
-                                        formatter:
-                                            FilteringTextInputFormatter.allow(
-                                          RegExp("[A-Z a-z _ . @ 0-9]"),
-                                        ),
-                                        obsecureText: false,
-                                        maxLength: 50,
-                                        myController: emailController,
-                                        focusNode: emNode,
-                                      ),
-                                      FormInput(
-                                        errorText: userController
-                                            .validityPhone.message,
-                                        hint: 'Phone Number',
-                                        hintColor:
-                                            AppColors.commoneadingtextColor,
-                                        onSaved: (value) {
-                                          userController.checkPhone(value);
-                                          userController.updateUserBuilder();
-                                        },
-                                        formatter:
-                                            FilteringTextInputFormatter.allow(
-                                          RegExp("[0-9]"),
-                                        ),
-                                        obsecureText: false,
-                                        maxLength: 15,
-                                        myController: phoneNumberController,
-                                        focusNode: phNode,
-                                      ),
-                                      FormInput(
-                                        errorText: userController
-                                            .validityPassword.message,
-                                        hint: 'Password',
-                                        hintColor:
-                                            AppColors.commoneadingtextColor,
-                                        onSaved: (value) {
-                                          userController.checkPassword(value);
-                                          userController.updateUserBuilder();
-                                        },
-                                        formatter:
-                                            FilteringTextInputFormatter.allow(
-                                          RegExp("[A-Z a-z _ . @ 0-9]"),
-                                        ),
-                                        obsecureText: true,
-                                        maxLength: 50,
-                                        myController: passwordController,
-                                        focusNode: pwNode,
-                                      ),
-                                      Container(
-                                        margin: EdgeInsets.symmetric(
-                                            vertical: 18.0,
-                                            horizontal:
-                                                AppValues.horizontalMarginForm),
-                                        child: HeroButton(
-                                          width: WidgetProperties.screenWidth(
-                                              context),
-                                          height: 40.0,
-                                          radius: 22.0,
-                                          gradient: AppColors.primaryColor,
-                                          title: 'Upadate',
-                                          onPressed: () {
-                                            updateUser(context);
-                                          },
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                );
+                                      );
                               },
                             ),
                           ),
@@ -414,9 +455,10 @@ class UpdateProfile extends StatelessWidget {
     if (userController.checkUpdateUserValidation(u)) {
       Result result = await userController.updateUserProfile(u);
       if (result.code > 0) {
-        ToastClass.showToast(result.message, ToastGravity.BOTTOM, Colors.red,
+        ToastClass.showToast(result.message, ToastGravity.BOTTOM, Colors.green,
             Colors.white, 15.0, Toast.LENGTH_SHORT);
-        Get.to(DashboardScreen());
+        RouteAppReplacement.instance
+            .pushReplacementPageAll(context, DashboardScreen());
         Get.find<DashboardController>().currentIndex = 0;
         Get.find<DashboardController>().update();
       }
@@ -426,6 +468,8 @@ class UpdateProfile extends StatelessWidget {
   }
 
   void setUser() {
+
+
     firstNameController.value = TextEditingValue(
       text: userController.userEntity.FirstName,
       selection: TextSelection.fromPosition(
@@ -462,5 +506,24 @@ class UpdateProfile extends StatelessWidget {
         TextPosition(offset: userController.userEntity.UserName.length),
       ),
     );
+    _isLoading = false;
+    userController.update();
+  }
+
+  getCountryList() async {
+    await countryController.getCountries();
+    userController.currentSelectedCountry = countryController.countryList
+        .where((e) => e.Id == userController.userEntity.Country)
+        .toList()
+        .first;
+    await getTimeZoneList();
+  }
+
+  getTimeZoneList() async {
+    await timezoneController.getCountryTimeZones(userController.currentSelectedCountry);
+    userController.currentSelectedTimeZone = timezoneController.timeZoneList
+        .where((e) => e.TimeZoneID == userController.userEntity.TimeZoneId)
+        .toList()
+        .first;
   }
 }

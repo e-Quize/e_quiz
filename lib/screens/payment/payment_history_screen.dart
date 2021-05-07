@@ -1,3 +1,4 @@
+import 'package:e_quiz/common/ui_widgets/common_card.dart';
 import 'package:e_quiz/common/ui_widgets/text_view.dart';
 import 'package:e_quiz/controllers/payment_controller.dart';
 import 'package:e_quiz/models/common/result_model.dart';
@@ -11,6 +12,8 @@ import 'package:grouped_list/grouped_list.dart';
 class PaymentHistoryScreen extends StatelessWidget {
   var scrollController = ScrollController();
   var paymentController = Get.put(PaymentController());
+
+  var _isLoading = true;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +44,7 @@ class PaymentHistoryScreen extends StatelessWidget {
               order: GroupedListOrder.DESC,
               useStickyGroupSeparators: true,
               groupSeparatorBuilder: (dynamic value) {
-                if (value == null) {
+                if (paymentController.paymentList == null) {
                   return Center(
                     child: Container(
                       child: Loading(
@@ -50,7 +53,19 @@ class PaymentHistoryScreen extends StatelessWidget {
                           color: Colors.pink),
                     ),
                   );
-                } else {
+                }
+               else if (paymentController.paymentList.isEmpty) {
+                  return Center(
+                    child: CommonCard(
+                        child: Center(
+                          child: Text(
+                            "No Data found",
+                            style: TextStyle(fontSize: 20.0),
+                          ),
+                        )),
+                  );
+                }
+                else {
                   return Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(

@@ -10,6 +10,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
+import 'package:e_quiz/common/ui_widgets/get_push_replacement.dart';
+
 
 import '../../utils/colors.dart';
 
@@ -200,6 +202,33 @@ class SelfResultScreen extends StatelessWidget {
                             children: [
                               Container(
                                 child: Textview2(
+                                  title: "Percentage %",
+                                  fontSize: 10.0,
+                                  color: AppColors.textWhiteColor,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 7.0),
+                                child: Textview2(
+                                  title:(( _resultController.quizQuestionList
+                                      .where((element) =>
+                                  element.isUserAnswer)
+                                      .toList()
+                                      .length / _resultController.quizQuestionList.length)*100).toString(),
+                                  fontSize: 12.0,
+                                  color: AppColors.textWhiteColor,
+                                  fontWeight: FontWeight.w800,
+                                  fontFamily: "",
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                child: Textview2(
                                   title: "Skipped  Questions",
                                   fontSize: 10.0,
                                   color: AppColors.textWhiteColor,
@@ -250,7 +279,7 @@ class SelfResultScreen extends StatelessWidget {
                     color: Color(0xFF536BB1),
                     onPressed: () {
                       // contrller.dispose();
-                      Get.to(()=>DashboardScreen());
+                      RouteAppReplacement.instance.pushReplacementPageAll(context, DashboardScreen());
                       Get.find<DashboardController>().currentIndex = 0;
                       Get.find<DashboardController>().update();
                       // WidgetProperties.goToNextPage(context, Dashboard());

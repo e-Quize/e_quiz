@@ -45,7 +45,7 @@ class QuestionScreen extends StatelessWidget {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   BuildContext buildContext;
-  bool flaggedAsDifficult = false;
+  //bool flaggedAsDifficult = false;
   bool flaggedAsSkipped = false;
   bool hasSeenExplanation = false;
   bool toggle = false;
@@ -54,7 +54,7 @@ class QuestionScreen extends StatelessWidget {
   int answerId;
   QuizQuestionAnswer quizQuestionAnswer;
 
-  int questionIndex = 0;
+
   bool isAttempted = false;
 
   int totalTime = 0;
@@ -445,17 +445,27 @@ class QuestionScreen extends StatelessWidget {
                                                         width: 130.0,
                                                         radius: AppValues
                                                             .commonButtonCornerRadius,
-                                                        gradient: flaggedAsDifficult
+                                                        gradient: _quizController
+                                                            .quizQuestionList[_quizController.questionIndex]
+                                                            .FlaggedAsDifficult
                                                             ? AppColors
                                                                 .progressbarColorPressed
                                                             : AppColors
                                                                 .progressbarColor,
                                                         title: 'Mark Difficult',
                                                         onPressed: () {
-                                                          flaggedAsDifficult =
-                                                              !flaggedAsDifficult;
-                                                          _quizController
-                                                              .updateBuilder();
+                                                          if(!_quizController
+                                                              .quizQuestionList[_quizController.questionIndex]
+                                                              .FlaggedAsDifficult) {
+                                                            _quizController
+                                                                .quizQuestionList[_quizController.questionIndex]
+                                                                .FlaggedAsDifficult =
+                                                                !_quizController
+                                                                    .quizQuestionList[_quizController.questionIndex]
+                                                                    .FlaggedAsDifficult;
+                                                            _quizController
+                                                                .update();
+                                                          }
                                                         },
                                                       ),
                                                     ],
@@ -511,8 +521,7 @@ class QuestionScreen extends StatelessWidget {
                                                         width: 130.0,
                                                         radius: AppValues
                                                             .commonButtonCornerRadius,
-                                                        gradient: AppColors
-                                                            .progressbarColor,
+                                                        gradient: AppColors.savequizscreenColor,
                                                         title: _quizController
                                                                     .questionIndex <
                                                                 _quizController
@@ -593,7 +602,7 @@ class QuestionScreen extends StatelessWidget {
                                                 flaggedAsSkipped = false;
                                                 toggle = false;
                                                 hasSeenExplanation = false;
-                                                flaggedAsDifficult = false;
+                                                //flaggedAsDifficult = false;
                                                 isAttempted = false;
                                                 _quizController
                                                     .updateUserBuilder();
@@ -609,12 +618,11 @@ class QuestionScreen extends StatelessWidget {
                                                     shape: BoxShape.circle),
                                                 child: Center(
                                                   child: Textview2(
-                                                    title:
-                                                    _quizController
+                                                    title:(_quizController
                                                         .quizQuestionList
                                                         .indexOf(_quizController
                                                         .skippedQuestionObjectList[
-                                                    index]).toString(),
+                                                    index ])+1).toString(),
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 14.0,
                                                     color:
@@ -759,7 +767,9 @@ class QuestionScreen extends StatelessWidget {
         .quizQuestionList[_quizController.questionIndex].QuestionId;
     attemptQuizVM.AttemptedQuizDetailId = _quizController
         .quizQuestionList[_quizController.questionIndex].AttemptedQuizDetailId;
-    attemptQuizVM.FlaggedAsDifficult = flaggedAsDifficult;
+    attemptQuizVM.FlaggedAsDifficult = _quizController
+        .quizQuestionList[_quizController.questionIndex]
+        .FlaggedAsDifficult;
     attemptQuizVM.HasSeenExplanation = hasSeenExplanation;
     attemptQuizVM.FlaggedAsSkipped = flaggedAsSkipped;
 
@@ -773,7 +783,7 @@ class QuestionScreen extends StatelessWidget {
       flaggedAsSkipped = false;
       toggle = false;
       hasSeenExplanation = false;
-      flaggedAsDifficult = false;
+     // flaggedAsDifficult = false;
       isAttempted = false;
       if (_quizController.isSkippedSelected) {
         _quizController
@@ -1121,6 +1131,7 @@ class QuestionScreen extends StatelessWidget {
           .HasSeenExplanation;
       toggle = _quizController.quizQuestionList[_quizController.questionIndex]
           .isAttempted;
+
       //hasButtonSeenExplanation = true;
       // if(_quizController.quizQuestionList[_quizController.questionIndex].isAttempted){
       //   if(_quizController.quizQuestionList[_quizController.questionIndex].ActualAnswerId ==answerId ){

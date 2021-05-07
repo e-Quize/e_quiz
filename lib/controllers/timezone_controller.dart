@@ -27,6 +27,7 @@ class TimeZoneController extends GetxController {
     updateResult(Generic.waitResult());
     Result timezoneListResult =
         await apiController.getCountryTimeZoneListFromApi(countryVm);
+    timeZoneList= timezoneListResult.body;
     return timezoneListResult;
   }
 

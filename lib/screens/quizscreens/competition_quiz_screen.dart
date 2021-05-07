@@ -84,7 +84,7 @@ class CompetitionQuizScreen extends StatelessWidget {
                               Radius.circular(AppValues.commonBodyCardRadius)),
                           child: Container(
                             height:
-                                WidgetProperties.screenHeight(context) * 0.8,
+                                WidgetProperties.screenHeight(context) * 0.55,
                             child: buildList(context),
                           ),
                         ),
@@ -209,93 +209,93 @@ class CompetitionQuizScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Row(
-                      children: <Widget>[
-                        Expanded(
-                          flex: 1,
-                          child: Checkbox(
-                              value:
-                                  subjectController.isCheckedDiffcultQuestion,
-                              activeColor: Colors.blue,
-                              onChanged: (bool IscheckedDiffcultQuestion) {
-                                subjectController
-                                    .updateIsCheckedDiffcultQuestion(
-                                        IscheckedDiffcultQuestion);
-                                subjectController.updateUserBuilder();
-                              }),
-                        ),
-                        Expanded(
-                          flex: 14,
-                          child: Container(
-                            margin: EdgeInsets.only(left: 5.0),
-                            child: Text(
-                              Constants.GENERATE_DIFFICULT_QUESTION_TEXT,
-                              style: TextStyle(
-                                  color: AppColors.textBlackColor,
-                                  fontSize: 10.0,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Expanded(
-                          flex: 1,
-                          child: Checkbox(
-                              value: subjectController.isCheckedWrongQuestion,
-                              activeColor: Colors.blue,
-                              onChanged: (bool isCheckedWrongAnswer) {
-                                subjectController.updateIsCheckedWrongAnswer(
-                                    isCheckedWrongAnswer);
-                                subjectController.updateUserBuilder();
-                              }),
-                        ),
-                        Expanded(
-                          flex: 14,
-                          child: Container(
-                            margin: EdgeInsets.only(left: 5.0),
-                            child: Text(
-                              Constants.GENERATE_WRONG_QUESTION_TEXT,
-                              style: TextStyle(
-                                  color: AppColors.textBlackColor,
-                                  fontSize: 10.0,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Expanded(
-                          flex: 1,
-                          child: Checkbox(
-                              value: subjectController.isCheckedSkippedQuestion,
-                              activeColor: Colors.blue,
-                              onChanged: (bool isCheckedSkippedQuestion) {
-                                subjectController
-                                    .updateIsCheckedSkippedQuestion(
-                                        isCheckedSkippedQuestion);
-                                subjectController.updateUserBuilder();
-                              }),
-                        ),
-                        Expanded(
-                          flex: 14,
-                          child: Container(
-                            margin: EdgeInsets.only(left: 5.0),
-                            child: Text(
-                              Constants.GENERATE_SKIPPED_QUESTION_TEXT,
-                              style: TextStyle(
-                                  color: AppColors.textBlackColor,
-                                  fontSize: 10.0,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   children: <Widget>[
+                    //     Expanded(
+                    //       flex: 1,
+                    //       child: Checkbox(
+                    //           value:
+                    //               subjectController.isCheckedDiffcultQuestion,
+                    //           activeColor: Colors.blue,
+                    //           onChanged: (bool IscheckedDiffcultQuestion) {
+                    //             subjectController
+                    //                 .updateIsCheckedDiffcultQuestion(
+                    //                     IscheckedDiffcultQuestion);
+                    //             subjectController.updateUserBuilder();
+                    //           }),
+                    //     ),
+                    //     Expanded(
+                    //       flex: 14,
+                    //       child: Container(
+                    //         margin: EdgeInsets.only(left: 5.0),
+                    //         child: Text(
+                    //           Constants.GENERATE_DIFFICULT_QUESTION_TEXT,
+                    //           style: TextStyle(
+                    //               color: AppColors.textBlackColor,
+                    //               fontSize: 10.0,
+                    //               fontWeight: FontWeight.bold),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    // Row(
+                    //   children: <Widget>[
+                    //     Expanded(
+                    //       flex: 1,
+                    //       child: Checkbox(
+                    //           value: subjectController.isCheckedWrongQuestion,
+                    //           activeColor: Colors.blue,
+                    //           onChanged: (bool isCheckedWrongAnswer) {
+                    //             subjectController.updateIsCheckedWrongAnswer(
+                    //                 isCheckedWrongAnswer);
+                    //             subjectController.updateUserBuilder();
+                    //           }),
+                    //     ),
+                    //     Expanded(
+                    //       flex: 14,
+                    //       child: Container(
+                    //         margin: EdgeInsets.only(left: 5.0),
+                    //         child: Text(
+                    //           Constants.GENERATE_WRONG_QUESTION_TEXT,
+                    //           style: TextStyle(
+                    //               color: AppColors.textBlackColor,
+                    //               fontSize: 10.0,
+                    //               fontWeight: FontWeight.bold),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    // Row(
+                    //   children: <Widget>[
+                    //     Expanded(
+                    //       flex: 1,
+                    //       child: Checkbox(
+                    //           value: subjectController.isCheckedSkippedQuestion,
+                    //           activeColor: Colors.blue,
+                    //           onChanged: (bool isCheckedSkippedQuestion) {
+                    //             subjectController
+                    //                 .updateIsCheckedSkippedQuestion(
+                    //                     isCheckedSkippedQuestion);
+                    //             subjectController.updateUserBuilder();
+                    //           }),
+                    //     ),
+                    //     Expanded(
+                    //       flex: 14,
+                    //       child: Container(
+                    //         margin: EdgeInsets.only(left: 5.0),
+                    //         child: Text(
+                    //           Constants.GENERATE_SKIPPED_QUESTION_TEXT,
+                    //           style: TextStyle(
+                    //               color: AppColors.textBlackColor,
+                    //               fontSize: 10.0,
+                    //               fontWeight: FontWeight.bold),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                     Container(
                       margin: EdgeInsets.only(top: 15.0),
                       child: HeroButton3(
