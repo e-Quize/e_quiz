@@ -192,7 +192,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   onTabTapped(int index) async {
-    await dashboardController.updateScreenIndex(index);
+    if(index != dashboardController.currentIndex){
+      await dashboardController.updateScreenIndex(index);
+    }
+
   }
 
   void getPendingQuiz() {

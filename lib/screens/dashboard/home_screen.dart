@@ -14,6 +14,7 @@ import 'package:e_quiz/screens/authentication/signin_screen.dart';
 import 'package:e_quiz/screens/common/common_background.dart';
 import 'package:e_quiz/screens/dashboard/bar_chart_screen.dart';
 import 'package:e_quiz/screens/dashboard/bar_chart_screen_replacement.dart';
+import 'package:e_quiz/screens/dashboard/pie_chart_screen.dart';
 import 'package:e_quiz/screens/more/change_subscription_screen.dart';
 import 'package:e_quiz/screens/notification/notification_screen.dart';
 import 'package:e_quiz/screens/payment/payment_history_screen.dart';
@@ -358,14 +359,11 @@ class HomeScreen extends StatelessWidget {
                                             alignment: Alignment.bottomCenter,
                                             child: GestureDetector(
                                               onTap: () {
-                                                Navigator.of(Get.context)
-                                                    .pushAndRemoveUntil(
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                SubscriptionScreen()),
-                                                        (Route<dynamic>
-                                                                route) =>
-                                                            false);
+                                                Navigator.of(Get.context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          SubscriptionScreen()),
+                                                );
                                               },
                                               child: CommonCard(
                                                   child: Padding(
@@ -426,7 +424,7 @@ class HomeScreen extends StatelessWidget {
       onTap: () async {
         userController.selectedSubjectId =
             userDashboardVMResponse.DashBaordSubjects[index].SubjectId;
-        // await getChapterPercentage();
+         await getChapterPercentage();
         showPieChartDialog(buildContext);
       },
       child: Container(
@@ -672,23 +670,23 @@ class HomeScreen extends StatelessWidget {
     userController.updateUserBuilder();
   }
 
-  // getChapterPercentage() async {
-  //   var userEntity = UserEntity();
-  //   userEntity.SubjectIdsString = userController.selectedSubjectId.toString();
-  //   Result res = await Get.find<GraphController>()
-  //       .getChaptersPercentageForPie(userEntity);
-  //   if (res != null) {
-  //     Get.find<GraphController>().pieGraphChartList = res.body;
-  //     if (Get.find<GraphController>().pieGraphChartList != null &&
-  //         Get.find<GraphController>().pieGraphChartList.isNotEmpty) {
-  //       Get.find<GraphController>().dataMap = Map.fromIterable(
-  //           Get.find<GraphController>().pieGraphChartList,
-  //           key: (e) => e.chaptername,
-  //           value: (e) => e.CQ_Percentage);
-  //     } else {
-  //       print("there is no data");
-  //     }
-  //     Get.find<GraphController>().updateGraphBuilder();
-  //   }
-  // }
+  getChapterPercentage() async {
+    var userEntity = UserEntity();
+    userEntity.SubjectIdsString = userController.selectedSubjectId.toString();
+    Result res = await Get.find<GraphController>()
+        .getChaptersPercentageForPie(userEntity);
+    if (res != null) {
+      Get.find<GraphController>().pieGraphChartList = res.body;
+      if (Get.find<GraphController>().pieGraphChartList != null &&
+          Get.find<GraphController>().pieGraphChartList.isNotEmpty) {
+        Get.find<GraphController>().dataMap = Map.fromIterable(
+            Get.find<GraphController>().pieGraphChartList,
+            key: (e) => e.chaptername,
+            value: (e) => e.CQ_Percentage);
+      } else {
+        print("there is no data");
+      }
+      Get.find<GraphController>().updateGraphBuilder();
+    }
+  }
 }

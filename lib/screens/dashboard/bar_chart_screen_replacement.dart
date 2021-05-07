@@ -6,8 +6,12 @@ import 'package:e_quiz/models/bargraph/bar_graph_model.dart';
 import 'package:e_quiz/models/common/result_model.dart';
 import 'package:e_quiz/models/piechart/pie_chart_model.dart';
 import 'package:e_quiz/models/user/user_model.dart';
+import 'package:e_quiz/utils/colors.dart';
+import 'package:e_quiz/utils/widgetproperties.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/parser.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
@@ -33,7 +37,7 @@ class BarChartScreenReplacement extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Last ten Quizes percentage'),
+        title: Text('Correct percentage of each chapter',style:TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
       ), //AppBar
       body: GetBuilder<GraphController>(
         initState: (child) async {
@@ -58,17 +62,84 @@ class BarChartScreenReplacement extends StatelessWidget {
             );
           } else {
             return Container(
-              height: MediaQuery.of(context).size.height,
-              padding: EdgeInsets.all(20.0),
-              child: charts.BarChart(
-                series,
-                domainAxis: charts.OrdinalAxisSpec(
-                  renderSpec: charts.SmallTickRendererSpec(labelRotation: 70),
-                ),
-                animate: true,
-                vertical: true,
+              height: WidgetProperties.screenHeight(context),
+              width: WidgetProperties.screenWidth(context),
+              margin: EdgeInsets.all(10),
+
+              child: Stack(
+                children: [
+                  Center(
+                    child:SvgPicture.asset(
+                      'assets/icons/app_logo.svg',
+                      width: 220,
+                      height: 220,
+                    ) ,
+                  ),
+                  Material(
+                    color: Colors.white.withOpacity(.8),
+                    elevation: 0.0,
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: ListView.builder(
+                              itemCount: graphController.pieGraphChartList.length,
+                              itemBuilder: (context,index){
+                            return Container(
+                              padding: EdgeInsets.all(10),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Container(width: 20,height: 20,color: Colors.blue,),
+                                          SizedBox(width: 10,),
+                                          Text(graphController.pieGraphChartList[index].chaptername,),
+                                        ],
+                                      ),
+
+                                      Row(
+                                        children: [
+                                          Container(width: 50,height: 50,
+                                            padding: EdgeInsets.all(5),
+                                            alignment: Alignment.center,
+                                            child: Text(graphController.pieGraphChartList[index].CQ_Percentage.toString(),),
+                                            decoration: BoxDecoration(
+                                            border: Border.all(color: Colors.black)
+                                          ),),
+                                          SizedBox(width: 10,),
+                                          Text('%'),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            );
+                          }),
+                        ),
+                        Container(height: 1, width: WidgetProperties.screenWidth(context),color: Colors.blue,),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 5,vertical: 10),
+                          margin: EdgeInsets.symmetric(horizontal: 5,vertical: 10),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.blue)
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                            Text('Average',style: TextStyle(color: Colors.blue),),
+                              getAverage(),
+                          ],),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             );
+
           }
         },
       ),
@@ -94,4 +165,17 @@ class BarChartScreenReplacement extends StatelessWidget {
       Get.find<GraphController>().updateGraphBuilder();
     }
   }
+
+  Widget getAverage() {
+    double count = 0.0;
+    double average = 0.0;
+    graphController.pieGraphChartList.forEach((element) {
+      count += element.CQ_Percentage;
+    });
+    average = count / graphController.pieGraphChartList.length;
+
+    return Text('${average} %');
+  }
+
+
 }
