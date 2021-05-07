@@ -3,6 +3,7 @@ import 'package:e_quiz/controllers/country_controller.dart';
 import 'package:e_quiz/controllers/user_controller.dart';
 import 'package:e_quiz/models/common/result_model.dart';
 import 'package:e_quiz/common/ui_widgets/common_card.dart';
+import 'package:e_quiz/models/user/countries_vm_model.dart';
 import 'package:e_quiz/utils/colors.dart';
 import 'package:e_quiz/utils/constants.dart';
 import 'package:e_quiz/utils/values.dart';
@@ -13,28 +14,71 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:e_quiz/utils/dialog/loadingcircle/lib/ball_scale_indicator.dart';
 import 'package:e_quiz/utils/dialog/loadingcircle/loading.dart';
 
-class DropDownCountryWidget extends StatelessWidget {
+class DropDownCountryWidget extends StatefulWidget {
+  @override
+  _DropDownCountryWidgetState createState() => _DropDownCountryWidgetState();
+}
+
+class _DropDownCountryWidgetState extends State<DropDownCountryWidget> {
   var countryController = CountryController();
+
+  TextEditingController searchController = TextEditingController();
 
   var userController = Get.find<UserController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //appBar: buildSearchField(),
       appBar: AppBar(
-        centerTitle: true,
-        title: Text(Constants.COUNTRY_LIST_TEXT),
-        backgroundColor: Color(0xFF526BB1),
+        automaticallyImplyLeading: false,
+
+        title: Center(child: Text('Country List')),
       ),
       body: SingleChildScrollView(
         child: Container(
           height: WidgetProperties.screenHeight(context),
-          child: Stack(children: [
-            Container(
-                height: WidgetProperties.screenHeight(context) * 0.9,
-                child: buildCountryList()),
-          ]),
+          child: Stack(
+            children: [
+              Container(
+                  height: WidgetProperties.screenHeight(context) * 0.9,
+                  child: buildCountryList()),
+            ],
+          ),
         ),
+      ),
+    );
+  }
+
+  handleSearch(String query) {
+    setState(() {
+      countryController.countryList = query as List<CountryVm>;
+    });
+  }
+
+  clearSearch() {
+    searchController.clear();
+  }
+
+  AppBar buildSearchField() {
+    return AppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: Colors.white,
+      title: TextFormField(
+        controller: searchController,
+        decoration: InputDecoration(
+          hintText: "Search for Country...",
+          filled: true,
+          prefixIcon: Icon(
+            Icons.flag,
+            size: 28.0,
+          ),
+          suffixIcon: IconButton(
+            icon: Icon(Icons.clear),
+            onPressed: clearSearch,
+          ),
+        ),
+        onFieldSubmitted: handleSearch,
       ),
     );
   }
@@ -121,9 +165,6 @@ class DropDownCountryWidget extends StatelessWidget {
     );
   }
 
-  // getCountryList() async {
-  //   await countryController.getCountries();
-  // }
   getCountryList() async {
     Result result = await countryController.getCountries();
     if (result != null) {
