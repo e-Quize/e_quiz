@@ -490,7 +490,7 @@ class QuestionScreen extends StatelessWidget {
                                                                 radius: AppValues
                                                                     .commonButtonCornerRadius,
                                                                 gradient: AppColors
-                                                                    .progressbarColor,
+                                                                    .savequizscreenColor,
                                                                 title:
                                                                     "Previous",
                                                                 onPressed: () {

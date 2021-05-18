@@ -215,7 +215,7 @@ class SelfResultScreen extends StatelessWidget {
                                       .where((element) =>
                                   element.isUserAnswer)
                                       .toList()
-                                      .length / _resultController.quizQuestionList.length)*100).toString(),
+                                      .length / _resultController.quizQuestionList.length)*100).toString()+' %',
                                   fontSize: 12.0,
                                   color: AppColors.textWhiteColor,
                                   fontWeight: FontWeight.w800,

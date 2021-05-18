@@ -44,17 +44,18 @@ class PaymentHistoryScreen extends StatelessWidget {
               order: GroupedListOrder.DESC,
               useStickyGroupSeparators: true,
               groupSeparatorBuilder: (dynamic value) {
-                if (paymentController.paymentList == null) {
-                  return Center(
-                    child: Container(
-                      child: Loading(
-                          indicator: BallScaleIndicator(),
-                          size: 100.0,
-                          color: Colors.pink),
-                    ),
-                  );
-                }
-               else if (paymentController.paymentList.isEmpty) {
+                // if (value == null) {
+                //   return Center(
+                //     child: Container(
+                //       child: Loading(
+                //           indicator: BallScaleIndicator(),
+                //           size: 100.0,
+                //           color: Colors.pink),
+                //     ),
+                //   );
+                // }
+              // else
+                 if (value==null) {
                   return Center(
                     child: CommonCard(
                         child: Center(

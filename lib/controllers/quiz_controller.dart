@@ -163,10 +163,10 @@ class QuizController extends GetxController {
   }
 
   Future<Result> generateQuiz(QuizGenerationVM quizGenerationVM) async {
-    updateUser(Generic.waitResult());
+      //updateUser(Generic.waitResult());
     Result generateQuizResult =
         await apiController.generateQuizFromApi(quizGenerationVM);
-    updateUser(generateQuizResult);
+   // updateUser(generateQuizResult);
     return generateQuizResult;
   }
 

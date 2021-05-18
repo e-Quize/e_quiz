@@ -477,14 +477,16 @@ class HomeScreen extends StatelessWidget {
     if (res != null) {
       if (res.code == 500) {
         print(res.message);
-      } else if (res.code == 401) {
-        DialogClass.showDialog(
-            Get.context,
-            logoutUserFromAllDevices,
-            Constants.LOGOUT_FROM_ALL_DEVICES_TEXT,
-            Constants.YES_TEXT,
-            Constants.NO_TEXT);
-      } else {
+      }
+      // else if (res.code == 401) {
+      //   DialogClass.showDialog(
+      //       Get.context,
+      //       logoutUserFromAllDevices,
+      //       Constants.LOGOUT_FROM_ALL_DEVICES_TEXT,
+      //       Constants.YES_TEXT,
+      //       Constants.NO_TEXT);
+      // }
+      else {
         userDashboardVMResponse = res.body;
         userController.updateUserBuilder();
       }
@@ -585,80 +587,80 @@ class HomeScreen extends StatelessWidget {
     // );
   }
 
-  showDialog(BuildContext buildContext) {
-    showGeneralDialog(
-      barrierDismissible: true,
-      barrierLabel: "",
-      barrierColor: Colors.black.withOpacity(0.5),
-      transitionDuration: Duration(milliseconds: 400),
-      context: buildContext,
-      pageBuilder: (_, __, ___) {
-        return Align(
-          alignment: Alignment.center,
-          child: Container(
-            height: MediaQuery.of(buildContext).size.height / 6,
-            margin: EdgeInsets.symmetric(horizontal: 20.0),
-            padding: EdgeInsets.only(top: 20.0),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Column(
-              children: [
-                Textview2(
-                  textDecoration: TextDecoration.none,
-                  title: Constants.LOGOUT_FROM_ALL_DEVICES_TEXT,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15.0,
-                ),
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(top: 20.0),
-                        child: HeroButton(
-                          height: 30.0,
-                          width: 120,
-                          radius: AppValues.commonButtonCornerRadius,
-                          gradient: AppColors.formContinueButtomColor,
-                          title: Constants.YES_TEXT,
-                          onPressed: () {
-                            logoutUserFromAllDevices();
-                          },
-                        ),
-                      ),
-                      Divider(
-                        color: Colors.grey,
-                        thickness: 0.60,
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 20.0),
-                        child: HeroButton(
-                          height: 30.0,
-                          width: 120,
-                          radius: AppValues.commonButtonCornerRadius,
-                          gradient: AppColors.formContinueButtomColor,
-                          title: Constants.NO_TEXT,
-                          onPressed: () {
-                            Navigator.of(buildContext).pushAndRemoveUntil(
-                                MaterialPageRoute(
-                                    builder: (context) => SigninScreen()),
-                                (Route<dynamic> route) => false);
-                            Get.back();
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
+  // showDialog(BuildContext buildContext) {
+  //   showGeneralDialog(
+  //     barrierDismissible: true,
+  //     barrierLabel: "",
+  //     barrierColor: Colors.black.withOpacity(0.5),
+  //     transitionDuration: Duration(milliseconds: 400),
+  //     context: buildContext,
+  //     pageBuilder: (_, __, ___) {
+  //       return Align(
+  //         alignment: Alignment.center,
+  //         child: Container(
+  //           height: MediaQuery.of(buildContext).size.height / 6,
+  //           margin: EdgeInsets.symmetric(horizontal: 20.0),
+  //           padding: EdgeInsets.only(top: 20.0),
+  //           decoration: BoxDecoration(
+  //             color: Colors.white,
+  //             borderRadius: BorderRadius.circular(10),
+  //           ),
+  //           child: Column(
+  //             children: [
+  //               Textview2(
+  //                 textDecoration: TextDecoration.none,
+  //                 title: Constants.LOGOUT_FROM_ALL_DEVICES_TEXT,
+  //                 fontWeight: FontWeight.bold,
+  //                 fontSize: 15.0,
+  //               ),
+  //               Container(
+  //                 child: Row(
+  //                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //                   children: [
+  //                     Container(
+  //                       margin: EdgeInsets.only(top: 20.0),
+  //                       child: HeroButton(
+  //                         height: 30.0,
+  //                         width: 120,
+  //                         radius: AppValues.commonButtonCornerRadius,
+  //                         gradient: AppColors.formContinueButtomColor,
+  //                         title: Constants.YES_TEXT,
+  //                         onPressed: () {
+  //                           logoutUserFromAllDevices();
+  //                         },
+  //                       ),
+  //                     ),
+  //                     Divider(
+  //                       color: Colors.grey,
+  //                       thickness: 0.60,
+  //                     ),
+  //                     Container(
+  //                       margin: EdgeInsets.only(top: 20.0),
+  //                       child: HeroButton(
+  //                         height: 30.0,
+  //                         width: 120,
+  //                         radius: AppValues.commonButtonCornerRadius,
+  //                         gradient: AppColors.formContinueButtomColor,
+  //                         title: Constants.NO_TEXT,
+  //                         onPressed: () {
+  //                           Navigator.of(buildContext).pushAndRemoveUntil(
+  //                               MaterialPageRoute(
+  //                                   builder: (context) => SigninScreen()),
+  //                               (Route<dynamic> route) => false);
+  //                           Get.back();
+  //                         },
+  //                       ),
+  //                     ),
+  //                   ],
+  //                 ),
+  //               )
+  //             ],
+  //           ),
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 
   getSocialUrl() async {
     var bankInfoData = await UserCrud.getBankInfoData();

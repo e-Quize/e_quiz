@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:e_quiz/common/exception_manager/exception_codes_messages.dart';
 import 'package:e_quiz/controllers/animate_view_controller.dart';
 import 'package:e_quiz/controllers/splash_controller.dart';
 import 'package:e_quiz/db/user_crud.dart';
@@ -35,13 +36,13 @@ class _SplashScreenState extends State<SplashScreen> {
 
   var animatedController = Get.put(AnimateViewController());
   var opacity = 0.0;
-
+  UserEntityCopy userEntityCopy;
   @override
   void initState() {
     super.initState();
 
     // internetConnection();
-    notificationIsRead();
+
     checkUserToken();
     // getRefreshToken();
   }
@@ -92,7 +93,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void checkUserToken() async {
-    UserEntityCopy userEntityCopy = await UserCrud.getUserCopy();
+    userEntityCopy = await UserCrud.getUserCopy();
     if (userEntityCopy.Token != null) {
       getSettings(DashboardScreen());
     } else {
@@ -107,10 +108,15 @@ class _SplashScreenState extends State<SplashScreen> {
       opacity = AnimationControllerIds.instance.commonOpacity;
       _base64LogoString = data.Logo;
       animatedController.update([AnimationControllerIds.instance.splashId]);
-      Timer(
-        Duration(seconds: 4),
-        () => WidgetProperties.goToNextPageWithReplacement(context, widget),
-      );
+      if(userEntityCopy.Token!=null){
+        notificationIsRead();
+      }
+      if (result.code != Exceptions.UNATHORIZED_CODE) {
+        Timer(
+          Duration(seconds: 4),
+          () => WidgetProperties.goToNextPageWithReplacement(context, widget),
+        );
+      }
     }
   }
 

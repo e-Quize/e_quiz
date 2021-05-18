@@ -4,7 +4,6 @@ import 'package:e_quiz/controllers/history_controller.dart';
 import 'package:e_quiz/controllers/notification_controller.dart';
 import 'package:e_quiz/controllers/quiz_controller.dart';
 import 'package:e_quiz/controllers/result_controller.dart';
-import 'package:e_quiz/db/sembast/singleton_sambest.dart';
 import 'package:e_quiz/models/common/result_model.dart';
 import 'package:e_quiz/models/dashboard/competition_quiz_result_model.dart';
 import 'package:e_quiz/models/quizdetail/competition_result.dart';
@@ -15,7 +14,6 @@ import 'package:e_quiz/utils/values.dart';
 import 'package:e_quiz/utils/widgetproperties.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:e_quiz/common/ui_widgets/get_push_replacement.dart';
 
 class CompetitionResultScreen extends StatelessWidget {
   var _resultController = Get.find<ResultController>();
@@ -52,7 +50,6 @@ class CompetitionResultScreen extends StatelessWidget {
 
   buildCompetitionQuizResultList() {
     if (competitorQuizResultList == null) {
-
       return Center(
         child: Container(
           height: WidgetProperties.screenHeight(Get.context),

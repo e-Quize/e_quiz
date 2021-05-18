@@ -41,6 +41,7 @@ dependencies:
   flutter_html:
   countdown_flutter:
   date_format:
+  flutter_countdown_timer: ^4.1.0
   # Firebase Format
   firebase_auth:
   easy_web_view:

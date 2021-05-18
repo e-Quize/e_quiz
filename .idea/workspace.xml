@@ -10,16 +10,28 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="31ed38ee-efc6-4097-a38f-15df9cf1e594" name="Default Changelist" comment="6th">
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+    <list default="true" id="31ed38ee-efc6-4097-a38f-15df9cf1e594" name="Default Changelist" comment="4:36">
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/common/exception_manager/exception_handler.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/common/exception_manager/exception_handler.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/controllers/quiz_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/controllers/quiz_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/controllers/student_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/controllers/student_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/authentication/signin_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/authentication/signin_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/dashboard/bar_chart_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/dashboard/bar_chart_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/dashboard/bar_chart_screen_replacement.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/dashboard/bar_chart_screen_replacement.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/dashboard/dashboard_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/dashboard/dashboard_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/dashboard/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/dashboard/home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/payment/payment_history_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/payment/payment_history_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/competition_quiz_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/competition_quiz_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/competitor_result_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/competitor_result_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/question_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/question_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/self_result_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/self_result_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/student_list_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/student_list_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/splash_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/splash_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils/dialog/dialog_class.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/dialog/dialog_class.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +116,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620362745543</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="4:36">
+      <created>1620387409923</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1620387409923</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -123,33 +142,78 @@
     <MESSAGE value="usman_merging" />
     <MESSAGE value="5th" />
     <MESSAGE value="6th" />
-    <option name="LAST_COMMIT_MESSAGE" value="6th" />
+    <MESSAGE value="4:36" />
+    <option name="LAST_COMMIT_MESSAGE" value="4:36" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1306" height="193" key="GridCell.Tab.0.bottom" timestamp="1620381716366">
+    <state x="438" y="66" key="#xdebugger.evaluate" timestamp="1620465875021">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1306" height="193" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1620381716366" />
-    <state width="1306" height="193" key="GridCell.Tab.0.center" timestamp="1620381716365">
+    <state x="438" y="66" key="#xdebugger.evaluate/0.0.1366.728@0.0.1366.728" timestamp="1620465875021" />
+    <state x="100" y="100" width="1166" height="528" key="AVDManager" timestamp="1620448630029">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1306" height="193" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1620381716365" />
-    <state width="1306" height="193" key="GridCell.Tab.0.left" timestamp="1620381716364">
+    <state x="100" y="100" width="1166" height="528" key="AVDManager/0.0.1366.728@0.0.1366.728" timestamp="1620448630029" />
+    <state width="585" height="466" key="DebuggerActiveHint" timestamp="1621317513435">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1306" height="193" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1620381716364" />
-    <state width="1306" height="193" key="GridCell.Tab.0.right" timestamp="1620381716365">
+    <state width="585" height="466" key="DebuggerActiveHint/0.0.1366.728@0.0.1366.728" timestamp="1621317513435" />
+    <state width="1306" height="117" key="GridCell.Tab.0.bottom" timestamp="1621317468727">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1306" height="193" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1620381716365" />
-    <state x="389" y="97" width="587" height="534" key="find.popup" timestamp="1620380942766">
+    <state width="1306" height="117" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1621317468727" />
+    <state width="1306" height="117" key="GridCell.Tab.0.center" timestamp="1621317468727">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="389" y="97" width="587" height="534" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1620380942766" />
+    <state width="1306" height="117" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1621317468727" />
+    <state width="1306" height="117" key="GridCell.Tab.0.left" timestamp="1621317468727">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1306" height="117" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1621317468727" />
+    <state width="1306" height="117" key="GridCell.Tab.0.right" timestamp="1621317468727">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1306" height="117" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1621317468727" />
+    <state width="1323" height="119" key="GridCell.Tab.1.bottom" timestamp="1621255838960">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="119" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1621255838960" />
+    <state width="1323" height="119" key="GridCell.Tab.1.center" timestamp="1621255838960">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="119" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1621255838960" />
+    <state width="1323" height="119" key="GridCell.Tab.1.left" timestamp="1621255838960">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="119" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1621255838960" />
+    <state width="1323" height="119" key="GridCell.Tab.1.right" timestamp="1621255838960">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="119" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1621255838960" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1620387417052">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1620387417052" />
+    <state width="691" height="372" key="XDebugger.FullValuePopup" timestamp="1621253038515">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="691" height="372" key="XDebugger.FullValuePopup/0.0.1366.728@0.0.1366.728" timestamp="1621253038515" />
+    <state x="389" y="97" width="587" height="534" key="find.popup" timestamp="1621314447828">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="389" y="97" width="587" height="534" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1621314447828" />
+    <state x="420" y="152" key="git4idea.merge.GitPullDialog" timestamp="1620409240140">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="420" y="152" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1620409240140" />
     <state x="339" y="164" key="run.anything.popup" timestamp="1620386476374">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="339" y="164" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1620386476374" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1621314624981">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1621314624981" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -158,20 +222,30 @@
           <url>file://$PROJECT_DIR$/lib/screens/quizscreens/tab_bar.dart</url>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
-        <line-breakpoint type="Dart">
-          <url>file://$PROJECT_DIR$/lib/screens/payment/payment_history_screen.dart</url>
-          <line>46</line>
-          <option name="timeStamp" value="32" />
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/quizscreens/question_screen.dart</url>
+          <line>423</line>
+          <option name="timeStamp" value="35" />
         </line-breakpoint>
-        <line-breakpoint type="Dart">
-          <url>file://$PROJECT_DIR$/lib/screens/payment/payment_history_screen.dart</url>
-          <line>68</line>
-          <option name="timeStamp" value="33" />
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/quizscreens/question_screen.dart</url>
+          <line>413</line>
+          <option name="timeStamp" value="36" />
         </line-breakpoint>
-        <line-breakpoint type="Dart">
-          <url>file://$PROJECT_DIR$/lib/screens/payment/payment_history_screen.dart</url>
-          <line>56</line>
-          <option name="timeStamp" value="34" />
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/controllers/student_controller.dart</url>
+          <line>52</line>
+          <option name="timeStamp" value="90" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/controllers/student_controller.dart</url>
+          <line>53</line>
+          <option name="timeStamp" value="92" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/controllers/student_controller.dart</url>
+          <line>54</line>
+          <option name="timeStamp" value="95" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

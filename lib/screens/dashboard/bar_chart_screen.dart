@@ -1,7 +1,12 @@
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:e_quiz/common/ui_widgets/common_card.dart';
+import 'package:e_quiz/common/ui_widgets/text_view.dart';
 import 'package:e_quiz/controllers/graph_controller.dart';
 import 'package:e_quiz/models/bargraph/bar_graph_model.dart';
 import 'package:e_quiz/models/common/result_model.dart';
+import 'package:e_quiz/utils/colors.dart';
+import 'package:e_quiz/utils/dialog/loadingcircle/lib/ball_scale_indicator.dart';
+import 'package:e_quiz/utils/dialog/loadingcircle/loading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,7 +14,7 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class BarChartScreen extends StatelessWidget {
   var graphController = Get.find<GraphController>();
-  List<BarGraphModel> barChartList = [];
+  List<BarGraphModel> barChartList =[];
 
   List<charts.Series<BarGraphModel, String>> series = [];
 
@@ -23,15 +28,36 @@ class BarChartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<GraphController>(
-      initState: (child) {
+      initState: (child) async {
         graphController.ini();
-        getQuizPercentageForGraph();
+       await getQuizPercentageForGraph();
       },
       init: graphController,
       builder: (_) {
-        if (barChartList == null || barChartList.isEmpty) {
-          return SizedBox();
-        } else {
+         if(barChartList == null){
+        return Center(
+        child: Container(
+        child: Loading(
+        indicator: BallScaleIndicator(),
+        size: 100.0,
+        color: Colors.pink),
+        ),
+        );
+        }
+         else if (barChartList.isEmpty) {
+          return CommonCard(
+            child: Center(
+              child: Textview2(
+                color: AppColors.primaryBtnColor,
+                title: "No Data Found",
+                fontSize: 25.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          );
+        }
+
+        else {
           return Container(
             padding: EdgeInsets.all(20.0),
             child: charts.BarChart(
@@ -67,7 +93,8 @@ class BarChartScreen extends StatelessWidget {
               return charts.MaterialPalette.green.shadeDefault;
             }),
       ];
-      graphController.updateGraphBuilder();
+
     }
+    graphController.update();
   }
 }

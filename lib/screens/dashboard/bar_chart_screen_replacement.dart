@@ -167,14 +167,14 @@ class BarChartScreenReplacement extends StatelessWidget {
   }
 
   Widget getAverage() {
-    double count = 0.0;
     double average = 0.0;
+    double count = 0.0;
     graphController.pieGraphChartList.forEach((element) {
       count += element.CQ_Percentage;
     });
     average = count / graphController.pieGraphChartList.length;
 
-    return Text('${average} %');
+    return Text('${average.toStringAsFixed(2)} %');
   }
 
 

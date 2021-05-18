@@ -49,7 +49,7 @@ class StudentController extends GetxController {
     update();
   }
 
-  String getBufferedStudentIds() {
+  String  getBufferedStudentIds() {
     selectedStudentIds.clear();
     var list = studentList.where((element) => element.checked).toList();
     list.forEach((element) {

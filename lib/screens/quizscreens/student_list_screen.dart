@@ -65,8 +65,8 @@ class StudentListScreen extends StatelessWidget {
                         gradient: AppColors.primaryBtnColor,
                         title: 'Generate Quiz',
                         onPressed: () {
-                          if (studentController.getBufferedStudentIds() !=
-                              null) {
+                          studentController.getBufferedStudentIds();
+                          if (studentController.selectedStudentIds.toString().isNotEmpty) {
                             generateQuiz(Get.context);
                           } else {
                             ToastClass.showToast(
@@ -200,7 +200,7 @@ class StudentListScreen extends StatelessWidget {
   void generateQuiz(BuildContext buildContext) async {
     var quizGenerationVM = QuizGenerationVM();
     quizGenerationVM.userEntity = await UserCrud.getUserCopy();
-    quizGenerationVM.SubjectIds = subjectController.getBufferedSubjectIds();
+    quizGenerationVM.SubjectIds = subjectController.selectedSubjectIds.toString();
     quizGenerationVM.ChapterIds =
         subjectController.selectedChapterIds.toString();
     quizGenerationVM.Invitees = studentController.selectedStudentIds.toString();
@@ -230,7 +230,7 @@ class StudentListScreen extends StatelessWidget {
             10.0,
             Toast.LENGTH_LONG);
       } else {
-        sendNotification(quizController.responseId);
+      await  sendNotification(quizController.responseId);
         WidgetProperties.goToNextPage(
             buildContext,  QuestionScreen());
       }

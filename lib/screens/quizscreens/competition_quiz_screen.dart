@@ -58,39 +58,47 @@ class CompetitionQuizScreen extends StatelessWidget {
                 heightBottom: WidgetProperties.screenHeight(context) * 0.6,
                 body: Container(),
               ),
-              Container(
-                margin: EdgeInsets.only(top: 35.0),
-                alignment: Alignment.topCenter,
-                child: SvgPicture.asset(
-                  Constants.BASE_PATH_IMAGE + "test.svg",
-                  height: 120.0,
-                  width: 150.0,
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 90.0),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(
-                            left: AppValues.horizontalMargin,
-                            right: AppValues.horizontalMargin,
-                            top: 15.0),
-                        child: Material(
-                          elevation: AppValues.cardElevation,
-                          color: Color(0xfff2f2f2),
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(AppValues.commonBodyCardRadius)),
-                          child: Container(
-                            height:
-                                WidgetProperties.screenHeight(context) * 0.55,
-                            child: buildList(context),
-                          ),
+              Align(
+                alignment: Alignment.center,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(top: 0.0),
+                      alignment: Alignment.topCenter,
+                      child: SvgPicture.asset(
+                        Constants.BASE_PATH_IMAGE + "test.svg",
+                        height: 120.0,
+                        width: 150.0,
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 0.0,bottom: 10),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(
+                                  left: AppValues.horizontalMargin,
+                                  right: AppValues.horizontalMargin,
+                                  top: 15.0),
+                              child: Material(
+                                elevation: AppValues.cardElevation,
+                                color: Color(0xfff2f2f2),
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(AppValues.commonBodyCardRadius)),
+                                child: Container(
+                                  height:
+                                      WidgetProperties.screenHeight(context) * 0.55,
+                                  child: buildList(context),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ],
