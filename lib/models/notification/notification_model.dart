@@ -15,7 +15,6 @@ class NotificationModel extends BaseModel {
   String Type;
   @JsonKey()
   String Notification;
-
   @JsonKey()
   int NotificationQuizId;
   @JsonKey()

@@ -100,6 +100,7 @@ class NotificationScreen extends StatelessWidget {
         }
       },
       child: Container(
+        height: 100,
         margin: EdgeInsets.all(10.0),
         child: Material(
             elevation: 4.0,
@@ -140,33 +141,9 @@ class NotificationScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.start,
-                  //   children: [
-                  //     Textview2(
-                  //       title: "Status :       ",
-                  //       fontSize: 16.0,
-                  //       color: AppColors.accent3Color,
-                  //       fontWeight: FontWeight.w900,
-                  //       fontFamily: AppValues.fontFamily,
-                  //     ),
-                  //     Container(
-                  //       child: Textview2(
-                  //         title: studentController.studentList[index].Status,
-                  //         fontSize: 15.0,
-                  //         color: studentController.studentList[index].Status ==
-                  //                 "Online"
-                  //             ? AppColors.formContinueButtomColor
-                  //             : AppColors.progressbarColor,
-                  //         fontWeight: FontWeight.bold,
-                  //         fontFamily: AppValues.fontFamily,
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
                 ],
               ),
-            )),
+            ),),
       ),
     );
   }

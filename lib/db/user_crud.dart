@@ -8,10 +8,7 @@ import 'package:e_quiz/models/user/user_entity_copy.dart';
 import 'package:e_quiz/models/user/user_model.dart';
 import 'package:sqflite/sqflite.dart';
 
-
-
 class UserCrud {
-
   static Future<int> insertUser(UserEntityCopy userEntityCopy) async {
     final Database db = await DBConnection.openAppDatabase();
     int id = await db.insert(
@@ -81,7 +78,7 @@ class UserCrud {
         await db.query(Structure.USER_TABLE);
     UserEntityCopy userEntityCopy =
         (maps.isNotEmpty) ? UserEntityCopy.fromJson(maps[0]) : UserEntityCopy();
-    db.close();
+     db.close();
     return userEntityCopy;
   }
 

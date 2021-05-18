@@ -34,7 +34,7 @@ class SigninScreen extends StatelessWidget {
   var userNameController = TextEditingController();
   var passwordController = TextEditingController();
 
-  FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   String token = "";
@@ -255,6 +255,9 @@ class SigninScreen extends StatelessWidget {
           }
         } else if (userData.ComRes.ResponseId == -111) {
          // showDialog(buildContext);
+          //print("asgdasdhhaj");
+          await user1Controller.logoutUserFromAllDevices();
+          await signIn(buildContext);
         } else if (userData.ComRes.ResponseId == -1) {
           ToastClass.showToast(
               userData.ComRes.ResponseMessage,
@@ -272,12 +275,10 @@ class SigninScreen extends StatelessWidget {
 
   Future<void> init() async {
     // For iOS request permission first.
-    _firebaseMessaging.requestNotificationPermissions();
-    _firebaseMessaging.configure();
 
     // For testing purposes print the Firebase Messaging token
     token = await _firebaseMessaging.getToken();
-    _firebaseMessaging.subscribeToTopic('equiz');
+    //_firebaseMessaging.subscribeToTopic('equiz');
     print("FirebaseMessaging token: $token");
   }
 

@@ -29,7 +29,7 @@ dependencies:
   js:
   percent_indicator:
   retrofit:
-  dio:
+  dio: ^3.0.7
   json_annotation:
   json_serializable:
   sqflite:
@@ -43,19 +43,16 @@ dependencies:
   date_format:
   flutter_countdown_timer: ^4.1.0
   # Firebase Format
-  firebase_auth:
   easy_web_view:
   sembast:
 
-
-
-  firebase:
   firebase_database:
-  firebase_messaging:
+  firebase_messaging: ^10.0.0
+  firebase_core: ^1.2.0
   draggable_scrollbar:
   grouped_list:
   charts_flutter:
-  flutter_local_notifications:
+  flutter_local_notifications: ^5.0.0
   get_it:
   webview_flutter:
   device_info:
@@ -63,31 +60,8 @@ dependencies:
   rxdart:
   workmanager:
   get:
-
-
-
-  #  #Firebase + chat Module Integration
-  #  #<--------Start-------->
-  #
-  #  firebase: ^8.0.0
-  #  firebase_core: 0.7.0
-  #  firebase_messaging: 6.0.13
-  #  firebase_auth: ^0.20.0+1
-  #  google_sign_in: ^4.5.9
-  #  cloud_firestore: ^0.16.0
-  #  firebase_storage: ^7.0.0
-  #
-  #  #<-------End-------->
-
-  # Check Internet Connectivity
   connectivity:
-
-
-
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.0
+  shared_preferences: ^2.0.5
 
 dev_dependencies:
   flutter_test:

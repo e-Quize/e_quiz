@@ -1,16 +1,29 @@
 import 'package:e_quiz/controllers/dashboard_controller.dart';
 import 'package:e_quiz/controllers/graph_controller.dart';
+import 'package:e_quiz/controllers/notification_controller.dart';
+import 'package:e_quiz/controllers/quiz_controller.dart';
+import 'package:e_quiz/controllers/student_controller.dart';
 import 'package:e_quiz/controllers/subject_controller.dart';
+import 'package:e_quiz/db/user_crud.dart';
+import 'package:e_quiz/models/common/result_model.dart';
+import 'package:e_quiz/models/quiz/quiz_generation_vm.dart';
 import 'package:e_quiz/screens/chat/admin_screen.dart';
 import 'package:e_quiz/screens/dashboard/home_screen.dart';
 import 'package:e_quiz/screens/profile/profile_screen.dart';
+import 'package:e_quiz/screens/quizscreens/competition_question_screen.dart';
 import 'package:e_quiz/screens/quizscreens/start_test_screen.dart';
 import 'package:e_quiz/screens/history/subject_history_screen.dart';
 import 'package:e_quiz/utils/colors.dart';
 import 'package:e_quiz/utils/constants.dart';
+import 'package:e_quiz/utils/shared.dart';
+import 'package:e_quiz/utils/dialog/toastclass.dart';
+import 'package:e_quiz/utils/widgetproperties.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+
+import '../../singleton_notification.dart';
 
 void main() {
   runApp(MaterialApp(home: DashboardScreen()));
@@ -22,10 +35,13 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-
   var graphController = Get.put(GraphController());
   var dashboardController = Get.put(DashboardController());
   var subController = Get.put(SubjectController());
+  var studentController = Get.put(StudentController());
+  var quizController = Get.put(QuizController());
+  var notificationController = Get.put(NotificationController());
+
   GlobalKey _bottomNavigationKey = GlobalKey();
 
   Widget getCurrentScreens(int index) {
@@ -55,14 +71,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   @override
+  void initState() {
+    Future.delayed(Duration.zero, () {
+      getPendingQuiz(context);
+    });
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GetBuilder<DashboardController>(
       init: dashboardController,
       initState: (child) {
         subController.ini();
-        Future.delayed(Duration.zero, () {
-          getPendingQuiz();
-        });
+        print("asdjshad");
       },
       builder: (_) {
         return WillPopScope(
@@ -192,14 +215,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   onTabTapped(int index) async {
-    if(index != dashboardController.currentIndex){
+    if (index != dashboardController.currentIndex) {
       await dashboardController.updateScreenIndex(index);
     }
-
   }
 
-  void getPendingQuiz() {
-    // Get.find().;
-    // Navigate
+  void getPendingQuiz(BuildContext buildContext) async {
+    int id = await SessionManager.getQuizId();
+    notificationController.notificationQuizId = id;
+    print('yeh hai quizId ${id}');
+    if (id != null) {
+      WidgetProperties.goToNextPage(buildContext, CompetitionQuestionScreen());
+    }
   }
 }

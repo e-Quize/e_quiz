@@ -24,10 +24,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 class CompetitionQuizScreen extends StatelessWidget {
-  
   var quizGenerationVM = QuizGenerationVM();
-  var quizController = Get.put(QuizController());
-  var studentController = Get.put(StudentController());
+  var quizController = Get.find<QuizController>();
+  var studentController = Get.find<StudentController>();
   var subjectController = Get.find<SubjectController>();
   var numberOfQuestionsController = TextEditingController();
   ScrollController scrollController = new ScrollController();
@@ -73,7 +72,7 @@ class CompetitionQuizScreen extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 0.0,bottom: 10),
+                      margin: EdgeInsets.only(top: 0.0, bottom: 10),
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
@@ -85,11 +84,12 @@ class CompetitionQuizScreen extends StatelessWidget {
                               child: Material(
                                 elevation: AppValues.cardElevation,
                                 color: Color(0xfff2f2f2),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(AppValues.commonBodyCardRadius)),
+                                borderRadius: BorderRadius.all(Radius.circular(
+                                    AppValues.commonBodyCardRadius)),
                                 child: Container(
                                   height:
-                                      WidgetProperties.screenHeight(context) * 0.55,
+                                      WidgetProperties.screenHeight(context) *
+                                          0.55,
                                   child: buildList(context),
                                 ),
                               ),

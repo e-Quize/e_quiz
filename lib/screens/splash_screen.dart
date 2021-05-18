@@ -11,7 +11,7 @@ import 'package:e_quiz/models/user/user_entity_copy.dart';
 import 'package:e_quiz/screens/authentication/signin_screen.dart';
 import 'package:e_quiz/screens/dashboard/dashboard_screen.dart';
 import 'package:e_quiz/screens/history/subject_history_screen.dart';
-import 'package:e_quiz/screens/notification/notification_plugin.dart';
+
 import 'package:e_quiz/screens/quizscreens/question_screen.dart';
 import 'package:e_quiz/utils/animation_controller_ids.dart';
 import 'package:e_quiz/utils/checkInternetconnectivity.dart';
@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
   var splashController = SplashController();
   Result result;
   String _base64LogoString;
-  FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
   var animatedController = Get.put(AnimateViewController());
   var opacity = 0.0;
@@ -119,16 +119,6 @@ class _SplashScreenState extends State<SplashScreen> {
       }
     }
   }
-
-  getRefreshToken() async {
-    UserEntityCopy userEntityCopy = await UserCrud.getUserCopy();
-    if (userEntityCopy.Token != null) {
-      getSettings(DashboardScreen());
-    } else {
-      getSettings(SigninScreen());
-    }
-  }
-
   notificationIsRead() async {
     Result result = await splashController.notificationIsRead();
     splashController.update();
@@ -159,7 +149,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> init() async {
     // For iOS request permission first.
-    _firebaseMessaging.requestNotificationPermissions();
+    //_firebaseMessaging.requestNotificationPermissions();
 
     // For testing purposes print the Firebase Messaging token
     String token = await _firebaseMessaging.getToken();

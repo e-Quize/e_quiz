@@ -14,7 +14,7 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class BarChartScreen extends StatelessWidget {
   var graphController = Get.find<GraphController>();
-  List<BarGraphModel> barChartList =[];
+  List<BarGraphModel> barChartList;
 
   List<charts.Series<BarGraphModel, String>> series = [];
 
@@ -30,21 +30,20 @@ class BarChartScreen extends StatelessWidget {
     return GetBuilder<GraphController>(
       initState: (child) async {
         graphController.ini();
-       await getQuizPercentageForGraph();
+        await getQuizPercentageForGraph();
       },
       init: graphController,
       builder: (_) {
-         if(barChartList == null){
-        return Center(
-        child: Container(
-        child: Loading(
-        indicator: BallScaleIndicator(),
-        size: 100.0,
-        color: Colors.pink),
-        ),
-        );
-        }
-         else if (barChartList.isEmpty) {
+        if (barChartList == null) {
+          return Center(
+            child: Container(
+              child: Loading(
+                  indicator: BallScaleIndicator(),
+                  size: 100.0,
+                  color: Colors.pink),
+            ),
+          );
+        } else if (barChartList.isEmpty) {
           return CommonCard(
             child: Center(
               child: Textview2(
@@ -55,9 +54,7 @@ class BarChartScreen extends StatelessWidget {
               ),
             ),
           );
-        }
-
-        else {
+        } else {
           return Container(
             padding: EdgeInsets.all(20.0),
             child: charts.BarChart(
@@ -77,6 +74,7 @@ class BarChartScreen extends StatelessWidget {
   getQuizPercentageForGraph() async {
     Result res = await graphController.getQuizPercentageForGraph();
     if (res != null) {
+      barChartList = [];
       graphController.barGraphChartList = res.body;
       graphController.barGraphChartList.forEach((element) {
         barChartList.add(BarGraphModel(
@@ -93,7 +91,6 @@ class BarChartScreen extends StatelessWidget {
               return charts.MaterialPalette.green.shadeDefault;
             }),
       ];
-
     }
     graphController.update();
   }

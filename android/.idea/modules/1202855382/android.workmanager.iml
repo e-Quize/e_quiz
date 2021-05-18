@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id=":workmanager" external.linked.project.path="$MODULE_DIR$/../../../../../Flutter/.pub-cache/hosted/pub.dartlang.org/workmanager-0.2.3/android" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="be.tramckrijte.workmanager" external.system.module.version="1.0-SNAPSHOT" type="JAVA_MODULE" version="4">
+<module type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="android-gradle" name="Android-Gradle">
       <configuration>
@@ -55,6 +55,10 @@
     <output url="file://$MODULE_DIR$/../../../../build/workmanager/intermediates/javac/debug/classes" />
     <output-test url="file://$MODULE_DIR$/../../../../build/workmanager/intermediates/javac/debugUnitTest/classes" />
     <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../../Flutter/.pub-cache/hosted/pub.dartlang.org/workmanager-0.2.3/android">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../Flutter/.pub-cache/hosted/pub.dartlang.org/workmanager-0.2.3/android/src/main/kotlin" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Flutter/.pub-cache/hosted/pub.dartlang.org/workmanager-0.2.3/android/.gradle" />
+    </content>
     <content url="file://$MODULE_DIR$/../../../../build/workmanager/generated/aidl_source_output_dir/debug/compileDebugAidl/out" />
     <content url="file://$MODULE_DIR$/../../../../build/workmanager/generated/aidl_source_output_dir/debugAndroidTest/compileDebugAndroidTestAidl/out" />
     <content url="file://$MODULE_DIR$/../../../../build/workmanager/generated/ap_generated_sources/debug/out">
@@ -73,10 +77,6 @@
     <content url="file://$MODULE_DIR$/../../../../build/workmanager/generated/source/buildConfig/androidTest/debug" />
     <content url="file://$MODULE_DIR$/../../../../build/workmanager/generated/source/buildConfig/debug">
       <sourceFolder url="file://$MODULE_DIR$/../../../../build/workmanager/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
-    </content>
-    <content url="file://$MODULE_DIR$/../../../../../Flutter/.pub-cache/hosted/pub.dartlang.org/workmanager-0.2.3/android">
-      <sourceFolder url="file://$MODULE_DIR$/../../../../../Flutter/.pub-cache/hosted/pub.dartlang.org/workmanager-0.2.3/android/src/main/kotlin" isTestSource="false" />
-      <excludeFolder url="file://$MODULE_DIR$/../../../../../Flutter/.pub-cache/hosted/pub.dartlang.org/workmanager-0.2.3/android/.gradle" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 28 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

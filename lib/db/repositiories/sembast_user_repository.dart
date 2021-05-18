@@ -6,7 +6,6 @@ import 'package:e_quiz/models/attemptquiz/quiz_question.dart';
 import 'package:e_quiz/models/user/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:http/http.dart' as http;
 import 'package:sembast/sembast.dart';
 
 class SembastUserRepository extends UserRepository {

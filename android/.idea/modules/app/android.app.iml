@@ -56,19 +56,19 @@
     <content url="file://$MODULE_DIR$/../../../../build/app/generated/source/buildConfig/debug">
       <sourceFolder url="file://$MODULE_DIR$/../../../../build/app/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
     </content>
-    <orderEntry type="jdk" jdkName="Android API 29 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="jdk" jdkName="Android API 29 Platform" jdkType="Android SDK" />
     <orderEntry type="library" name="Gradle: ./../build/app/intermediates/flutter/debug/libs.jar" level="project" />
-    <orderEntry type="library" name="Gradle: io.flutter:armeabi_v7a_debug:1.0.0-5d8bf811b3072390933d69f3e289a4bb673636c4" level="project" />
-    <orderEntry type="library" name="Gradle: io.flutter:arm64_v8a_debug:1.0.0-5d8bf811b3072390933d69f3e289a4bb673636c4" level="project" />
-    <orderEntry type="library" name="Gradle: io.flutter:x86_64_debug:1.0.0-5d8bf811b3072390933d69f3e289a4bb673636c4" level="project" />
-    <orderEntry type="library" name="Gradle: io.flutter:x86_debug:1.0.0-5d8bf811b3072390933d69f3e289a4bb673636c4" level="project" />
-    <orderEntry type="library" name="Gradle: io.flutter:flutter_embedding_debug:1.0.0-5d8bf811b3072390933d69f3e289a4bb673636c4" level="project" />
+    <orderEntry type="library" name="Gradle: io.flutter:armeabi_v7a_debug:1.0.0-40441def692f444660a11e20fac37af9050245ab" level="project" />
+    <orderEntry type="library" name="Gradle: io.flutter:arm64_v8a_debug:1.0.0-40441def692f444660a11e20fac37af9050245ab" level="project" />
+    <orderEntry type="library" name="Gradle: io.flutter:x86_64_debug:1.0.0-40441def692f444660a11e20fac37af9050245ab" level="project" />
+    <orderEntry type="library" name="Gradle: io.flutter:x86_debug:1.0.0-40441def692f444660a11e20fac37af9050245ab" level="project" />
+    <orderEntry type="library" name="Gradle: io.flutter:flutter_embedding_debug:1.0.0-40441def692f444660a11e20fac37af9050245ab" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common-java8:2.2.0" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common:2.2.0" level="project" />
     <orderEntry type="library" name="Gradle: androidx.collection:collection:1.1.0" level="project" />
     <orderEntry type="library" name="Gradle: androidx.arch.core:core-common:2.1.0" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.annotation:annotation:1.2.0" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.annotation:annotation:1.1.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-annotations:16.0.0" level="project" />
     <orderEntry type="library" name="Gradle: androidx.multidex:multidex:2.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-analytics:18.0.1@aar" level="project" />
@@ -85,7 +85,7 @@
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-installations-interop:16.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-tasks:17.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-measurement-connector:18.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-basement:17.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-basement:17.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.fragment:fragment:1.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.legacy:legacy-support-core-utils:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.viewpager:viewpager:1.0.0@aar" level="project" />
@@ -105,20 +105,12 @@
     <orderEntry type="library" name="Gradle: androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.print:print:1.0.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.multidex:multidex-instrumentation:2.0.0@aar" level="project" />
-    <orderEntry type="module" module-name="com.example.FlutterToast.android.fluttertoast" />
-    <orderEntry type="module" module-name="com.tekartik.sqflite.android.sqflite" />
-    <orderEntry type="module" module-name="android.device_info" />
-    <orderEntry type="module" module-name="io.flutter.plugins.firebasemessaging.android.firebase_messaging" />
-    <orderEntry type="module" module-name="android.url_launcher" />
-    <orderEntry type="module" module-name="android.webview_flutter" />
-    <orderEntry type="module" module-name="android.path_provider" />
-    <orderEntry type="module" module-name="com.dexterous.flutterlocalnotifications.android.flutter_local_notifications" />
-    <orderEntry type="module" module-name="android.connectivity" />
-    <orderEntry type="module" module-name="io.flutter.plugins.firebase.cloudfirestore.android.cloud_firestore" />
-    <orderEntry type="module" module-name="io.flutter.plugins.firebase.database.android.firebase_database" />
-    <orderEntry type="module" module-name="android.workmanager" />
-    <orderEntry type="module" module-name="io.flutter.plugins.firebase.auth.android.firebase_auth" />
-    <orderEntry type="module" module-name="io.flutter.plugins.firebase.core.android.firebase_core" />
-    <orderEntry type="module" module-name="com.example.countdown_flutter.android.countdown_flutter" />
+    <orderEntry type="module" module-name="android.fluttertoast" />
+    <orderEntry type="module" module-name="android.sqflite" />
+    <orderEntry type="module" module-name="android.firebase_messaging" />
+    <orderEntry type="module" module-name="android.flutter_local_notifications" />
+    <orderEntry type="module" module-name="android.firebase_database" />
+    <orderEntry type="module" module-name="android.countdown_flutter" />
+    <orderEntry type="module" module-name="android.firebase_core" />
   </component>
 </module>

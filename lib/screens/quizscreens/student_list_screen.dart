@@ -9,7 +9,6 @@ import 'package:e_quiz/models/common/result_model.dart';
 import 'package:e_quiz/models/notification/notification_send_vm.dart';
 import 'package:e_quiz/models/quiz/quiz_generation_vm.dart';
 import 'package:e_quiz/models/user/user_entity_copy.dart';
-import 'package:e_quiz/screens/quizscreens/question_screen.dart';
 import 'package:e_quiz/utils/colors.dart';
 import 'package:e_quiz/utils/constants.dart';
 import 'package:e_quiz/utils/dialog/loadingcircle/lib/ball_scale_indicator.dart';
@@ -22,7 +21,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-
+import 'competition_question_screen.dart';
 class StudentListScreen extends StatelessWidget {
 
   var scrollController = ScrollController();
@@ -232,7 +231,7 @@ class StudentListScreen extends StatelessWidget {
       } else {
       await  sendNotification(quizController.responseId);
         WidgetProperties.goToNextPage(
-            buildContext,  QuestionScreen());
+            buildContext,  CompetitionQuestionScreen());
       }
     }
   }

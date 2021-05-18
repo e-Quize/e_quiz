@@ -12,7 +12,6 @@ import 'package:e_quiz/models/common/result_model.dart';
 import 'package:e_quiz/models/push_notification/push_notification_model.dart';
 import 'package:e_quiz/models/user/fcm_token_model.dart';
 import 'package:e_quiz/service/rest_client_api.dart';
-import 'package:e_quiz/singleton_notification.dart';
 import 'package:e_quiz/utils/widgetproperties.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
@@ -24,64 +23,11 @@ class DashboardController extends GetxController {
   var apiController = ApiController();
   var resultUser = Result().obs;
   var result = Result().obs;
-  FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
-  QuizController _quizController = Get.put(QuizController());
+
 
   @override
   void onInit() {
-    _firebaseMessaging.configure(
-        onMessage: (Map<String, dynamic> message) async {
-      String aa = message['notification']['body'];
-      print("kajsdghfakjshdf" + aa);
-      _quizController.ini();
-      Map model = jsonDecode(aa);
-      var pushNotificationModel = PushNotificationModel.fromJson(model);
-      FcmTokenModel fcmTokenModel = FcmTokenModel();
-      fcmTokenModel.FCMQuizId = pushNotificationModel.QuizId;
-      fcmTokenModel.Notificationtype = pushNotificationModel.NotificationType;
-      await UserCrud.insertFcmQuizId(fcmTokenModel);
-      print(pushNotificationModel.QuizId.toString());
-      _quizController.fcmQuizId = pushNotificationModel.QuizId;
-      _quizController.responseId = pushNotificationModel.QuizId;
 
-      NotificationSingleton.instance.notify();
-      NotificationSingleton.instance
-          .showNotification(pushNotificationModel.Description);
-    }, onResume: (Map<String, dynamic> message) async {
-      String aa = message['notification']['body'];
-      print("kajsdghfakjshdf  Resume" + aa);
-      _quizController.ini();
-      Map model = jsonDecode(aa);
-      var pushNotificationModel = PushNotificationModel.fromJson(model);
-      FcmTokenModel fcmTokenModel = FcmTokenModel();
-      fcmTokenModel.FCMQuizId = pushNotificationModel.QuizId;
-      fcmTokenModel.Notificationtype = pushNotificationModel.NotificationType;
-      await UserCrud.insertFcmQuizId(fcmTokenModel);
-      print(pushNotificationModel.QuizId.toString());
-      _quizController.fcmQuizId = pushNotificationModel.QuizId;
-      _quizController.responseId = pushNotificationModel.QuizId;
-
-      NotificationSingleton.instance.notify();
-      NotificationSingleton.instance
-          .showNotification(pushNotificationModel.Description);
-    }, onLaunch: (message) async {
-      String aa = message['notification']['body'];
-      print("kajsdghfakjshdf  Launch" + aa);
-      _quizController.ini();
-      Map model = jsonDecode(aa);
-      var pushNotificationModel = PushNotificationModel.fromJson(model);
-      FcmTokenModel fcmTokenModel = FcmTokenModel();
-      fcmTokenModel.FCMQuizId = pushNotificationModel.QuizId;
-      fcmTokenModel.Notificationtype = pushNotificationModel.NotificationType;
-      await UserCrud.insertFcmQuizId(fcmTokenModel);
-      print(pushNotificationModel.QuizId.toString());
-      _quizController.fcmQuizId = pushNotificationModel.QuizId;
-      _quizController.responseId = pushNotificationModel.QuizId;
-
-      NotificationSingleton.instance.notify();
-      NotificationSingleton.instance
-          .showNotification(pushNotificationModel.Description);
-    });
   }
 
   Future<Result> logoutUser() async {
@@ -93,6 +39,7 @@ class DashboardController extends GetxController {
   }
 
   getQuestions(int id) async {
+    QuizController _quizController = Get.find<QuizController>();
     var attemptQuizVM = AttemptQuizVm();
     attemptQuizVM.Date = WidgetProperties.utcTimeToString();
     attemptQuizVM.QuizId = id;

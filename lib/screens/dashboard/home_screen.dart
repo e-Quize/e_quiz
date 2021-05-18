@@ -107,60 +107,6 @@ class HomeScreen extends StatelessWidget {
               height: 3.0,
               color: Colors.green,
             ),
-            // ListTile(
-            //   onTap: () {
-            //     WebView(
-            //       initialUrl: FacebookUrl,
-            //       javascriptMode: JavascriptMode.unrestricted,
-            //     );
-            //     // openScreen(context, PaymentHistoryScreen());
-            //   },
-            //   title: Text("Facebook",
-            //       style: TextStyle(
-            //           color: Colors.deepPurple,
-            //           fontSize: 15.0,
-            //           fontWeight: FontWeight.bold)),
-            //   // trailing: Icon(Icons.arrow_forward),
-            // ),
-            // Divider(
-            //   height: 3.0,
-            //   color: Colors.green,
-            // ),
-            // ListTile(
-            //   onTap: () {
-            //     WebView(
-            //       initialUrl: TwitterUrl,
-            //       javascriptMode: JavascriptMode.unrestricted,
-            //     );
-            //     // openScreen(context, PaymentHistoryScreen());
-            //   },
-            //   title: Text("Twitter",
-            //       style: TextStyle(
-            //           color: Colors.deepPurple,
-            //           fontSize: 15.0,
-            //           fontWeight: FontWeight.bold)),
-            //   // trailing: Icon(Icons.arrow_forward),
-            // ),
-            // Divider(
-            //   height: 3.0,
-            //   color: Colors.green,
-            // ),
-            // ListTile(
-            //   onTap: () {
-            //     WebView(
-            //       initialUrl: LinkedInUrl,
-            //       javascriptMode: JavascriptMode.unrestricted,
-            //     );
-            //     // openScreen(context, PaymentHistoryScreen());
-            //     // openScreen(context, PaymentHistoryScreen());
-            //   },
-            //   title: Text("LinkedIn",
-            //       style: TextStyle(
-            //           color: Colors.deepPurple,
-            //           fontSize: 15.0,
-            //           fontWeight: FontWeight.bold)),
-            //   // trailing: Icon(Icons.arrow_forward),
-            // ),
           ],
         ),
       ),
@@ -216,10 +162,6 @@ class HomeScreen extends StatelessWidget {
                           //opacity: top == 80.0 ? 1.0 : 0.0,
                           opacity: 1.0,
                           child: top,
-                          // Text(
-                          //   top.toString(),
-                          //   style: TextStyle(fontSize: fontSize),
-                          // )
                         ),
                         background: Container(
                           color: AppColors.primaryBtnColor,
@@ -265,60 +207,6 @@ class HomeScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    // Container(
-                                    //   margin: EdgeInsets.only(
-                                    //     left: AppValues.horizontalMargin,
-                                    //     right: AppValues.horizontalMargin,
-                                    //   ),
-                                    //   child: Column(
-                                    //     children: [
-                                    //       Material(
-                                    //         elevation: AppValues.cardElevation,
-                                    //         color: Color(0xfff2f2f2),
-                                    //         borderRadius: BorderRadius.all(
-                                    //             Radius.circular(AppValues
-                                    //                 .commonBodyCardRadius)),
-                                    //         child: Container(
-                                    //             // height:
-                                    //             //     WidgetProperties.screenHeight(
-                                    //             //             context) *
-                                    //             //         0.4,
-                                    //             child: Column(
-                                    //           crossAxisAlignment:
-                                    //               CrossAxisAlignment.start,
-                                    //           children: [
-                                    //             Container(
-                                    //               margin: EdgeInsets.only(
-                                    //                   top: 15.0, left: 20.0),
-                                    //               child:
-                                    //               Textview2(
-                                    //                 title:
-                                    //                     Constants.STRATEGY_TEXT,
-                                    //                 fontSize: 20.0,
-                                    //                 color: AppColors
-                                    //                     .commoneadingtextColor,
-                                    //                 fontWeight: FontWeight.bold,
-                                    //               ),
-                                    //             ),
-                                    //             Container(
-                                    //               margin: EdgeInsets.only(
-                                    //                   left: 20.0),
-                                    //               child: Textview2(
-                                    //                 title: Constants
-                                    //                     .ABOUT_TEST_RESULT_TEXT,
-                                    //                 fontSize: 12.0,
-                                    //                 color: AppColors
-                                    //                     .resultDashboardTextColor,
-                                    //                 fontWeight: FontWeight.bold,
-                                    //               ),
-                                    //             ),
-                                    //             PieChartScreen(),
-                                    //           ],
-                                    //         )),
-                                    //       ),
-                                    //     ],
-                                    //   ),
-                                    // ),
                                     Container(
                                       height:
                                           MediaQuery.of(context).size.height /
@@ -478,14 +366,6 @@ class HomeScreen extends StatelessWidget {
       if (res.code == 500) {
         print(res.message);
       }
-      // else if (res.code == 401) {
-      //   DialogClass.showDialog(
-      //       Get.context,
-      //       logoutUserFromAllDevices,
-      //       Constants.LOGOUT_FROM_ALL_DEVICES_TEXT,
-      //       Constants.YES_TEXT,
-      //       Constants.NO_TEXT);
-      // }
       else {
         userDashboardVMResponse = res.body;
         userController.updateUserBuilder();
@@ -513,154 +393,7 @@ class HomeScreen extends StatelessWidget {
 
   showPieChartDialog(BuildContext buildContext) {
     WidgetProperties.goToNextPage(buildContext, BarChartScreenReplacement());
-    // showGeneralDialog(
-    //   barrierDismissible: true,
-    //   barrierLabel: "",
-    //   barrierColor: Colors.black.withOpacity(0.5),
-    //   transitionDuration: Duration(milliseconds: 400),
-    //   context: buildContext,
-    //   pageBuilder: (_, __, ___) {
-    //     return Align(
-    //         alignment: Alignment.center,
-    //         child: Container(
-    //           margin: EdgeInsets.only(
-    //             left: AppValues.horizontalMargin,
-    //             right: AppValues.horizontalMargin,
-    //           ),
-    //           child: Column(
-    //             mainAxisAlignment: MainAxisAlignment.center,
-    //             children: [
-    //               Material(
-    //                 elevation: AppValues.cardElevation,
-    //                 color: Color(0xfff2f2f2),
-    //                 borderRadius: BorderRadius.all(
-    //                     Radius.circular(AppValues.commonBodyCardRadius)),
-    //                 child: Container(
-    //                     padding: EdgeInsets.all(10.0),
-    //                     child: Column(
-    //                       crossAxisAlignment: CrossAxisAlignment.start,
-    //                       children: [
-    //                         !Get.find<GraphController>()
-    //                                     .pieGraphChartList
-    //                                     .isBlank &&
-    //                                 Get.find<GraphController>()
-    //                                     .pieGraphChartList
-    //                                     .isNotEmpty
-    //                             ? Container(
-    //                                 margin:
-    //                                     EdgeInsets.only(top: 15.0, left: 20.0),
-    //                                 child: Textview2(
-    //                                   title: Constants.STRATEGY_TEXT,
-    //                                   fontSize: 20.0,
-    //                                   color: AppColors.commoneadingtextColor,
-    //                                   fontWeight: FontWeight.bold,
-    //                                 ),
-    //                               )
-    //                             : Container(),
-    //                         !Get.find<GraphController>()
-    //                                     .pieGraphChartList
-    //                                     .isBlank &&
-    //                                 Get.find<GraphController>()
-    //                                     .pieGraphChartList
-    //                                     .isNotEmpty
-    //                             ? Container(
-    //                                 margin: EdgeInsets.only(left: 20.0),
-    //                                 child: Textview2(
-    //                                   title: Constants.ABOUT_TEST_RESULT_TEXT,
-    //                                   fontSize: 12.0,
-    //                                   color: AppColors.resultDashboardTextColor,
-    //                                   fontWeight: FontWeight.bold,
-    //                                 ),
-    //                               )
-    //                             : Container(),
-    //                         Container(
-    //                           padding: EdgeInsets.only(left: 8.0, top: 8.0),
-    //                           child: PieChartScreen(),
-    //                         ),
-    //                       ],
-    //                     )),
-    //               ),
-    //             ],
-    //           ),
-    //         ));
-    //   },
-    // );
   }
-
-  // showDialog(BuildContext buildContext) {
-  //   showGeneralDialog(
-  //     barrierDismissible: true,
-  //     barrierLabel: "",
-  //     barrierColor: Colors.black.withOpacity(0.5),
-  //     transitionDuration: Duration(milliseconds: 400),
-  //     context: buildContext,
-  //     pageBuilder: (_, __, ___) {
-  //       return Align(
-  //         alignment: Alignment.center,
-  //         child: Container(
-  //           height: MediaQuery.of(buildContext).size.height / 6,
-  //           margin: EdgeInsets.symmetric(horizontal: 20.0),
-  //           padding: EdgeInsets.only(top: 20.0),
-  //           decoration: BoxDecoration(
-  //             color: Colors.white,
-  //             borderRadius: BorderRadius.circular(10),
-  //           ),
-  //           child: Column(
-  //             children: [
-  //               Textview2(
-  //                 textDecoration: TextDecoration.none,
-  //                 title: Constants.LOGOUT_FROM_ALL_DEVICES_TEXT,
-  //                 fontWeight: FontWeight.bold,
-  //                 fontSize: 15.0,
-  //               ),
-  //               Container(
-  //                 child: Row(
-  //                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  //                   children: [
-  //                     Container(
-  //                       margin: EdgeInsets.only(top: 20.0),
-  //                       child: HeroButton(
-  //                         height: 30.0,
-  //                         width: 120,
-  //                         radius: AppValues.commonButtonCornerRadius,
-  //                         gradient: AppColors.formContinueButtomColor,
-  //                         title: Constants.YES_TEXT,
-  //                         onPressed: () {
-  //                           logoutUserFromAllDevices();
-  //                         },
-  //                       ),
-  //                     ),
-  //                     Divider(
-  //                       color: Colors.grey,
-  //                       thickness: 0.60,
-  //                     ),
-  //                     Container(
-  //                       margin: EdgeInsets.only(top: 20.0),
-  //                       child: HeroButton(
-  //                         height: 30.0,
-  //                         width: 120,
-  //                         radius: AppValues.commonButtonCornerRadius,
-  //                         gradient: AppColors.formContinueButtomColor,
-  //                         title: Constants.NO_TEXT,
-  //                         onPressed: () {
-  //                           Navigator.of(buildContext).pushAndRemoveUntil(
-  //                               MaterialPageRoute(
-  //                                   builder: (context) => SigninScreen()),
-  //                               (Route<dynamic> route) => false);
-  //                           Get.back();
-  //                         },
-  //                       ),
-  //                     ),
-  //                   ],
-  //                 ),
-  //               )
-  //             ],
-  //           ),
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
 
   getSocialUrl() async {
     var bankInfoData = await UserCrud.getBankInfoData();

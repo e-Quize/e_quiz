@@ -25,7 +25,6 @@ import 'package:e_quiz/utils/widgetproperties.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html/rich_text_parser.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -68,6 +67,8 @@ class QuestionScreen extends StatelessWidget {
         body: GetBuilder<QuizController>(
           init: _quizController,
           dispose: (c) {
+            _historyController.selectedReAtemptedQuestionId = null;
+            _notificationController.notificationQuizId = null;
             _quizController.ini();
           },
           initState: (child) {

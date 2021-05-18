@@ -6,6 +6,7 @@ import 'package:e_quiz/models/attemptquiz/attempt_quiz_vm.dart';
 import 'package:e_quiz/models/attemptquiz/quiz_question.dart';
 import 'package:e_quiz/models/common/result_model.dart';
 import 'package:e_quiz/screens/quizscreens/question_screen.dart';
+import 'package:e_quiz/screens/quizscreens/competition_question_screen.dart';
 import 'package:e_quiz/screens/quizscreens/detail_screen.dart';
 import 'package:e_quiz/utils/colors.dart';
 import 'package:e_quiz/utils/dialog/loadingcircle/lib/ball_scale_indicator.dart';
@@ -129,8 +130,15 @@ class SubjectHistoryScreen extends StatelessWidget {
                               historyController.selectedReAtemptedQuestionId =
                                   historyController
                                       .attemptedQuizModelList[index].QuizId;
-                              WidgetProperties.goToNextPage(
-                                  Get.context, QuestionScreen());
+                              if (historyController
+                                  .attemptedQuizModelList[index]
+                                  .isCompetition) {
+                                WidgetProperties.goToNextPage(
+                                    Get.context, CompetitionQuestionScreen());
+                              } else {
+                                WidgetProperties.goToNextPage(
+                                    Get.context, QuestionScreen());
+                              }
                             },
                             child: Text("Re-Attempt",
                                 style: TextStyle(
@@ -162,8 +170,7 @@ class SubjectHistoryScreen extends StatelessWidget {
                                             .attemptedQuizModelList[index]
                                             .QuizId;
                                     WidgetProperties.goToNextPage(
-                                        Get.context,
-                                        DetailScreen());
+                                        Get.context, DetailScreen());
                                   },
                                   child: Text("Details",
                                       style: TextStyle(

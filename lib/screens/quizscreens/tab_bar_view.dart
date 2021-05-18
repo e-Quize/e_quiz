@@ -1,15 +1,17 @@
+import 'package:e_quiz/controllers/quiz_controller.dart';
 import 'package:e_quiz/screens/quizscreens/competitor_result_screen.dart';
 import 'package:e_quiz/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'self_result_screen.dart';
 
-class TabbarView extends StatefulWidget {
+class CompetitionQuizResult extends StatefulWidget {
   @override
-  _TabbarViewState createState() => _TabbarViewState();
+  _CompetitionQuizResultState createState() => _CompetitionQuizResultState();
 }
 
-class _TabbarViewState extends State<TabbarView>
+class _CompetitionQuizResultState extends State<CompetitionQuizResult>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
 
@@ -17,6 +19,13 @@ class _TabbarViewState extends State<TabbarView>
   void initState() {
     _tabController = TabController(length: 2, vsync: this);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+
+    super.dispose();
   }
 
   @override
