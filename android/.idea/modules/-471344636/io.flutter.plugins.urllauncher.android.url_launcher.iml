@@ -53,6 +53,10 @@
       <sourceFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.7.10/android/src/main/java" isTestSource="false" />
       <sourceFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.7.10/android/src/test/java" isTestSource="true" />
       <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.7.10/android/.gradle" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.7.10/.pub" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.7.10/build" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.7.10/example/.pub" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.7.10/example/build" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="jdk" jdkName="Android API 29 Platform" jdkType="Android SDK" />

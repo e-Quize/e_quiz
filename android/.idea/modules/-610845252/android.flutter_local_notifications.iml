@@ -52,6 +52,10 @@
     <content url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications-4.0.1+2">
       <sourceFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications-4.0.1+2/android/src/main/java" isTestSource="false" />
       <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications-4.0.1+2/android/.gradle" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications-4.0.1+2/example/.pub" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications-4.0.1+2/example/build" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications-4.0.1+2/.pub" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications-4.0.1+2/build" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="jdk" jdkName="Android API 30 Platform" jdkType="Android SDK" />

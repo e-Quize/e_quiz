@@ -53,6 +53,12 @@
       <sourceFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.6.1/android/src/main/java" isTestSource="false" />
       <sourceFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.6.1/android/src/test/java" isTestSource="true" />
       <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.6.1/android/.gradle" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.6.1/path_provider_macos/.pub" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.6.1/path_provider_macos/build" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.6.1/example/.pub" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.6.1/example/build" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.6.1/.pub" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.6.1/build" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="jdk" jdkName="Android API 28 Platform" jdkType="Android SDK" />

@@ -52,6 +52,10 @@
     <content url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter-0.3.24">
       <sourceFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter-0.3.24/android/src/main/java" isTestSource="false" />
       <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter-0.3.24/android/.gradle" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter-0.3.24/build" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter-0.3.24/.pub" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter-0.3.24/example/build" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter-0.3.24/example/.pub" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="jdk" jdkName="Android API 28 Platform" jdkType="Android SDK" />

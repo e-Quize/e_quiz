@@ -52,6 +52,10 @@
     <content url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.5.3">
       <sourceFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.5.3/android/src/main/java" isTestSource="false" />
       <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.5.3/android/.gradle" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.5.3/example/.pub" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.5.3/example/build" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.5.3/build" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.5.3/.pub" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="jdk" jdkName="Android API 29 Platform" jdkType="Android SDK" />

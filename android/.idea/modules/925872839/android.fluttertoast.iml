@@ -79,6 +79,10 @@
       <sourceFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/fluttertoast-7.1.5/android/src/main/kotlin" isTestSource="false" />
       <sourceFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/fluttertoast-7.1.5/android/src/main/res" type="java-resource" />
       <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/fluttertoast-7.1.5/android/.gradle" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/fluttertoast-7.1.5/example/.pub" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/fluttertoast-7.1.5/example/build" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/fluttertoast-7.1.5/build" />
+      <excludeFolder url="file://C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/fluttertoast-7.1.5/.pub" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="jdk" jdkName="Android API 28 Platform" jdkType="Android SDK" />

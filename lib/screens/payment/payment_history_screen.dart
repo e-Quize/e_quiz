@@ -13,7 +13,7 @@ class PaymentHistoryScreen extends StatelessWidget {
   var scrollController = ScrollController();
   var paymentController = Get.put(PaymentController());
 
-  var _isLoading = true;
+ // var _isLoading = true;
 
   @override
   Widget build(BuildContext context) {
