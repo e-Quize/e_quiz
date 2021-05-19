@@ -10,6 +10,7 @@ class DBConnection {
       onCreate: (db, version) {
         db.execute(Structure.CREATE_USER_TABLE);
         db.execute(Structure.CREATE_MOBILE_CONNECT_TABLE);
+        db.execute(Structure.CREATE_OFFLINE_QUIZ_TABLE);
         db.execute(Structure.CREATE_REFRESH_TOKEN_CONNECT);
         db.execute(Structure.CREATE_USER_COMMON_RESULT_COPY);
         db.execute(Structure.CREATE_FCM_QUIZ_ID_CONNECT);

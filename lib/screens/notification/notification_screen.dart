@@ -75,7 +75,6 @@ class NotificationScreen extends StatelessWidget {
       );
     } else {
       return ListView.builder(
-        reverse: true,
         controller: scrollController,
         physics: BouncingScrollPhysics(),
         itemCount: notificationController.notificationList.length,
@@ -119,10 +118,13 @@ class NotificationScreen extends StatelessWidget {
                           child: Text(
                             notificationController
                                 .notificationList[index].Notification,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
                             style: TextStyle(
                                 fontWeight: FontWeight.w900,
                                 fontSize: 13.0,
                                 color: AppColors.accent3Color,
+
                                 fontFamily: AppValues.fontFamily),
                           ),
                         ),
@@ -170,43 +172,44 @@ class NotificationScreen extends StatelessWidget {
       transitionDuration: Duration(milliseconds: 400),
       context: buildContext,
       pageBuilder: (_, __, ___) {
-        return Align(
-            alignment: Alignment.center,
-            child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 30.0, vertical: 30.0),
-              // margin: EdgeInsets.only(
-              //   left: AppValues.horizontalMargin,
-              //   right: AppValues.horizontalMargin,
-              // ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Material(
-                    elevation: AppValues.cardElevation,
-                    color: Color(0xfff2f2f2),
-                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                    child: Container(
-                        child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 30.0, vertical: 20.0),
-                          alignment: Alignment.center,
-                          child: Textview2(
-                            title: title,
-                            fontSize: 15.0,
-                            color: AppColors.commoneadingtextColor,
-                            fontWeight: FontWeight.bold,
+        return
+
+          Align(
+              alignment: Alignment.center,
+              child: Container(
+                margin: EdgeInsets.only(
+                  left: AppValues.horizontalMargin,
+                  right: AppValues.horizontalMargin,
+                ),
+                child: Material(
+                  elevation: AppValues.cardElevation,
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(
+                      Radius.circular(AppValues.commonBodyCardRadius)),
+                  child: Container(
+                      padding: EdgeInsets.all(10.0),
+                      height: 200.0,
+                      width: WidgetProperties.screenWidth(buildContext),  
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: Textview2(
+                                title: title,
+                                fontSize: 15.0,
+                                color: AppColors.commoneadingtextColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
-                        )
-                      ],
-                    )),
-                  ),
-                ],
-              ),
-            ));
+                        ],
+                      )),
+                ),
+              ));
+
+
       },
     );
   }

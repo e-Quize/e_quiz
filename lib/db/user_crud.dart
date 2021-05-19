@@ -20,6 +20,17 @@ class UserCrud {
     return id;
   }
 
+  static Future<int> insertOfflineQuiz(UserEntityCopy userEntityCopy) async {
+    final Database db = await DBConnection.openAppDatabase();
+    int id = await db.insert(
+      Structure.USER_TABLE,
+      userEntityCopy.toJson(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+    db.close();
+    return id;
+  }
+
   static Future<int> insertCommonResultCopy(
       CommonResultCopy commonResultCopy) async {
     final Database db = await DBConnection.openAppDatabase();

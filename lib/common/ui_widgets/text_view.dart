@@ -28,7 +28,6 @@ class Textview2 extends StatelessWidget {
     return Text(
       title,
       textAlign: textAlign,
-      maxLines: 2,
       style: TextStyle(
         backgroundColor: backgroundColor,
         fontFamily: 'Sans',
@@ -38,7 +37,6 @@ class Textview2 extends StatelessWidget {
         color: color,
         decoration: textDecoration,
         fontSize: fontSize,
-
       ),
     );
   }
