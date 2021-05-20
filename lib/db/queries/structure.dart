@@ -10,7 +10,7 @@ class Structure {
   static const CREATE_MOBILE_CONNECT_TABLE =
       "CREATE TABLE MobileConnectResponseCopy(SupportEmailAddress TEXT,ApplicationName TEXT,BankAccountInfo TEXT,FacebookURL TEXT,TwitterURL TEXT,LinkedInURL TEXT)";
   static const CREATE_OFFLINE_QUIZ_TABLE =
-      "CREATE TABLE OfflineQuizTable(data TEXT,)";
+      "CREATE TABLE OfflineQuizTable(id INTEGER PRIMARY KEY AUTOINCREMENT,data TEXT,quizId INTEGER,isSynced INTEGER)";
   static const CREATE_REFRESH_TOKEN_CONNECT =
       "CREATE TABLE RefreshToken(RefreshOldToken TEXT)";
   static const CREATE_FCM_QUIZ_ID_CONNECT =

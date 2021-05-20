@@ -1,11 +1,13 @@
 import 'package:e_quiz/common/exception_manager/generic_result.dart';
 import 'package:e_quiz/controllers/api_controller.dart';
+import 'package:e_quiz/db/user_crud.dart';
 import 'package:e_quiz/models/attemptquiz/attempt_quiz_vm.dart';
 import 'package:e_quiz/models/attemptquiz/quiz_question.dart';
 import 'package:e_quiz/models/dashboard/competition_quiz_result_model.dart';
 import 'package:e_quiz/models/attemptquiz/quiz_question_answer.dart';
 import 'package:e_quiz/models/common/result_model.dart';
 import 'package:e_quiz/models/common/validity_model.dart';
+import 'package:e_quiz/models/offlinequiz/offline_quiz_model.dart';
 import 'package:e_quiz/models/quiz/quiz_generation_vm.dart';
 import 'package:e_quiz/models/quiz/save_subscription_model.dart';
 import 'package:e_quiz/models/quiz/slab_vm.dart';
@@ -61,6 +63,7 @@ class QuizController extends GetxController {
   List<SubjectModel> userSubscriptionSubjectList;
 
   int answerId;
+  OfflineQuiz offlineQuiz ;
 
   ValidityModel validityQuestion;
 
@@ -101,6 +104,7 @@ class QuizController extends GetxController {
     userSubscriptionSubjectList = List<SubjectModel>();
 
     validityQuestion = ValidityModel();
+    offlineQuiz = OfflineQuiz();
   }
 
   updateResult(Result result) {
@@ -163,10 +167,10 @@ class QuizController extends GetxController {
   }
 
   Future<Result> generateQuiz(QuizGenerationVM quizGenerationVM) async {
-      //updateUser(Generic.waitResult());
+    //updateUser(Generic.waitResult());
     Result generateQuizResult =
         await apiController.generateQuizFromApi(quizGenerationVM);
-   // updateUser(generateQuizResult);
+    // updateUser(generateQuizResult);
     return generateQuizResult;
   }
 
@@ -175,6 +179,12 @@ class QuizController extends GetxController {
         await apiController.getQuetionListForAttempQuizFromApi(attemptQuizVM);
     updateUser(getQuestionForAttempt);
     return getQuestionForAttempt;
+  }
+
+  void addOfflineQuiz(OfflineQuiz offlineQuiz)async {
+    await UserCrud.insertOfflineQuiz(offlineQuiz).then((value) => print('Successfully added')).catchError((error){
+      print("Error in inserting ${error.message}");
+    });
   }
 
   Future<Result> updateDashboardData() async {

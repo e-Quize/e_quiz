@@ -10,21 +10,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="31ed38ee-efc6-4097-a38f-15df9cf1e594" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/models/offlinequiz/offline_quiz_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+    <list default="true" id="31ed38ee-efc6-4097-a38f-15df9cf1e594" name="Default Changelist" comment="new change">
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/common/ui_widgets/text_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/common/ui_widgets/text_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/db/connection.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/db/connection.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/controllers/quiz_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/controllers/quiz_controller.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/db/queries/structure.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/db/queries/structure.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/db/user_crud.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/db/user_crud.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/notification/notification_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/notification/notification_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/offlinequiz/offline_quiz_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/offlinequiz/offline_quiz_model.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/question_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/question_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils/shared.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/shared.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,9 +31,6 @@
         <option value="Dart File" />
       </list>
     </option>
-  </component>
-  <component name="Git.Rebase.Settings">
-    <option name="NEW_BASE" value="test1" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -75,7 +66,7 @@
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/android" />
-    <property name="settings.editor.selected.configurable" value="device.file.explorer" />
+    <property name="settings.editor.selected.configurable" value="application.passwordSafe" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
@@ -129,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620387409923</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="new change">
+      <created>1621422214317</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1621422214317</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -149,59 +147,80 @@
     <MESSAGE value="5th" />
     <MESSAGE value="6th" />
     <MESSAGE value="4:36" />
-    <option name="LAST_COMMIT_MESSAGE" value="4:36" />
+    <MESSAGE value="new change" />
+    <option name="LAST_COMMIT_MESSAGE" value="new change" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="568" y="226" key="#Notifications" timestamp="1621422248722">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="568" y="226" key="#Notifications/0.0.1366.728@0.0.1366.728" timestamp="1621422248722" />
+    <state x="92" y="92" width="1182" height="544" key="AVDManager" timestamp="1621429092883">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="92" y="92" width="1182" height="544" key="AVDManager/0.0.1366.728@0.0.1366.728" timestamp="1621429092883" />
+    <state width="514" height="466" key="DebuggerActiveHint" timestamp="1621490196266">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="514" height="466" key="DebuggerActiveHint/0.0.1366.728@0.0.1366.728" timestamp="1621490196266" />
     <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1621416023869">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1621416023869" />
-    <state width="1323" height="74" key="GridCell.Tab.0.bottom" timestamp="1621417926035">
+    <state width="1306" height="256" key="GridCell.Tab.0.bottom" timestamp="1621493289300">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="74" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1621417926035" />
-    <state width="1323" height="74" key="GridCell.Tab.0.center" timestamp="1621417926035">
+    <state width="1306" height="256" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1621493289300" />
+    <state width="1306" height="256" key="GridCell.Tab.0.center" timestamp="1621493289300">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="74" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1621417926035" />
-    <state width="1323" height="74" key="GridCell.Tab.0.left" timestamp="1621417926035">
+    <state width="1306" height="256" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1621493289300" />
+    <state width="1306" height="256" key="GridCell.Tab.0.left" timestamp="1621493289300">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="74" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1621417926035" />
-    <state width="1323" height="74" key="GridCell.Tab.0.right" timestamp="1621417926035">
+    <state width="1306" height="256" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1621493289300" />
+    <state width="1306" height="256" key="GridCell.Tab.0.right" timestamp="1621493289300">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="74" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1621417926035" />
-    <state x="184" y="8" key="SettingsEditor" timestamp="1621416071206">
+    <state width="1306" height="256" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1621493289300" />
+    <state x="184" y="8" key="SettingsEditor" timestamp="1621428985774">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="184" y="8" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1621416071206" />
+    <state x="184" y="8" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1621428985774" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1621422310892">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1621422310892" />
     <state x="389" y="97" width="587" height="534" key="find.popup" timestamp="1621416217361">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="389" y="97" width="587" height="534" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1621416217361" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1621416059188">
+    <state x="446" y="225" key="git4idea.rebase.GitRebaseDialog" timestamp="1621422686061">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1621416059188" />
+    <state x="446" y="225" key="git4idea.rebase.GitRebaseDialog/0.0.1366.728@0.0.1366.728" timestamp="1621422686061" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1621428977470">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1621428977470" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/controllers/api_controller.dart</url>
-          <line>496</line>
-          <option name="timeStamp" value="126" />
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/controllers/quiz_controller.dart</url>
+          <line>183</line>
+          <option name="timeStamp" value="131" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/controllers/api_controller.dart</url>
-          <line>487</line>
-          <option name="timeStamp" value="127" />
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/controllers/quiz_controller.dart</url>
+          <line>185</line>
+          <option name="timeStamp" value="137" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/controllers/api_controller.dart</url>
-          <line>486</line>
-          <option name="timeStamp" value="129" />
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/controllers/quiz_controller.dart</url>
+          <line>184</line>
+          <option name="timeStamp" value="138" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

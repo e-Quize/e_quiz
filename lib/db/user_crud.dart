@@ -1,5 +1,6 @@
 import 'package:e_quiz/db/connection.dart';
 import 'package:e_quiz/db/queries/structure.dart';
+import 'package:e_quiz/models/offlinequiz/offline_quiz_model.dart';
 import 'package:e_quiz/models/splash/mobile_connect_copy.dart';
 import 'package:e_quiz/models/user/fcm_token_model.dart';
 import 'package:e_quiz/models/user/refresh_token.dart';
@@ -20,12 +21,12 @@ class UserCrud {
     return id;
   }
 
-  static Future<int> insertOfflineQuiz(UserEntityCopy userEntityCopy) async {
+  static Future<int> insertOfflineQuiz(OfflineQuiz offlineQuiz) async {
     final Database db = await DBConnection.openAppDatabase();
     int id = await db.insert(
-      Structure.USER_TABLE,
-      userEntityCopy.toJson(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
+      Structure.CREATE_OFFLINE_QUIZ_TABLE,
+      offlineQuiz.toJson(),
+      conflictAlgorithm: ConflictAlgorithm.ignore,
     );
     db.close();
     return id;
