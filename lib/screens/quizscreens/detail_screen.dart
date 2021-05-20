@@ -17,9 +17,6 @@ import 'package:get/get.dart';
 
 class DetailScreen extends StatelessWidget {
 
-
-
-
   var _resultController = Get.put(ResultController());
   var _historyController = Get.put(HistoryController());
   var _scrollController = ScrollController();

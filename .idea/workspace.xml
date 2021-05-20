@@ -10,15 +10,18 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="31ed38ee-efc6-4097-a38f-15df9cf1e594" name="Default Changelist" comment="new change">
+    <list default="true" id="31ed38ee-efc6-4097-a38f-15df9cf1e594" name="Default Changelist" comment="new changes">
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/controllers/quiz_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/controllers/quiz_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/db/queries/structure.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/db/queries/structure.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/db/user_crud.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/db/user_crud.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/offlinequiz/offline_quiz_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/offlinequiz/offline_quiz_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/dashboard/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/dashboard/home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/history/subject_history_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/history/subject_history_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/detail_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/detail_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/question_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/question_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utils/shared.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/shared.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/self_result_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/self_result_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/subscriptions/subscription_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/subscriptions/subscription_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/singleton_notification.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/singleton_notification.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +130,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621422214317</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="new changes">
+      <created>1621493446719</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1621493446719</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -148,7 +158,8 @@
     <MESSAGE value="6th" />
     <MESSAGE value="4:36" />
     <MESSAGE value="new change" />
-    <option name="LAST_COMMIT_MESSAGE" value="new change" />
+    <MESSAGE value="new changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="new changes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="568" y="226" key="#Notifications" timestamp="1621422248722">
@@ -159,42 +170,42 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="92" y="92" width="1182" height="544" key="AVDManager/0.0.1366.728@0.0.1366.728" timestamp="1621429092883" />
-    <state width="514" height="466" key="DebuggerActiveHint" timestamp="1621490196266">
+    <state width="596" height="466" key="DebuggerActiveHint" timestamp="1621510056464">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="514" height="466" key="DebuggerActiveHint/0.0.1366.728@0.0.1366.728" timestamp="1621490196266" />
-    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1621416023869">
+    <state width="596" height="466" key="DebuggerActiveHint/0.0.1366.728@0.0.1366.728" timestamp="1621510056464" />
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1621507433129">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1621416023869" />
-    <state width="1306" height="256" key="GridCell.Tab.0.bottom" timestamp="1621493289300">
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1621507433129" />
+    <state width="1306" height="436" key="GridCell.Tab.0.bottom" timestamp="1621513546573">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1306" height="256" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1621493289300" />
-    <state width="1306" height="256" key="GridCell.Tab.0.center" timestamp="1621493289300">
+    <state width="1306" height="436" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1621513546573" />
+    <state width="1306" height="436" key="GridCell.Tab.0.center" timestamp="1621513546573">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1306" height="256" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1621493289300" />
-    <state width="1306" height="256" key="GridCell.Tab.0.left" timestamp="1621493289300">
+    <state width="1306" height="436" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1621513546573" />
+    <state width="1306" height="436" key="GridCell.Tab.0.left" timestamp="1621513546573">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1306" height="256" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1621493289300" />
-    <state width="1306" height="256" key="GridCell.Tab.0.right" timestamp="1621493289300">
+    <state width="1306" height="436" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1621513546573" />
+    <state width="1306" height="436" key="GridCell.Tab.0.right" timestamp="1621513546573">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1306" height="256" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1621493289300" />
+    <state width="1306" height="436" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1621513546573" />
     <state x="184" y="8" key="SettingsEditor" timestamp="1621428985774">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="8" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1621428985774" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1621422310892">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1621493456368">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1621422310892" />
-    <state x="389" y="97" width="587" height="534" key="find.popup" timestamp="1621416217361">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1621493456368" />
+    <state x="389" y="97" width="587" height="534" key="find.popup" timestamp="1621509323300">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="389" y="97" width="587" height="534" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1621416217361" />
+    <state x="389" y="97" width="587" height="534" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1621509323300" />
     <state x="446" y="225" key="git4idea.rebase.GitRebaseDialog" timestamp="1621422686061">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -221,6 +232,21 @@
           <url>file://$PROJECT_DIR$/lib/controllers/quiz_controller.dart</url>
           <line>184</line>
           <option name="timeStamp" value="138" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/quizscreens/detail_screen.dart</url>
+          <line>64</line>
+          <option name="timeStamp" value="139" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/quizscreens/detail_screen.dart</url>
+          <line>78</line>
+          <option name="timeStamp" value="140" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/quizscreens/detail_screen.dart</url>
+          <line>65</line>
+          <option name="timeStamp" value="141" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

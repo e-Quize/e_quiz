@@ -824,9 +824,9 @@ class QuestionScreen extends StatelessWidget {
           });
           final SharedPreferences prefs = await SharedPreferences.getInstance();
           prefs.setString('quizList', _quizController.offlineQuiz.data);
-          prefs.setInt('quizId', _quizController.offlineQuiz.quizId);
+          prefs.setInt('qId', _quizController.offlineQuiz.quizId);
           String quizList = prefs.getString('quizList');
-          int quizId = prefs.getInt('quizId');
+          int quizId = prefs.getInt('qId');
 
           print(
               "This is decoded string after storing in shared prefrences ${quizList}");

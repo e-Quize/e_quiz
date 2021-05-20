@@ -472,7 +472,7 @@ class SubscriptionScreen extends StatelessWidget {
           .saveSubscription(saveSubscriptionModel);
       if (res != null) {
         if (res.code > 0) {
-          ToastClass.showToast(res.message, ToastGravity.BOTTOM, Colors.red,
+          ToastClass.showToast(res.message, ToastGravity.BOTTOM, Colors.green,
               Colors.white, 15.0, Toast.LENGTH_SHORT);
           Result result = await _subjectScriptionController.logoutUser();
           if (result != null)

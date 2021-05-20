@@ -211,11 +211,13 @@ class SelfResultScreen extends StatelessWidget {
                               Container(
                                 margin: EdgeInsets.only(top: 7.0),
                                 child: Textview2(
-                                  title:(( _resultController.quizQuestionList
+                                  title:_resultController.quizQuestionList !=
+                                      null
+                                      ? (( _resultController.quizQuestionList
                                       .where((element) =>
                                   element.isUserAnswer)
                                       .toList()
-                                      .length / _resultController.quizQuestionList.length)*100).toStringAsFixed(2)+' %',
+                                      .length / _resultController.quizQuestionList.length)*100).toStringAsFixed(2)+' %':0.toString(),
                                   fontSize: 12.0,
                                   color: AppColors.textWhiteColor,
                                   fontWeight: FontWeight.w800,
@@ -278,10 +280,11 @@ class SelfResultScreen extends StatelessWidget {
                             color: AppColors.textWhiteColor, fontSize: 20.0)),
                     color: Color(0xFF536BB1),
                     onPressed: () {
-                      // contrller.dispose();
+
                       RouteAppReplacement.instance.pushReplacementPageAll(context, DashboardScreen());
                       Get.find<DashboardController>().currentIndex = 0;
                       Get.find<DashboardController>().update();
+                      _resultController.quizQuestionList.clear();
                       // WidgetProperties.goToNextPage(context, Dashboard());
                     },
                   ),

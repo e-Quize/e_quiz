@@ -26,7 +26,7 @@ class UserCrud {
     int id = await db.insert(
       Structure.CREATE_OFFLINE_QUIZ_TABLE,
       offlineQuiz.toJson(),
-      conflictAlgorithm: ConflictAlgorithm.ignore,
+      conflictAlgorithm: ConflictAlgorithm.replace,
     );
     db.close();
     return id;
