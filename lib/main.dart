@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:e_quiz/db/init_db.dart';
+import 'package:e_quiz/models/notification/notification_model.dart';
 import 'utils/shared.dart';
 import 'package:e_quiz/db/sembast/singleton_sambest.dart';
 import 'package:e_quiz/screens/splash_screen.dart';
@@ -21,7 +22,6 @@ import 'models/push_notification/push_notification_model.dart';
 import 'models/user/fcm_token_model.dart';
 import 'screens/quizscreens/competition_question_screen.dart';
 import 'singleton_notification.dart';
-
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // If you're going to use other Firebase services in the background, such as Firestore,
@@ -86,7 +86,6 @@ fcmData() {
   });
 
   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
-    print("neewwwwww");
     RemoteNotification notification = message.notification;
     AndroidNotification android = message.notification?.android;
 
@@ -100,7 +99,14 @@ fcmData() {
     //await UserCrud.insertFcmQuizId(fcmTokenModel);
     print(pushNotificationModel.QuizId.toString());
     _notificationController.notificationQuizId = pushNotificationModel.QuizId;
-    WidgetProperties.goToNextPage(Get.context, CompetitionQuestionScreen());
+    NotificationModel noti = _notificationController.notificationList
+        .where((element) =>
+            element.NotificationQuizId ==
+            _notificationController.notificationQuizId)
+        .first;
+    if (noti.Type != "Quiz") {
+      WidgetProperties.goToNextPage(Get.context, CompetitionQuestionScreen());
+    }
 
     /*if (notification != null && android != null) {
       flutterLocalNotificationsPlugin.show(

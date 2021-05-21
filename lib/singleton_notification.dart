@@ -6,7 +6,7 @@ import 'package:workmanager/workmanager.dart';
 
 class NotificationSingleton {
   NotificationSingleton._privateConstructor();
-int quizId ;
+  int quizId;
   static final NotificationSingleton instance =
       NotificationSingleton._privateConstructor();
 
@@ -35,7 +35,7 @@ int quizId ;
     var iOS = IOSNotificationDetails();
     var platform = NotificationDetails(android: android, iOS: iOS);
     FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    new FlutterLocalNotificationsPlugin();
+        new FlutterLocalNotificationsPlugin();
     await flutterLocalNotificationsPlugin.show(1, "Equiz", body, platform,
         payload: 'Welcome to the Local Notification demo ');
   }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:countdown_flutter/countdown_flutter.dart';
 import 'package:e_quiz/common/ui_widgets/common_card.dart';
 import 'package:e_quiz/common/ui_widgets/custom_button.dart';
@@ -9,9 +11,11 @@ import 'package:e_quiz/controllers/quiz_controller.dart';
 import 'package:e_quiz/controllers/result_controller.dart';
 import 'package:e_quiz/controllers/subject_controller.dart';
 import 'package:e_quiz/db/repositiories/user_repository.dart';
+import 'package:e_quiz/db/user_crud.dart';
 import 'package:e_quiz/models/attemptquiz/attempt_quiz_vm.dart';
 import 'package:e_quiz/models/attemptquiz/quiz_question_answer.dart';
 import 'package:e_quiz/models/common/result_model.dart';
+import 'package:e_quiz/models/offlinequiz/offline_quiz_model.dart';
 import 'package:e_quiz/screens/common/common_background.dart';
 import 'package:e_quiz/screens/dashboard/dashboard_screen.dart';
 import 'package:e_quiz/screens/quizscreens/tab_bar_view.dart';
@@ -30,6 +34,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'tab_bar.dart';
 
 class QuestionScreen extends StatelessWidget {
@@ -52,7 +57,6 @@ class QuestionScreen extends StatelessWidget {
   bool found = false;
   int answerId;
   QuizQuestionAnswer quizQuestionAnswer;
-
 
   bool isAttempted = false;
 
@@ -400,45 +404,45 @@ class QuestionScreen extends StatelessWidget {
                                                         radius: AppValues
                                                             .commonButtonCornerRadius,
                                                         gradient: AppColors
-                                                                .primaryBtnColor,
+                                                            .primaryBtnColor,
                                                         title:
                                                             'See Explanation',
                                                         onPressed: () {
-                                                            hasSeenExplanation =
-                                                                true;
+                                                          hasSeenExplanation =
+                                                              true;
+                                                          _quizController
+                                                              .quizQuestionList[
+                                                                  _quizController
+                                                                      .questionIndex]
+                                                              .HasSeenExplanation = true;
+                                                          if (!_subjectController
+                                                              .isCheckedCorrectAnswer) {
                                                             _quizController
                                                                 .quizQuestionList[
+                                                                    _quizController
+                                                                        .questionIndex]
+                                                                .isAttempted = true;
                                                             _quizController
-                                                                .questionIndex]
-                                                                .HasSeenExplanation = true;
-                                                            if (!_subjectController
-                                                                .isCheckedCorrectAnswer) {
+                                                                .quizQuestionList[
+                                                                    _quizController
+                                                                        .questionIndex]
+                                                                .isUserAnswer = false;
+                                                          }
+                                                          showExplanationDialog(
+                                                              context,
                                                               _quizController
                                                                   .quizQuestionList[
                                                                       _quizController
                                                                           .questionIndex]
-                                                                  .isAttempted = true;
-                                                              _quizController
-                                                                  .quizQuestionList[
-                                                                      _quizController
-                                                                          .questionIndex]
-                                                                  .isUserAnswer = false;
-                                                            }
-                                                            showExplanationDialog(
-                                                                context,
-                                                                _quizController
-                                                                    .quizQuestionList[
-                                                                        _quizController
-                                                                            .questionIndex]
-                                                                    .Explanation);
-                                                            // createSnackBar(
-                                                            //     _quizController
-                                                            //         .quizQuestionList[
-                                                            //             _quizController
-                                                            //                 .questionIndex]
-                                                            //         .Explanation,
-                                                            //     context);
-                                                            //hasSeenExplanation = true;
+                                                                  .Explanation);
+                                                          // createSnackBar(
+                                                          //     _quizController
+                                                          //         .quizQuestionList[
+                                                          //             _quizController
+                                                          //                 .questionIndex]
+                                                          //         .Explanation,
+                                                          //     context);
+                                                          //hasSeenExplanation = true;
                                                         },
                                                       ),
                                                       HeroButton(
@@ -447,22 +451,30 @@ class QuestionScreen extends StatelessWidget {
                                                         radius: AppValues
                                                             .commonButtonCornerRadius,
                                                         gradient: _quizController
-                                                            .quizQuestionList[_quizController.questionIndex]
-                                                            .FlaggedAsDifficult
+                                                                .quizQuestionList[
+                                                                    _quizController
+                                                                        .questionIndex]
+                                                                .FlaggedAsDifficult
                                                             ? AppColors
                                                                 .progressbarColorPressed
                                                             : AppColors
                                                                 .progressbarColor,
                                                         title: 'Mark Difficult',
                                                         onPressed: () {
-                                                          if(!_quizController
-                                                              .quizQuestionList[_quizController.questionIndex]
+                                                          if (!_quizController
+                                                              .quizQuestionList[
+                                                                  _quizController
+                                                                      .questionIndex]
                                                               .FlaggedAsDifficult) {
                                                             _quizController
-                                                                .quizQuestionList[_quizController.questionIndex]
-                                                                .FlaggedAsDifficult =
+                                                                    .quizQuestionList[
+                                                                        _quizController
+                                                                            .questionIndex]
+                                                                    .FlaggedAsDifficult =
                                                                 !_quizController
-                                                                    .quizQuestionList[_quizController.questionIndex]
+                                                                    .quizQuestionList[
+                                                                        _quizController
+                                                                            .questionIndex]
                                                                     .FlaggedAsDifficult;
                                                             _quizController
                                                                 .update();
@@ -522,7 +534,8 @@ class QuestionScreen extends StatelessWidget {
                                                         width: 130.0,
                                                         radius: AppValues
                                                             .commonButtonCornerRadius,
-                                                        gradient: AppColors.savequizscreenColor,
+                                                        gradient: AppColors
+                                                            .savequizscreenColor,
                                                         title: _quizController
                                                                     .questionIndex <
                                                                 _quizController
@@ -619,11 +632,13 @@ class QuestionScreen extends StatelessWidget {
                                                     shape: BoxShape.circle),
                                                 child: Center(
                                                   child: Textview2(
-                                                    title:(_quizController
-                                                        .quizQuestionList
-                                                        .indexOf(_quizController
-                                                        .skippedQuestionObjectList[
-                                                    index ])+1).toString(),
+                                                    title: (_quizController
+                                                                .quizQuestionList
+                                                                .indexOf(_quizController
+                                                                        .skippedQuestionObjectList[
+                                                                    index]) +
+                                                            1)
+                                                        .toString(),
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 14.0,
                                                     color:
@@ -720,41 +735,39 @@ class QuestionScreen extends StatelessWidget {
   }
 
   updateQuizAnswer() async {
-
-      if (isAttempted) {
-        flaggedAsSkipped = false;
-        int removable = 0;
-        _quizController.skippedQuestionObjectList.forEach((element) {
-          if (element.QuestionId ==
-              _quizController
-                  .quizQuestionList[_quizController.questionIndex].QuestionId) {
-            removable = element.QuestionId;
-          }
-        });
-        _quizController.skippedQuestionObjectList
-            .removeWhere((element) => element.QuestionId == removable);
-      } else {
-
-        ToastClass.showToast("Question marked as skipped", ToastGravity.BOTTOM,
-            Colors.red, Colors.white, 15.0, Toast.LENGTH_SHORT);
-        flaggedAsSkipped = true;
-
-        _quizController.quizQuestionList[_quizController.questionIndex]
-            .FlaggedAsSkipped = flaggedAsSkipped;
-        found = false;
-        _quizController.skippedQuestionObjectList.forEach((element) {
-          if (element.QuestionId ==
-              _quizController
-                  .quizQuestionList[_quizController.questionIndex].QuestionId) {
-            found = true;
-          }
-        });
-
-        if (!found) {
-          _quizController.skippedQuestionObjectList.add(
-              _quizController.quizQuestionList[_quizController.questionIndex]);
+    if (isAttempted) {
+      flaggedAsSkipped = false;
+      int removable = 0;
+      _quizController.skippedQuestionObjectList.forEach((element) {
+        if (element.QuestionId ==
+            _quizController
+                .quizQuestionList[_quizController.questionIndex].QuestionId) {
+          removable = element.QuestionId;
         }
+      });
+      _quizController.skippedQuestionObjectList
+          .removeWhere((element) => element.QuestionId == removable);
+    } else {
+      ToastClass.showToast("Question marked as skipped", ToastGravity.BOTTOM,
+          Colors.red, Colors.white, 15.0, Toast.LENGTH_SHORT);
+      flaggedAsSkipped = true;
+
+      _quizController.quizQuestionList[_quizController.questionIndex]
+          .FlaggedAsSkipped = flaggedAsSkipped;
+      found = false;
+      _quizController.skippedQuestionObjectList.forEach((element) {
+        if (element.QuestionId ==
+            _quizController
+                .quizQuestionList[_quizController.questionIndex].QuestionId) {
+          found = true;
+        }
+      });
+
+      if (!found) {
+        _quizController.skippedQuestionObjectList.add(
+            _quizController.quizQuestionList[_quizController.questionIndex]);
       }
+    }
 
     await attemptedQuiz();
   }
@@ -769,8 +782,7 @@ class QuestionScreen extends StatelessWidget {
     attemptQuizVM.AttemptedQuizDetailId = _quizController
         .quizQuestionList[_quizController.questionIndex].AttemptedQuizDetailId;
     attemptQuizVM.FlaggedAsDifficult = _quizController
-        .quizQuestionList[_quizController.questionIndex]
-        .FlaggedAsDifficult;
+        .quizQuestionList[_quizController.questionIndex].FlaggedAsDifficult;
     attemptQuizVM.HasSeenExplanation = hasSeenExplanation;
     attemptQuizVM.FlaggedAsSkipped = flaggedAsSkipped;
 
@@ -784,7 +796,7 @@ class QuestionScreen extends StatelessWidget {
       flaggedAsSkipped = false;
       toggle = false;
       hasSeenExplanation = false;
-     // flaggedAsDifficult = false;
+      // flaggedAsDifficult = false;
       isAttempted = false;
       if (_quizController.isSkippedSelected) {
         _quizController
@@ -795,17 +807,37 @@ class QuestionScreen extends StatelessWidget {
         if (_quizController.questionIndex <
             _quizController.quizQuestionList.length - 1) {
           _quizController.nextQuestion();
-          isAttempted = _quizController.quizQuestionList[_quizController.questionIndex].isAttempted;
-          toggle = _quizController.quizQuestionList[_quizController.questionIndex].isAttempted;
+          isAttempted = _quizController
+              .quizQuestionList[_quizController.questionIndex].isAttempted;
+          toggle = _quizController
+              .quizQuestionList[_quizController.questionIndex].isAttempted;
           _quizController.updateUserBuilder();
         } else {
           _quizController.updateDashboardData();
+
+          String decodedList =
+              jsonEncode(_quizController.quizQuestionList).toString();
+          _quizController.quizQuestionList.forEach((element) {
+            _quizController.offlineQuiz = OfflineQuiz(
+                data: decodedList, quizId: element.QuizId, isSynced: 0);
+            _quizController.update();
+          });
+          final SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setString('quizList', _quizController.offlineQuiz.data);
+          prefs.setInt('qId', _quizController.offlineQuiz.quizId);
+          String quizList = prefs.getString('quizList');
+          int quizId = prefs.getInt('qId');
+
+          print(
+              "This is decoded string after storing in shared prefrences ${quizList}");
+          print(
+              "This is quiz id  after storing in shared prefrences ${quizId}");
           _resultController.skippedQuestionObjectList =
               _quizController.skippedQuestionObjectList;
           _resultController.quizQuestionList = _quizController.quizQuestionList;
 
-          Navigator.of(Get.context)
-              .pushReplacement(MaterialPageRoute(builder: (_) => TabbarViewResult()));
+          Navigator.of(Get.context).pushReplacement(
+              MaterialPageRoute(builder: (_) => TabbarViewResult()));
         }
       }
     }
@@ -842,7 +874,7 @@ class QuestionScreen extends StatelessWidget {
   Widget addRadioButton(
       int answerIndex, String title, BuildContext buildContext) {
     return AbsorbPointer(
-      absorbing:  toggle,
+      absorbing: toggle,
       child: InkWell(
         onTap: () {
           // if (id == Constants.SELF_QUIZ) {
@@ -861,38 +893,40 @@ class QuestionScreen extends StatelessWidget {
           //   }
           // }
 
-          if(!_subjectController.isCheckedCorrectAnswer)
-            {
-              /*if (_subjectController.isCheckedCorrectAnswer) {
+          if (!_subjectController.isCheckedCorrectAnswer) {
+            /*if (_subjectController.isCheckedCorrectAnswer) {
                 toggle = true;
               }*/
-              _quizController
-                  .quizQuestionList[_quizController.questionIndex].QuestionAnswerList.forEach((element) {
-                 element.isChecked = false;
-              });
-              isAttempted = true;
+            _quizController.quizQuestionList[_quizController.questionIndex]
+                .QuestionAnswerList
+                .forEach((element) {
+              element.isChecked = false;
+            });
+            isAttempted = true;
 
-              answerId = _quizController
-                  .quizQuestionList[_quizController.questionIndex].QuestionAnswerList[answerIndex].Id;
-              quizQuestionAnswer = _quizController
-                  .quizQuestionList[_quizController.questionIndex]
-                  .QuestionAnswerList
-                  .where((element) => element.Id == answerId)
-                  .first;
-              quizQuestionAnswer.isChecked = true;
+            answerId = _quizController
+                .quizQuestionList[_quizController.questionIndex]
+                .QuestionAnswerList[answerIndex]
+                .Id;
+            quizQuestionAnswer = _quizController
+                .quizQuestionList[_quizController.questionIndex]
+                .QuestionAnswerList
+                .where((element) => element.Id == answerId)
+                .first;
+            quizQuestionAnswer.isChecked = true;
 
-              if (_subjectController.isCheckedCorrectAnswer ||
-                  (!_subjectController.isCheckedCorrectAnswer &&
-                      !hasSeenExplanation)) {
-                _quizController.quizQuestionList[_quizController.questionIndex]
-                    .isUserAnswer = quizQuestionAnswer.isCorrect;
-              }
+            if (_subjectController.isCheckedCorrectAnswer ||
+                (!_subjectController.isCheckedCorrectAnswer &&
+                    !hasSeenExplanation)) {
               _quizController.quizQuestionList[_quizController.questionIndex]
-                  .isAttempted = isAttempted;
+                  .isUserAnswer = quizQuestionAnswer.isCorrect;
+            }
+            _quizController.quizQuestionList[_quizController.questionIndex]
+                .isAttempted = isAttempted;
 
-              _groupValue = answerId;
-              _quizController.updateUserBuilder();
-            }else {
+            _groupValue = answerId;
+            _quizController.updateUserBuilder();
+          } else {
             if (!_quizController
                 .quizQuestionList[_quizController.questionIndex].isAttempted) {
               if (_subjectController.isCheckedCorrectAnswer) {
@@ -902,7 +936,8 @@ class QuestionScreen extends StatelessWidget {
 
               answerId = _quizController
                   .quizQuestionList[_quizController.questionIndex]
-                  .QuestionAnswerList[answerIndex].Id;
+                  .QuestionAnswerList[answerIndex]
+                  .Id;
               quizQuestionAnswer = _quizController
                   .quizQuestionList[_quizController.questionIndex]
                   .QuestionAnswerList
@@ -932,21 +967,26 @@ class QuestionScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20.0)),
             elevation: 0.0,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal:10.0),
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Row(
                 children: [
                   Container(
                     height: 20,
                     width: 20,
                     decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.primaryColor,width: 1.0),
-                        color:_quizController
-                            .quizQuestionList[_quizController.questionIndex].QuestionAnswerList[answerIndex].isChecked
+                        border: Border.all(
+                            color: AppColors.primaryColor, width: 1.0),
+                        color: _quizController
+                                .quizQuestionList[_quizController.questionIndex]
+                                .QuestionAnswerList[answerIndex]
+                                .isChecked
                             ? AppColors.primaryColor
                             : AppColors.textWhiteColor,
                         shape: BoxShape.circle),
                   ),
-                  SizedBox(width: 10.0,),
+                  SizedBox(
+                    width: 10.0,
+                  ),
                   Flexible(
                     child: Html(
                       customTextAlign: (element) {
@@ -968,10 +1008,8 @@ class QuestionScreen extends StatelessWidget {
       ),
     );
 
-
-
     return AbsorbPointer(
-      absorbing:  toggle,
+      absorbing: toggle,
       child: RadioListTile(
         contentPadding: EdgeInsets.all(0.0),
         title: Html(
@@ -1085,16 +1123,22 @@ class QuestionScreen extends StatelessWidget {
                 child: Container(
                     padding: EdgeInsets.all(10.0),
                     height: 200.0,
+                    width: WidgetProperties.screenWidth(buildContext),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Html(
-                          customTextAlign: (element) {
-                            return TextAlign.center;
-                          },
-                          data: message,
-                          defaultTextStyle:
-                              TextStyle(color: Colors.black, fontSize: 20.0),
+                        Expanded(
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.vertical,
+                            child: Html(
+                              customTextAlign: (element) {
+                                return TextAlign.center;
+                              },
+                              data: message,
+                              defaultTextStyle: TextStyle(
+                                  color: Colors.black, fontSize: 20.0),
+                            ),
+                          ),
                         ),
                         Container(
                           child: HeroButton(
@@ -1125,13 +1169,12 @@ class QuestionScreen extends StatelessWidget {
   void goBackToPreviousQuestion() {
     if (_quizController.questionIndex > 0) {
       _quizController.questionIndex = _quizController.questionIndex - 1;
-      isAttempted =
-          _quizController.quizQuestionList[_quizController.questionIndex]
-              .isAttempted;
-      hasSeenExplanation =  _quizController.quizQuestionList[_quizController.questionIndex]
-          .HasSeenExplanation;
-      toggle = _quizController.quizQuestionList[_quizController.questionIndex]
-          .isAttempted;
+      isAttempted = _quizController
+          .quizQuestionList[_quizController.questionIndex].isAttempted;
+      hasSeenExplanation = _quizController
+          .quizQuestionList[_quizController.questionIndex].HasSeenExplanation;
+      toggle = _quizController
+          .quizQuestionList[_quizController.questionIndex].isAttempted;
 
       //hasButtonSeenExplanation = true;
       // if(_quizController.quizQuestionList[_quizController.questionIndex].isAttempted){

@@ -6,7 +6,12 @@ class SessionManager {
 //set data into shared preferences like this
   static Future<void> setQuizId(int auth_token) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setInt(quizId, auth_token);
+    if(auth_token!=null){
+      prefs.setInt(quizId, auth_token);
+    }else{
+      prefs.clear();
+    }
+
   }
 
 //get value from shared preferences

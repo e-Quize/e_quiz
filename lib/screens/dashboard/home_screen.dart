@@ -312,7 +312,7 @@ class HomeScreen extends StatelessWidget {
       onTap: () async {
         userController.selectedSubjectId =
             userDashboardVMResponse.DashBaordSubjects[index].SubjectId;
-         await getChapterPercentage();
+        await getChapterPercentage();
         showPieChartDialog(buildContext);
       },
       child: Container(
@@ -365,8 +365,7 @@ class HomeScreen extends StatelessWidget {
     if (res != null) {
       if (res.code == 500) {
         print(res.message);
-      }
-      else {
+      } else {
         userDashboardVMResponse = res.body;
         userController.updateUserBuilder();
       }
