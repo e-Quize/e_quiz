@@ -12,6 +12,7 @@ import 'package:e_quiz/utils/colors.dart';
 import 'package:e_quiz/utils/dialog/loadingcircle/lib/ball_scale_indicator.dart';
 import 'package:e_quiz/utils/dialog/loadingcircle/loading.dart';
 import 'package:e_quiz/utils/widgetproperties.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
@@ -58,6 +59,7 @@ class SubjectHistoryScreen extends StatelessWidget {
     if (historyController.attemptedQuizModelList == null) {
       return Center(
         child: Container(
+          padding: EdgeInsets.only(bottom: 20),
           height: WidgetProperties.screenHeight(Get.context),
           child: Loading(
               indicator: BallScaleIndicator(), size: 100.0, color: Colors.pink),
@@ -162,6 +164,7 @@ class SubjectHistoryScreen extends StatelessWidget {
                                 padding: EdgeInsets.symmetric(
                                     vertical: 10.0, horizontal: 15.0),
                                 child: GestureDetector(
+                                  behavior: HitTestBehavior.translucent,
                                   onTap: () {
                                     historyController
                                             .selectedReAtemptedQuestionId =

@@ -22,8 +22,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'competition_question_screen.dart';
-class StudentListScreen extends StatelessWidget {
 
+class StudentListScreen extends StatelessWidget {
   var scrollController = ScrollController();
   var studentController = Get.find<StudentController>();
   var subjectController = Get.find<SubjectController>();
@@ -65,7 +65,9 @@ class StudentListScreen extends StatelessWidget {
                         title: 'Generate Quiz',
                         onPressed: () {
                           studentController.getBufferedStudentIds();
-                          if (studentController.selectedStudentIds.toString().isNotEmpty) {
+                          if (studentController.selectedStudentIds
+                              .toString()
+                              .isNotEmpty) {
                             generateQuiz(Get.context);
                           } else {
                             ToastClass.showToast(
@@ -199,7 +201,8 @@ class StudentListScreen extends StatelessWidget {
   void generateQuiz(BuildContext buildContext) async {
     var quizGenerationVM = QuizGenerationVM();
     quizGenerationVM.userEntity = await UserCrud.getUserCopy();
-    quizGenerationVM.SubjectIds = subjectController.selectedSubjectIds.toString();
+    quizGenerationVM.SubjectIds =
+        subjectController.selectedSubjectIds.toString();
     quizGenerationVM.ChapterIds =
         subjectController.selectedChapterIds.toString();
     quizGenerationVM.Invitees = studentController.selectedStudentIds.toString();
@@ -229,9 +232,9 @@ class StudentListScreen extends StatelessWidget {
             10.0,
             Toast.LENGTH_LONG);
       } else {
-      await  sendNotification(quizController.responseId);
+        await sendNotification(quizController.responseId);
         WidgetProperties.goToNextPage(
-            buildContext,  CompetitionQuestionScreen());
+            buildContext, CompetitionQuestionScreen());
       }
     }
   }

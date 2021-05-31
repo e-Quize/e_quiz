@@ -852,4 +852,27 @@ class _RestClientApi implements RestClientApi {
         .toList();
     return value;
   }
+
+  @override
+  Future<CommonResult> SyncOfflineQuiz(syncOffliveQuiz) async {
+    ArgumentError.checkNotNull(syncOffliveQuiz, 'syncOffliveQuiz');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(syncOffliveQuiz?.toJson() ?? <String, dynamic>{});
+    _data.removeWhere((k, v) => v == null);
+    final result = await _dio.request<Map<String, dynamic>>(
+        'Quiz/SyncOfflineQuiz',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = CommonResult.fromJson(result.data);
+    return value;
+  }
+  
+
 }

@@ -1,3 +1,12 @@
 # Project exclude paths
-/.dart_tool/
-/build/
+
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+# Flutter/Dart/Pub related
+**/doc/api/
+.dart_tool/
+.flutter-plugins

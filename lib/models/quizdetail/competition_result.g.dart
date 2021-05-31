@@ -13,7 +13,8 @@ CompetitionResult _$CompetitionResultFromJson(Map<String, dynamic> json) {
         : UserEntityCopy.fromJson(json['userEntity'] as Map<String, dynamic>)
     ..Token = json['Token'] as String
     ..UserName = json['UserName'] as String
-    ..ObtainedPercentage = (json['ObtainedPercentage'] as num)?.toDouble();
+    ..ObtainedPercentage = (json['ObtainedPercentage'] as num)?.toDouble()
+  ..ObtainedMarks=(json['ObtainedMarks'] as num)?.toDouble();
 }
 
 Map<String, dynamic> _$CompetitionResultToJson(CompetitionResult instance) =>
@@ -22,4 +23,5 @@ Map<String, dynamic> _$CompetitionResultToJson(CompetitionResult instance) =>
       'Token': instance.Token,
       'UserName': instance.UserName,
       'ObtainedPercentage': instance.ObtainedPercentage,
+      'ObtainedMarks': instance.ObtainedMarks
     };

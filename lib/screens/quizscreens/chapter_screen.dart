@@ -15,23 +15,19 @@ import 'package:e_quiz/utils/widgetproperties.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+//region Class
 class ChapterScreen extends StatelessWidget {
-
   int selectedSubjectId = 0;
   var selectedSubjectIds = StringBuffer();
   String numberOfQuestions = "";
   String subjectName = "";
   var _subjectController = Get.find<SubjectController>();
-  var _chapterController = ChapterController();
-  var _selectedSubjectModel;
-
-
+  //var _chapterController =Get.put(ChapterController());
 
   // In the constructor, require a Todo.
   ChapterScreen.customConstructor(this.selectedSubjectId, this.subjectName) {
     loadChapterBySubjectId(selectedSubjectId);
-    _selectedSubjectModel =
-        _subjectController.quizSubjectList[_subjectController.selectedIndex];
+
     _subjectController
         .quizSubjectList[_subjectController.selectedIndex].chapterList = null;
   }
@@ -96,10 +92,13 @@ class ChapterScreen extends StatelessWidget {
   }
 
   Widget form(BuildContext context) {
-    return GetBuilder<ChapterController>(
-      init: _chapterController,
+    return GetBuilder<SubjectController>(
+      init: _subjectController,
+      id: 'new',
       builder: (_) {
-        if (_selectedSubjectModel.chapterList == null) {
+        if (_subjectController.quizSubjectList[_subjectController.selectedIndex]
+                .chapterList ==
+            null) {
           return Center(
             child: Container(
               child: Loading(
@@ -108,7 +107,10 @@ class ChapterScreen extends StatelessWidget {
                   color: Colors.pink),
             ),
           );
-        } else if (_selectedSubjectModel.chapterList.isEmpty) {
+        } else if (_subjectController
+            .quizSubjectList[_subjectController.selectedIndex]
+            .chapterList
+            .isEmpty) {
           return Container(
             alignment: Alignment.center,
             margin: EdgeInsets.only(bottom: 15.0),
@@ -157,7 +159,8 @@ class ChapterScreen extends StatelessWidget {
 
   Widget buildChapterList() {
     return ListView.builder(
-      itemCount: _selectedSubjectModel.chapterList.length,
+      itemCount: _subjectController
+          .quizSubjectList[_subjectController.selectedIndex].chapterList.length,
       itemBuilder: (context, index) {
         return listWidgetChapter(context, index);
       },
@@ -166,15 +169,22 @@ class ChapterScreen extends StatelessWidget {
 
   Widget listWidgetChapter(BuildContext buildContext, int index) {
     return GestureDetector(
+      behavior: HitTestBehavior.translucent,
       onTap: () {
         // subjectController.quizSubjectList
         //     .where((element) => element.Id == selectedSubjectId)
         //     .first
         //     .chapterList[index]
         //     .checked = !subjectController.chapterList[index].checked;
-        _selectedSubjectModel.chapterList[index].checked =
-            !_selectedSubjectModel.chapterList[index].checked;
-        _chapterController.update();
+        // _selectedSubjectModel.chapterList[index].checked =
+        //     !_selectedSubjectModel.chapterList[index].checked;
+        _subjectController.quizSubjectList[_subjectController.selectedIndex]
+                .chapterList[index].checked =
+            !_subjectController
+                .quizSubjectList[_subjectController.selectedIndex]
+                .chapterList[index]
+                .checked;
+        _subjectController.update(['new']);
       },
       child: Container(
         padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
@@ -184,15 +194,23 @@ class ChapterScreen extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 2,
-                  child: _selectedSubjectModel.chapterList != null
+                  child: _subjectController
+                              .quizSubjectList[_subjectController.selectedIndex]
+                              .chapterList !=
+                          null
                       ? Textview2(
-                          title: _selectedSubjectModel
-                              .chapterList[index].ChapterName,
+                          title: _subjectController
+                              .quizSubjectList[_subjectController.selectedIndex]
+                              .chapterList[index]
+                              .ChapterName,
                           fontSize: 15.0,
-                          color:
-                              _selectedSubjectModel.chapterList[index].checked
-                                  ? AppColors.primaryColor
-                                  : AppColors.commoneadingtextColor,
+                          color: _subjectController
+                                  .quizSubjectList[
+                                      _subjectController.selectedIndex]
+                                  .chapterList[index]
+                                  .checked
+                              ? AppColors.primaryColor
+                              : AppColors.commoneadingtextColor,
                           fontWeight: FontWeight.bold,
                           fontFamily: AppValues.fontFamily,
                         )
@@ -230,8 +248,9 @@ class ChapterScreen extends StatelessWidget {
     Result listChapters = await _subjectController
         .loadActiveChaptersBySubjectIdForQuiz(subjectModelParams);
     if (listChapters != null)
-      _selectedSubjectModel.chapterList = listChapters.body;
-    debugPrint(_selectedSubjectModel.chapterList.toString());
-    _chapterController.update();
+      _subjectController.quizSubjectList[_subjectController.selectedIndex]
+          .chapterList = listChapters.body;
+    _subjectController.update(['new']);
   }
 }
+//endregion

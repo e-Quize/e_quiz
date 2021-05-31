@@ -39,7 +39,7 @@ class SigninScreen extends StatelessWidget {
 
   String token = "";
 
-  var user1Controller = UserController();
+  var user1Controller = Get.put(UserController());
   var userEntity = UserEntity();
 
   var unNode = FocusNode();

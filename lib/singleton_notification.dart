@@ -23,13 +23,14 @@ class NotificationSingleton {
   }
 
   Future onSelectNotification(String payload) {
-    print("payload");
-    Navigator.of(Get.context).push(MaterialPageRoute(builder: (_) {
-      return CompetitionQuestionScreen();
-    }));
+    if (payload == '2') {
+      Navigator.of(Get.context).push(MaterialPageRoute(builder: (_) {
+        return CompetitionQuestionScreen();
+      }));
+    }
   }
 
-  showNotification(String body) async {
+  showNotification(int type, String body) async {
     var android = AndroidNotificationDetails('id', 'channel ', 'description',
         priority: Priority.high, importance: Importance.max);
     var iOS = IOSNotificationDetails();
@@ -37,6 +38,6 @@ class NotificationSingleton {
     FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
         new FlutterLocalNotificationsPlugin();
     await flutterLocalNotificationsPlugin.show(1, "Equiz", body, platform,
-        payload: 'Welcome to the Local Notification demo ');
+        payload: type.toString());
   }
 }

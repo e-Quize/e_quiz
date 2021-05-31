@@ -16,7 +16,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DetailScreen extends StatelessWidget {
-
   var _resultController = Get.put(ResultController());
   var _historyController = Get.put(HistoryController());
   var _scrollController = ScrollController();
@@ -97,32 +96,51 @@ class DetailScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(10.0),
           ),
           elevation: 4.0,
-          // borderRadius: BorderRadius.all(Radius.circular(10.0)),
           child: Container(
+            height: WidgetProperties.screenHeight(buildContext)*.15,
             padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
-                  height: 70.0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Textview2(
-                        title: "User Name",
-                        fontSize: 15.0,
-                        color: AppColors.accent3Color,
-                        fontWeight: FontWeight.w900,
-                        fontFamily: AppValues.fontFamily,
-                      ),
-                      Textview2(
-                        title: competitorQuizResultList[index].UserName,
-                        fontSize: 15.0,
-                        color: AppColors.primaryBtnColor,
-                        fontWeight: FontWeight.w900,
-                        fontFamily: AppValues.fontFamily,
-                      ),
-                    ],
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Textview2(
+                      title: "User Name",
+                      fontSize: 15.0,
+                      color: AppColors.accent3Color,
+                      fontWeight: FontWeight.w900,
+                      fontFamily: AppValues.fontFamily,
+                    ),
+                    Textview2(
+                      title: competitorQuizResultList[index].UserName,
+                      fontSize: 15.0,
+                      color: AppColors.primaryBtnColor,
+                      fontWeight: FontWeight.w900,
+                      fontFamily: AppValues.fontFamily,
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Textview2(
+                      title: "Obtained Marks",
+                      fontSize: 15.0,
+                      color: AppColors.accent3Color,
+                      fontWeight: FontWeight.w900,
+                      fontFamily: AppValues.fontFamily,
+                    ),
+                    Textview2(
+                      title: competitorQuizResultList[index]
+                          .ObtainedMarks
+                          .toString(),
+                      fontSize: 15.0,
+                      color: AppColors.primaryBtnColor,
+                      fontWeight: FontWeight.w900,
+                      fontFamily: AppValues.fontFamily,
+                    ),
+                  ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -157,7 +175,8 @@ class DetailScreen extends StatelessWidget {
   getCompetitorQuizResultList() async {
     var competitionQuizResultModel = CompetitionQuizResultModel();
 
-    competitionQuizResultModel.QuizId = _historyController.selectedReAtemptedQuestionId;
+    competitionQuizResultModel.QuizId =
+        _historyController.selectedReAtemptedQuestionId;
     Result res =
         await _resultController.getQuizDetailList(competitionQuizResultModel);
     if (res != null) {

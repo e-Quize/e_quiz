@@ -102,50 +102,50 @@ class NotificationScreen extends StatelessWidget {
         height: 100,
         margin: EdgeInsets.all(10.0),
         child: Material(
-            elevation: 4.0,
-            borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-              child: Column(
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(05.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          flex: 3,
-                          child: Text(
-                            notificationController
-                                .notificationList[index].Notification,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                fontSize: 13.0,
-                                color: AppColors.accent3Color,
-
-                                fontFamily: AppValues.fontFamily),
-                          ),
+          elevation: 4.0,
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(05.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        flex: 3,
+                        child: Text(
+                          notificationController
+                              .notificationList[index].Notification,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 13.0,
+                              color: AppColors.accent3Color,
+                              fontFamily: AppValues.fontFamily),
                         ),
-                        Flexible(
-                          flex: 1,
-                          child: Text(
-                            notificationController.notificationList[index].Type,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                fontSize: 13.0,
-                                color: AppColors.accent3Color,
-                                fontFamily: AppValues.fontFamily),
-                          ),
+                      ),
+                      Flexible(
+                        flex: 1,
+                        child: Text(
+                          notificationController.notificationList[index].Type,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 13.0,
+                              color: AppColors.accent3Color,
+                              fontFamily: AppValues.fontFamily),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -154,7 +154,7 @@ class NotificationScreen extends StatelessWidget {
     Result res = await notificationController.loadNotificationList();
     if (res != null) notificationController.notificationList = res.body;
     notificationController.notificationList
-        .sort((a, b) => a.Id.compareTo(b.Id));
+        .sort((b, a) => a.Id.compareTo(b.Id));
     notificationController.update();
   }
 
@@ -172,44 +172,40 @@ class NotificationScreen extends StatelessWidget {
       transitionDuration: Duration(milliseconds: 400),
       context: buildContext,
       pageBuilder: (_, __, ___) {
-        return
-
-          Align(
-              alignment: Alignment.center,
-              child: Container(
-                margin: EdgeInsets.only(
-                  left: AppValues.horizontalMargin,
-                  right: AppValues.horizontalMargin,
-                ),
-                child: Material(
-                  elevation: AppValues.cardElevation,
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(
-                      Radius.circular(AppValues.commonBodyCardRadius)),
-                  child: Container(
-                      padding: EdgeInsets.all(10.0),
-                      height: 200.0,
-                      width: WidgetProperties.screenWidth(buildContext),  
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.vertical,
-                              child: Textview2(
-                                title: title,
-                                fontSize: 15.0,
-                                color: AppColors.commoneadingtextColor,
-                                fontWeight: FontWeight.bold,
-                              ),
+        return Align(
+            alignment: Alignment.center,
+            child: Container(
+              margin: EdgeInsets.only(
+                left: AppValues.horizontalMargin,
+                right: AppValues.horizontalMargin,
+              ),
+              child: Material(
+                elevation: AppValues.cardElevation,
+                color: Colors.white,
+                borderRadius: BorderRadius.all(
+                    Radius.circular(AppValues.commonBodyCardRadius)),
+                child: Container(
+                    padding: EdgeInsets.all(10.0),
+                    height: 200.0,
+                    width: WidgetProperties.screenWidth(buildContext),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.vertical,
+                            child: Textview2(
+                              title: title,
+                              fontSize: 15.0,
+                              color: AppColors.commoneadingtextColor,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                        ],
-                      )),
-                ),
-              ));
-
-
+                        ),
+                      ],
+                    )),
+              ),
+            ));
       },
     );
   }

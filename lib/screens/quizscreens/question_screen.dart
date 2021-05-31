@@ -6,6 +6,7 @@ import 'package:e_quiz/common/ui_widgets/custom_button.dart';
 import 'package:e_quiz/common/ui_widgets/text_view.dart';
 import 'package:e_quiz/controllers/dashboard_controller.dart';
 import 'package:e_quiz/controllers/history_controller.dart';
+import 'package:e_quiz/controllers/offline_controller.dart';
 import 'package:e_quiz/controllers/notification_controller.dart';
 import 'package:e_quiz/controllers/quiz_controller.dart';
 import 'package:e_quiz/controllers/result_controller.dart';
@@ -16,6 +17,7 @@ import 'package:e_quiz/models/attemptquiz/attempt_quiz_vm.dart';
 import 'package:e_quiz/models/attemptquiz/quiz_question_answer.dart';
 import 'package:e_quiz/models/common/result_model.dart';
 import 'package:e_quiz/models/offlinequiz/offline_quiz_model.dart';
+import 'package:e_quiz/models/offlinequiz/sync_offline_quiz_model.dart';
 import 'package:e_quiz/screens/common/common_background.dart';
 import 'package:e_quiz/screens/dashboard/dashboard_screen.dart';
 import 'package:e_quiz/screens/quizscreens/tab_bar_view.dart';
@@ -24,6 +26,7 @@ import 'package:e_quiz/utils/constants.dart';
 import 'package:e_quiz/utils/dialog/loader.dart';
 import 'package:e_quiz/utils/dialog/toastclass.dart';
 import 'package:e_quiz/utils/routepage.dart';
+import 'package:e_quiz/utils/shared.dart';
 import 'package:e_quiz/utils/values.dart';
 import 'package:e_quiz/utils/widgetproperties.dart';
 import 'package:flutter/cupertino.dart';
@@ -33,7 +36,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
-import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'tab_bar.dart';
 
@@ -44,7 +46,8 @@ class QuestionScreen extends StatelessWidget {
   var _historyController = Get.put(HistoryController());
   var _notificationController = Get.put(NotificationController());
 
-  UserRepository _userRepository = GetIt.I.get();
+  var offlineController = OfflineQuizController();
+  // UserRepository _userRepository = GetIt.I.get();
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -612,7 +615,9 @@ class QuestionScreen extends StatelessWidget {
                                                         .indexOf(_quizController
                                                                 .skippedQuestionObjectList[
                                                             index]));
-
+                                                _quizController
+                                                    .skippedQuestionObjectList
+                                                    .removeAt(index);
                                                 flaggedAsSkipped = false;
                                                 toggle = false;
                                                 hasSeenExplanation = false;
@@ -686,11 +691,15 @@ class QuestionScreen extends StatelessWidget {
     Result res = await _quizController.getQuetionsForAttempQuiz(attemptQuizVM);
     if (res != null) _quizController.quizQuestionList = res.body;
     if (_quizController.quizQuestionList != null) {
-      _userRepository.deleteQuiz();
-      _userRepository.insertList(_quizController.quizQuestionList);
-      getList();
+      // _userRepository.deleteQuiz();
+      // _userRepository.insertList(_quizController.quizQuestionList);
+      // getList();
       _quizController.quizQuestionList.forEach((element) {
-        if (element.Serial == -211 || element.Serial == -214) {
+        if (element.Serial > 0) {
+          _quizController.quizQuestionList
+              .sort((a, b) => a.Serial.compareTo(b.Serial));
+          _quizController.updateUserBuilder();
+        } else if (element.Serial == -211 || element.Serial == -214) {
           // ignore: unnecessary_statements
           ToastClass.showToast("Link has expired.", ToastGravity.BOTTOM,
               AppColors.accentColor1, Colors.white, 15.0, Toast.LENGTH_LONG);
@@ -727,11 +736,11 @@ class QuestionScreen extends StatelessWidget {
           Get.back();
         }
       });
+    } else {
+      ToastClass.showToast("Something went wrong", ToastGravity.BOTTOM,
+          AppColors.accentColor1, Colors.white, 15.0, Toast.LENGTH_LONG);
+      Get.back();
     }
-
-    _quizController.quizQuestionList
-        .sort((a, b) => a.Serial.compareTo(b.Serial));
-    _quizController.updateUserBuilder();
   }
 
   updateQuizAnswer() async {
@@ -814,24 +823,23 @@ class QuestionScreen extends StatelessWidget {
           _quizController.updateUserBuilder();
         } else {
           _quizController.updateDashboardData();
-
-          String decodedList =
-              jsonEncode(_quizController.quizQuestionList).toString();
+          SyncOffliveQuizVM ddd = SyncOffliveQuizVM();
+          ddd.Questions = _quizController.quizQuestionList;
+          String record = jsonEncode(ddd).toString();
           _quizController.quizQuestionList.forEach((element) {
-            _quizController.offlineQuiz = OfflineQuiz(
-                data: decodedList, quizId: element.QuizId, isSynced: 0);
+            _quizController.quizId = element.QuizId;
             _quizController.update();
           });
-          final SharedPreferences prefs = await SharedPreferences.getInstance();
-          prefs.setString('quizList', _quizController.offlineQuiz.data);
-          prefs.setInt('qId', _quizController.offlineQuiz.quizId);
-          String quizList = prefs.getString('quizList');
-          int quizId = prefs.getInt('qId');
-
-          print(
-              "This is decoded string after storing in shared prefrences ${quizList}");
-          print(
-              "This is quiz id  after storing in shared prefrences ${quizId}");
+          /*
+         // print('decoded     $decodedList');*/
+          // final SharedPreferences prefs = await SharedPreferences.getInstance();
+          // prefs.setString('quizList', _quizController.offlineQuiz.data);
+          //  prefs.setInt('qId', _quizController.offlineQuiz.quizId);
+          //  String quizList = _quizController.offlineQuiz.data;
+          int quizId = _quizController.quizId;
+          var offlineQuiz =
+              OfflineQuiz(data: record, quizId: quizId, isSynced: 0);
+          offlineController.addOfflineQuiz(offlineQuiz);
           _resultController.skippedQuestionObjectList =
               _quizController.skippedQuestionObjectList;
           _resultController.quizQuestionList = _quizController.quizQuestionList;
@@ -1160,11 +1168,11 @@ class QuestionScreen extends StatelessWidget {
     );
   }
 
-  void getList() async {
-    _quizController.localDbQuestionList =
-        await _userRepository.getAllQuestions();
-    print(_quizController.quizQuestionList.toString());
-  }
+  // void getList() async {
+  //   // _quizController.localDbQuestionList =
+  //   //     await _userRepository.getAllQuestions();
+  //   print(_quizController.quizQuestionList.toString());
+  // }
 
   void goBackToPreviousQuestion() {
     if (_quizController.questionIndex > 0) {

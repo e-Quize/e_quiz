@@ -95,7 +95,7 @@ class SelectSubject extends StatelessWidget {
                   fontFamily: AppValues.fontFamily,
                 ),
                 Textview2(
-                  title: "you can select and view your subjects",
+                  title: "You can select and view your subjects",
                   fontSize: 12.0,
                   color: AppColors.textBlackColor,
                   fontWeight: FontWeight.bold,

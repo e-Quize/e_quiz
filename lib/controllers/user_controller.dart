@@ -48,9 +48,9 @@ class UserController extends GetxController {
     // updateUserBuilder();
   }
 
-  initDb() async {
-    await Init.initialize();
-  }
+  // initDb() async {
+  //   await Init.initialize();
+  // }
 
   checkFirstName(String value) {
     validityFirstName = UserValidation.validateFirstName(value);

@@ -22,6 +22,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../singleton_notification.dart';
 
@@ -70,6 +71,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return widget;
   }
 
+  bool isAl = false;
   @override
   void initState() {
     Future.delayed(Duration.zero, () {
@@ -221,11 +223,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   void getPendingQuiz(BuildContext buildContext) async {
-    int id = await SessionManager.getQuizId();
-    notificationController.notificationQuizId = id;
-    print('yeh hai quizId ${id}');
-    if (id != null) {
-      WidgetProperties.goToNextPage(buildContext, CompetitionQuestionScreen());
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    if(!isAl){
+      isAl = true;
+      int id = prefs.getInt('quizId');
+      notificationController.notificationQuizId = id;
+      print('yeh hai quizId ${id}');
+      if (id != null)  {
+        await prefs
+            .remove('quizId');
+        await prefs.clear();
+        WidgetProperties.goToNextPage(buildContext, CompetitionQuestionScreen());
+      }
     }
+
   }
+
+
 }

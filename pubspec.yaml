@@ -44,7 +44,7 @@ dependencies:
   flutter_countdown_timer: ^4.1.0
   # Firebase Format
   easy_web_view:
-  sembast:
+
 
   firebase_database:
   firebase_messaging: ^10.0.0
@@ -53,7 +53,6 @@ dependencies:
   grouped_list:
   charts_flutter:
   flutter_local_notifications: ^5.0.0
-  get_it:
   webview_flutter:
   device_info:
   path_provider:

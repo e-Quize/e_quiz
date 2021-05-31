@@ -1,22 +1,16 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:e_quiz/db/init_db.dart';
-import 'package:e_quiz/models/notification/notification_model.dart';
-import 'utils/shared.dart';
-import 'package:e_quiz/db/sembast/singleton_sambest.dart';
+
 import 'package:e_quiz/screens/splash_screen.dart';
 import 'package:e_quiz/utils/widgetproperties.dart';
-import 'package:e_quiz/models/user/user_model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
-import 'package:sembast/sembast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'controllers/notification_controller.dart';
-import 'controllers/quiz_controller.dart';
 import 'db/user_crud.dart';
 import 'models/push_notification/push_notification_model.dart';
 import 'models/user/fcm_token_model.dart';
@@ -24,10 +18,10 @@ import 'screens/quizscreens/competition_question_screen.dart';
 import 'singleton_notification.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  // If you're going to use other Firebase services in the background, such as Firestore,
-  // make sure you call `initializeApp` before using other Firebase services.
+// If you're going to use other Firebase services in the background, such as Firestore,
+// make sure you call `initializeApp` before using other Firebase services.
   await Firebase.initializeApp();
-
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
   print('From Background');
   RemoteNotification notification = message.notification;
   String aa = notification.body;
@@ -40,13 +34,11 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await UserCrud.insertFcmQuizId(fcmTokenModel);
   print(pushNotificationModel.QuizId.toString());
   _notificationController.notificationQuizId = pushNotificationModel.QuizId;
-  await SessionManager.setQuizId(pushNotificationModel.QuizId);
-  NotificationSingleton.instance.notify();
-  //NotificationSingleton.instance.quizId = pushNotificationModel.QuizId;
-  // ignore: unnecessary_statements
-
-  // NotificationSingleton.instance
-  //     .showNotification(pushNotificationModel.Description);
+  prefs.setInt('quizId', pushNotificationModel.QuizId);
+  NotificationSingleton.instance.quizId = pushNotificationModel.QuizId;
+  if (pushNotificationModel.NotificationType == 2) {
+    WidgetProperties.goToNextPage(Get.context, CompetitionQuestionScreen());
+  }
 }
 
 /// Create a [AndroidNotificationChannel] for heads up notifications
@@ -79,13 +71,14 @@ fcmData() {
     print(pushNotificationModel.QuizId.toString());
     var _notificationController = Get.put(NotificationController());
     _notificationController.notificationQuizId = pushNotificationModel.QuizId;
-
     await NotificationSingleton.instance.notify();
-    NotificationSingleton.instance
-        .showNotification(pushNotificationModel.Description);
+    NotificationSingleton.instance.showNotification(
+        pushNotificationModel.NotificationType,
+        pushNotificationModel.Description);
   });
 
   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
+    print("neewwwwww");
     RemoteNotification notification = message.notification;
     AndroidNotification android = message.notification?.android;
 
@@ -96,34 +89,30 @@ fcmData() {
     FcmTokenModel fcmTokenModel = FcmTokenModel();
     fcmTokenModel.FCMQuizId = pushNotificationModel.QuizId;
     fcmTokenModel.Notificationtype = pushNotificationModel.NotificationType;
-    //await UserCrud.insertFcmQuizId(fcmTokenModel);
+//await UserCrud.insertFcmQuizId(fcmTokenModel);
     print(pushNotificationModel.QuizId.toString());
     _notificationController.notificationQuizId = pushNotificationModel.QuizId;
-    NotificationModel noti = _notificationController.notificationList
-        .where((element) =>
-            element.NotificationQuizId ==
-            _notificationController.notificationQuizId)
-        .first;
-    if (noti.Type != "Quiz") {
+    //
+    if (pushNotificationModel.NotificationType == 2) {
       WidgetProperties.goToNextPage(Get.context, CompetitionQuestionScreen());
     }
 
-    /*if (notification != null && android != null) {
-      flutterLocalNotificationsPlugin.show(
-          notification.hashCode,
-          notification.title,
-          notification.body,
-          NotificationDetails(
-            android: AndroidNotificationDetails(
-              channel.id,
-              channel.name,
-              channel.description,
-              // TODO add a proper drawable resource to android, for now using
-              //      one that already exists in example app.
-              icon: '@mipmap/ic_launcher',
-            ),
-          ));
-    }*/
+/*if (notification != null && android != null) {
+flutterLocalNotificationsPlugin.show(
+notification.hashCode,
+notification.title,
+notification.body,
+NotificationDetails(
+android: AndroidNotificationDetails(
+channel.id,
+channel.name,
+channel.description,
+// TODO add a proper drawable resource to android, for now using
+// one that already exists in example app.
+icon: '@mipmap/ic_launcher',
+),
+));
+}*/
   });
 }
 
@@ -132,7 +121,7 @@ void main() async {
   WidgetProperties.enablePlatformOverrideForDesktop();
   await Firebase.initializeApp();
 
-  // Set the background messaging handler early on, as a named top-level function
+// Set the background messaging handler early on, as a named top-level function
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   /// Create an Android Notification Channel.
@@ -153,8 +142,8 @@ void main() async {
   );
   fcmData();
   runApp(MainScreen());
-  Init.initialize();
-  // openDb();
+  //Init.initialize();
+// openDb();
 }
 
 class MainScreen extends StatelessWidget {
@@ -169,19 +158,5 @@ class MainScreen extends StatelessWidget {
       ),
       home: SplashScreen(),
     );
-  }
-
-  openDb() async {
-    await SingletonSembast.instance.openDb();
-    var database = SingletonSembast.instance.db;
-    // var store = intMapStoreFactory.store('user');
-    var store = StoreRef.main();
-    var userEntity = UserEntity();
-    userEntity.FirstName = "Hafiz Naeem";
-    userEntity.LastName = "Hassan From USA";
-    await store.record('userModel').put(database, userEntity.toJson());
-    var title = await store.record('userModel').get(database);
-    var userModel = UserEntity.fromJson(title);
-    print(userModel.FirstName);
   }
 }

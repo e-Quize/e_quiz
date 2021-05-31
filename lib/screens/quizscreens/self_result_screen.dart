@@ -1,17 +1,21 @@
 import 'package:e_quiz/common/ui_widgets/text_view.dart';
+import 'package:e_quiz/controllers/api_controller.dart';
 import 'package:e_quiz/controllers/dashboard_controller.dart';
+import 'package:e_quiz/controllers/offline_controller.dart';
 import 'package:e_quiz/controllers/result_controller.dart';
+import 'package:e_quiz/models/common/result_model.dart';
 import 'package:e_quiz/screens/dashboard/dashboard_screen.dart';
 import 'package:e_quiz/utils/colors.dart';
 import 'package:e_quiz/utils/dialog/loadingcircle/lib/ball_scale_indicator.dart';
 import 'package:e_quiz/utils/dialog/loadingcircle/loading.dart';
+import 'package:e_quiz/utils/dialog/toastclass.dart';
 import 'package:e_quiz/utils/widgetproperties.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:e_quiz/common/ui_widgets/get_push_replacement.dart';
-
 
 import '../../utils/colors.dart';
 
@@ -182,8 +186,8 @@ class SelfResultScreen extends StatelessWidget {
                                           : "No Data Found"
                                       : _resultController.quizQuestionList !=
                                               null
-                                          ? _resultController.quizQuestionList
-                                                      .isEmpty
+                                          ? _resultController
+                                                  .quizQuestionList.isEmpty
                                               ? "you Are Failed!"
                                               : Expanded(
                                                   child: buildResultList(),
@@ -211,13 +215,21 @@ class SelfResultScreen extends StatelessWidget {
                               Container(
                                 margin: EdgeInsets.only(top: 7.0),
                                 child: Textview2(
-                                  title:_resultController.quizQuestionList !=
-                                      null
-                                      ? (( _resultController.quizQuestionList
-                                      .where((element) =>
-                                  element.isUserAnswer)
-                                      .toList()
-                                      .length / _resultController.quizQuestionList.length)*100).toStringAsFixed(2)+' %':0.toString(),
+                                  title: _resultController.quizQuestionList !=
+                                          null
+                                      ? ((_resultController.quizQuestionList
+                                                          .where((element) =>
+                                                              element
+                                                                  .isUserAnswer)
+                                                          .toList()
+                                                          .length /
+                                                      _resultController
+                                                          .quizQuestionList
+                                                          .length) *
+                                                  100)
+                                              .toStringAsFixed(2) +
+                                          ' %'
+                                      : 0.toString(),
                                   fontSize: 12.0,
                                   color: AppColors.textWhiteColor,
                                   fontWeight: FontWeight.w800,
@@ -279,9 +291,24 @@ class SelfResultScreen extends StatelessWidget {
                         style: TextStyle(
                             color: AppColors.textWhiteColor, fontSize: 20.0)),
                     color: Color(0xFF536BB1),
-                    onPressed: () {
-
-                      RouteAppReplacement.instance.pushReplacementPageAll(context, DashboardScreen());
+                    onPressed: () async {
+                      var apiController = Get.put(ApiController());
+                      var offlineQuizController =
+                          Get.put(OfflineQuizController());
+                      Result result = await apiController.sendOfflineQuiz();
+                      if (result.code == 0) {
+                        offlineQuizController.deleteQuiz();
+                      } else {
+                        ToastClass.showToast(
+                            "Something went wrong",
+                            ToastGravity.BOTTOM,
+                            AppColors.startNowTextColor1,
+                            Colors.white,
+                            15.0,
+                            Toast.LENGTH_LONG);
+                      }
+                      RouteAppReplacement.instance
+                          .pushReplacementPageAll(context, DashboardScreen());
                       Get.find<DashboardController>().currentIndex = 0;
                       Get.find<DashboardController>().update();
                       _resultController.quizQuestionList.clear();
@@ -301,8 +328,8 @@ class SelfResultScreen extends StatelessWidget {
     if (_resultController.quizQuestionList.isBlank) {
       return Center(
         child: Container(
-          child: Loading(
-              indicator: BallScaleIndicator(), size: 100.0, color: Colors.pink),
+          // child: Loading(
+          //     indicator: BallScaleIndicator(), size: 100.0, color: Colors.pink),
         ),
       );
     } else {

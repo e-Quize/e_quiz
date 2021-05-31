@@ -11,6 +11,8 @@ class CompetitionResult extends BaseModel {
   String UserName;
   @JsonKey()
   double ObtainedPercentage;
+  @JsonKey()
+  double ObtainedMarks;
 
   CompetitionResult();
 

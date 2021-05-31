@@ -131,7 +131,7 @@ class SelfQuizScreen extends StatelessWidget {
                       fontFamily: AppValues.fontFamily,
                     ),
                     Textview2(
-                      title: "you can select and view your subjects",
+                      title: "You can select and view your subjects",
                       fontSize: 12.0,
                       color: AppColors.textBlackColor,
                       fontWeight: FontWeight.bold,
@@ -353,12 +353,18 @@ class SelfQuizScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GestureDetector(
-                onTap: (){
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
                   subjectController.selectedIndex = index;
                   selectedSubjectId =
                       subjectController.quizSubjectList[index].Id;
-                  subjectController.quizSubjectList[index].checked =
-                  !subjectController.quizSubjectList[index].checked;
+                  if (subjectController.quizSubjectList[index].chapterList ==
+                          null ||
+                      subjectController
+                          .quizSubjectList[index].chapterList.isEmpty) {
+                    subjectController.quizSubjectList[index].checked =
+                        !subjectController.quizSubjectList[index].checked;
+                  }
                   selectedSubjectName =
                       subjectController.quizSubjectList[index].SubjectName;
                   Navigator.of(buildContext).push(RoutePage(builder: (context) {
@@ -369,7 +375,6 @@ class SelfQuizScreen extends StatelessWidget {
                   })).then((value) {
                     subjectController.update();
                   });
-
                 },
                 child: Container(
                   padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
@@ -389,7 +394,7 @@ class SelfQuizScreen extends StatelessWidget {
                   selectedSubjectId =
                       subjectController.quizSubjectList[index].Id;
                   subjectController.quizSubjectList[index].checked =
-                  !subjectController.quizSubjectList[index].checked;
+                      !subjectController.quizSubjectList[index].checked;
                   selectedSubjectName =
                       subjectController.quizSubjectList[index].SubjectName;
                   Navigator.of(buildContext).push(RoutePage(builder: (context) {
@@ -478,11 +483,7 @@ class SelfQuizScreen extends StatelessWidget {
     quizGenerationVM.Invitees = subjectController.selectedStudentIds.toString();
     quizGenerationVM.ChoosenNumberofQuestions =
         int.tryParse(numberOfQuestionsController.text);
-    if (quizGenerationVM.ChoosenNumberofQuestions.isBlank) {
-      ToastClass.showToast("Please Enter No. of Questions", ToastGravity.BOTTOM,
-          Colors.red, Colors.white, 10.0, Toast.LENGTH_LONG);
-      return;
-    }
+
     quizGenerationVM.isCompetition = subjectController.isQuizType;
     quizGenerationVM.StartTime = WidgetProperties.utcTimeToString();
     quizGenerationVM.GenerateFromDifficult =
@@ -498,16 +499,29 @@ class SelfQuizScreen extends StatelessWidget {
     if (generateQuizResult != null) {
       var quizGenerationVm = generateQuizResult.body as QuizGenerationVM;
       quizController.responseId = quizGenerationVm.userEntity.ComRes.ResponseId;
-      if (quizController.responseId == -121) {
+      if (numberOfQuestionsController.text.isEmpty) {
         ToastClass.showToast(
-            quizGenerationVm.userEntity.ComRes.ResponseMessage,
+            "Please Enter No. of Questions",
             ToastGravity.BOTTOM,
-            Colors.blue,
+            Colors.red,
             Colors.white,
             10.0,
             Toast.LENGTH_LONG);
+      } else if (subjectController.quizSubjectList.isEmpty) {
+        ToastClass.showToast("Please Enter subjects", ToastGravity.BOTTOM,
+            Colors.red, Colors.white, 10.0, Toast.LENGTH_LONG);
       } else {
-        WidgetProperties.goToNextPage(buildContext, QuestionScreen());
+        if (quizController.responseId == -121) {
+          ToastClass.showToast(
+              quizGenerationVm.userEntity.ComRes.ResponseMessage,
+              ToastGravity.BOTTOM,
+              Colors.blue,
+              Colors.white,
+              10.0,
+              Toast.LENGTH_LONG);
+        } else {
+          WidgetProperties.goToNextPage(buildContext, QuestionScreen());
+        }
       }
     }
   }

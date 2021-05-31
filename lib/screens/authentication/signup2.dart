@@ -20,7 +20,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:get_it/get_it.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import 'dropdown_country_widget.dart';
@@ -165,9 +164,9 @@ class Signup2 extends StatelessWidget {
                             curve: BackOutCurve(),
                             duration: Duration(milliseconds: 600),
                             child: Padding(
-                              padding: const EdgeInsets.only(bottom: 8.0),
+                              padding: const EdgeInsets.only(bottom: 20.0),
                               child: Transform.translate(
-                                offset: Offset(0.0, -5.0),
+                                offset: Offset(0.0, 15.0),
                                 child: Container(
 /*transform: Matrix4.translationValues(
 0.0, 20.0, 0.0),*/

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:dio/dio.dart';
 import 'package:e_quiz/common/exception_manager/exception_codes_messages.dart';
@@ -10,6 +11,8 @@ import 'package:e_quiz/models/common/general_settings_vm.dart';
 import 'package:e_quiz/models/common/result_model.dart';
 import 'package:e_quiz/models/dashboard/dashboard_vm_params.dart';
 import 'package:e_quiz/models/notification/notification_send_vm.dart';
+import 'package:e_quiz/models/offlinequiz/offline_quiz_model.dart';
+import 'package:e_quiz/models/offlinequiz/sync_offline_quiz_model.dart';
 import 'package:e_quiz/models/quiz/quiz_generation_vm.dart';
 import 'package:e_quiz/models/quiz/save_subscription_model.dart';
 import 'package:e_quiz/models/quiz/subject_model_params.dart';
@@ -17,10 +20,12 @@ import 'package:e_quiz/models/splash/mobile_connect_copy.dart';
 import 'package:e_quiz/models/subscription/update_delete_subscription.dart';
 import 'package:e_quiz/models/user/common_result_copy.dart';
 import 'package:e_quiz/models/user/countries_vm_model.dart';
+import 'package:e_quiz/models/offlinequiz/sync_offline_quiz.dart';
 import 'package:e_quiz/models/user/refresh_token.dart';
 import 'package:e_quiz/models/user/user_entity_copy.dart';
 import 'package:e_quiz/models/user/user_model.dart';
 import 'package:e_quiz/service/rest_client_api.dart';
+import 'package:e_quiz/utils/database_helper.dart';
 import 'package:get/get.dart';
 
 import '../models/attemptquiz/attempted_quiz_model.dart';
@@ -685,6 +690,36 @@ class ApiController extends GetxController {
       RestClientApi api = RestClientApi(dio);
       var response =
           await api.ApproveRevertUserSubscription(updateDeleteSubscription);
+      res.code = response.ResponseId;
+      res.message = response.ResponseMessage;
+      res.body = response;
+    } catch (o) {
+      res = ExceptionHandler.onError(o);
+    }
+    return res;
+  }
+
+  Future<Result> sendOfflineQuiz() async {
+    var res = Result();
+    try {
+      UserEntityCopy userEntityCopy = await UserCrud.getUserCopy();
+      List<OfflineQuiz> offlineQuiz =
+          await DatabaseHelper.db.getOfflineQuizList();
+      List<SyncOffliveQuizVM> syncedList = [];
+      SyncOffliveQuizVM syncOffliveQuizVM = SyncOffliveQuizVM();
+      offlineQuiz.forEach((element) {
+        Map valueMap = json.decode(element.data);
+        SyncOffliveQuizVM sasdsa = SyncOffliveQuizVM.fromJson(valueMap);
+        syncOffliveQuizVM.Questions = sasdsa.Questions;
+        syncedList.add(syncOffliveQuizVM);
+      });
+      final dio = Dio();
+      dio.options.headers["Token"] = userEntityCopy.Token;
+      RestClientApi api = RestClientApi(dio);
+      SyncOffliveQuiz syncOffliveQuiz = SyncOffliveQuiz();
+      syncOffliveQuiz.userEntity = userEntityCopy;
+      syncOffliveQuiz.Records = syncedList;
+      var response = await api.SyncOfflineQuiz(syncOffliveQuiz);
       res.code = response.ResponseId;
       res.message = response.ResponseMessage;
       res.body = response;

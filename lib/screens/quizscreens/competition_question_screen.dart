@@ -31,18 +31,19 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
-import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../singleton_notification.dart';
 import 'tab_bar.dart';
 
 class CompetitionQuestionScreen extends StatelessWidget {
+
   var _quizController = Get.find<QuizController>();
   var _subjectController = Get.find<SubjectController>();
   var _resultController = Get.put(ResultController());
   var _historyController = Get.put(HistoryController());
   var _notificationController = Get.put(NotificationController());
 
-  UserRepository _userRepository = GetIt.I.get();
+ // UserRepository _userRepository = GetIt.I.get();
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -69,12 +70,12 @@ class CompetitionQuestionScreen extends StatelessWidget {
         key: _scaffoldKey,
         body: GetBuilder<QuizController>(
           init: _quizController,
-          dispose: (c) async{
+          dispose: (c) async {
             _quizController.ini();
             _historyController.selectedReAtemptedQuestionId = null;
             _notificationController.notificationQuizId = null;
-            await SessionManager.setQuizId(null);
-            NotificationSingleton.instance.quizId = null;
+            // await SessionManager.setQuizId(null);
+            // NotificationSingleton.instance.quizId = null;
           },
           initState: (child) {
             _quizController.ini();
@@ -688,9 +689,10 @@ class CompetitionQuestionScreen extends StatelessWidget {
     if (res != null) {
       _quizController.quizQuestionList = res.body;
       if (_quizController.quizQuestionList != null) {
-        _userRepository.deleteQuiz();
-        _userRepository.insertList(_quizController.quizQuestionList);
-        getList();
+        //_userRepository.deleteQuiz();
+        //_userRepository.insertList(_quizController.quizQuestionList);
+        // getList();
+        _quizController.updateUserBuilder();
         _quizController.quizQuestionList.forEach((element) {
           if (element.Serial == -211 || element.Serial == -214) {
             // ignore: unnecessary_statements
@@ -729,10 +731,13 @@ class CompetitionQuestionScreen extends StatelessWidget {
             Get.back();
           }
         });
-        _quizController.quizQuestionList
-            .sort((a, b) => a.Serial.compareTo(b.Serial));
       }
+      _quizController.quizQuestionList
+          .sort((a, b) => a.Serial.compareTo(b.Serial));
       _quizController.updateUserBuilder();
+    } else {
+      ToastClass.showToast("Some thing", ToastGravity.BOTTOM,
+          AppColors.accentColor1, Colors.white, 15.0, Toast.LENGTH_LONG);
     }
   }
 
@@ -980,7 +985,8 @@ class CompetitionQuestionScreen extends StatelessWidget {
   TextStyle getStyle(int index) {
     Color style;
     style = isAttempted
-        ? _subjectController.isCheckedCorrectAnswer
+        ? _quizController.quizQuestionList[_quizController.questionIndex]
+                .CheckAnswersSimultaneously
             ? _quizController.quizQuestionList[_quizController.questionIndex]
                         .QuestionAnswerList[index].isCorrect &&
                     _quizController
@@ -1067,11 +1073,11 @@ class CompetitionQuestionScreen extends StatelessWidget {
     );
   }
 
-  void getList() async {
-    _quizController.localDbQuestionList =
-        await _userRepository.getAllQuestions();
-    print(_quizController.quizQuestionList.toString());
-  }
+  // void getList() async {
+  //   _quizController.localDbQuestionList =
+  //       await _userRepository.getAllQuestions();
+  //   print("_quizController.quizQuestionList.toString()");
+  // }
 
   void goBackToPreviousQuestion() {
     if (_quizController.questionIndex > 0) {

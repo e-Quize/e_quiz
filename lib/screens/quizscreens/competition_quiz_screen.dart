@@ -35,6 +35,7 @@ class CompetitionQuizScreen extends StatelessWidget {
 
   var lnNode = FocusNode();
   int attemptQuizVM;
+  bool isAlreadyTapped = false;
 
   String selectedSubjectName = "";
   int selectedSubjectId;
@@ -112,7 +113,6 @@ class CompetitionQuizScreen extends StatelessWidget {
     return GetBuilder<SubjectController>(
       initState: (child) {
         quizController.ini();
-        studentController.ini();
         getQuizSubjectList();
       },
       builder: (_) {
@@ -143,7 +143,7 @@ class CompetitionQuizScreen extends StatelessWidget {
                       fontFamily: AppValues.fontFamily,
                     ),
                     Textview2(
-                      title: "you can select and view your subjects",
+                      title: "You can select and view your subjects",
                       fontSize: 12.0,
                       color: AppColors.textBlackColor,
                       fontWeight: FontWeight.bold,
@@ -194,10 +194,10 @@ class CompetitionQuizScreen extends StatelessWidget {
                             child: Checkbox(
                                 value: subjectController.isCheckedCorrectAnswer,
                                 activeColor: Colors.blue,
-                                onChanged: (isCheckedCorrectAnswerValue) {
+                                onChanged: (bool IscheckedCorrectAnswerValue) {
                                   subjectController
                                       .updateIsCheckedCorrectAnswer(
-                                          isCheckedCorrectAnswerValue);
+                                          IscheckedCorrectAnswerValue);
                                   subjectController.updateUserBuilder();
                                 }),
                           ),
@@ -373,49 +373,56 @@ class CompetitionQuizScreen extends StatelessWidget {
   Widget subjectListWidget(BuildContext buildContext, int index) {
     return Container(
       margin: EdgeInsets.only(top: 5.0),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-                child: Textview2(
-                  title: subjectController.quizSubjectList[index].SubjectName,
-                  textAlign: TextAlign.center,
-                  fontSize: 15.0,
-                  color: AppColors.commoneadingtextColor,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: AppValues.fontFamily,
+      child: GestureDetector(
+        onTap: () {
+          subjectController.selectedIndex = index;
+          selectedSubjectId = subjectController.quizSubjectList[index].Id;
+          if (subjectController.quizSubjectList[index].chapterList == null ||
+              subjectController.quizSubjectList[index].chapterList.isEmpty) {
+            subjectController.quizSubjectList[index].checked =
+                !subjectController.quizSubjectList[index].checked;
+          }
+          selectedSubjectName =
+              subjectController.quizSubjectList[index].SubjectName;
+          if (!isAlreadyTapped) {
+            isAlreadyTapped = true;
+            Navigator.of(buildContext).push(RoutePage(builder: (context) {
+              return ChapterScreen.customConstructor(
+                selectedSubjectId,
+                selectedSubjectName,
+              );
+            })).then((value) {
+              subjectController.update();
+            });
+          }
+        },
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
+                  child: Textview2(
+                    title: subjectController.quizSubjectList[index].SubjectName,
+                    textAlign: TextAlign.center,
+                    fontSize: 15.0,
+                    color: AppColors.commoneadingtextColor,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: AppValues.fontFamily,
+                  ),
                 ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  subjectController.selectedIndex = index;
-                  selectedSubjectId =
-                      subjectController.quizSubjectList[index].Id;
-                  subjectController.quizSubjectList[index].checked =
-                      !subjectController.quizSubjectList[index].checked;
-                  selectedSubjectName =
-                      subjectController.quizSubjectList[index].SubjectName;
-                  Navigator.of(buildContext).push(RoutePage(builder: (context) {
-                    return ChapterScreen.customConstructor(
-                      selectedSubjectId,
-                      selectedSubjectName,
-                    );
-                  })).then((value) {
-                    subjectController.updateBuilder();
-                  });
-                },
-                child: returnIcon(index),
-              )
-            ],
-          ),
-          Divider(
-            height: 3.0,
-            color: AppColors.textBlackColor,
-          ),
-        ],
+                Container(
+                  child: returnIcon(index),
+                )
+              ],
+            ),
+            Divider(
+              height: 3.0,
+              color: AppColors.textBlackColor,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -430,7 +437,7 @@ class CompetitionQuizScreen extends StatelessWidget {
             .quizSubjectList[subjectController.selectedIndex].chapterList
             .where((element) => element.checked)
             .toList()
-            .isNullOrBlank) {
+            .isBlank) {
           return SvgPicture.asset(
             Constants.BASE_PATH_ICON + "eye.svg",
             height: 15.0,
@@ -447,7 +454,7 @@ class CompetitionQuizScreen extends StatelessWidget {
           !subjectController.quizSubjectList[index].chapterList
               .where((element) => element.checked)
               .toList()
-              .isNullOrBlank) {
+              .isBlank) {
         return SvgPicture.asset(
           Constants.BASE_PATH_ICON + "eye.svg",
           height: 15.0,
@@ -472,7 +479,7 @@ class CompetitionQuizScreen extends StatelessWidget {
   getQuizSubjectList() async {
     Result res = await subjectController.loadActiveSubjectsForQuiz();
     if (res != null) subjectController.quizSubjectList = res.body;
-    subjectController.updateUserBuilder();
+    subjectController.updateBuilder();
   }
 
   goToNextScreen() async {

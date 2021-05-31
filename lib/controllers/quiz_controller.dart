@@ -25,6 +25,7 @@ class QuizController extends GetxController {
 
   var result;
   int fcmQuizId;
+  int quizId;
   int notificationType;
 
   int responseId;
@@ -63,7 +64,7 @@ class QuizController extends GetxController {
   List<SubjectModel> userSubscriptionSubjectList;
 
   int answerId;
-  OfflineQuiz offlineQuiz ;
+  OfflineQuiz offlineQuiz;
 
   ValidityModel validityQuestion;
 
@@ -181,8 +182,10 @@ class QuizController extends GetxController {
     return getQuestionForAttempt;
   }
 
-  void addOfflineQuiz(OfflineQuiz offlineQuiz)async {
-    await UserCrud.insertOfflineQuiz(offlineQuiz).then((value) => print('Successfully added')).catchError((error){
+  void addOfflineQuiz(OfflineQuiz offlineQuiz) async {
+    await UserCrud.insertOfflineQuiz(offlineQuiz)
+        .then((value) => print('Successfully added'))
+        .catchError((error) {
       print("Error in inserting ${error.message}");
     });
   }

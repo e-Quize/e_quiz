@@ -81,36 +81,62 @@ class CompetitionResultScreen extends StatelessWidget {
   }
 
   Widget listCompetitorQuizWidget(BuildContext buildContext, int index) {
-    return Container(
+    return  Container(
       margin: EdgeInsets.all(10.0),
       child: Material(
+          shape: RoundedRectangleBorder(
+            side: BorderSide(
+                width: 2.0,
+                color: AppColors.primaryBtnColor,
+                style: BorderStyle.solid),
+            borderRadius: BorderRadius.circular(10.0),
+          ),
           elevation: 4.0,
-          borderRadius: BorderRadius.all(Radius.circular(10.0)),
           child: Container(
+            height: WidgetProperties.screenHeight(buildContext)*.15,
             padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
-                  height: 70.0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Textview2(
-                        title: "User Name",
-                        fontSize: 15.0,
-                        color: AppColors.accent3Color,
-                        fontWeight: FontWeight.w900,
-                        fontFamily: AppValues.fontFamily,
-                      ),
-                      Textview2(
-                        title: competitorQuizResultList[index].UserName,
-                        fontSize: 15.0,
-                        color: AppColors.accent3Color,
-                        fontWeight: FontWeight.w900,
-                        fontFamily: AppValues.fontFamily,
-                      ),
-                    ],
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Textview2(
+                      title: "User Name",
+                      fontSize: 15.0,
+                      color: AppColors.accent3Color,
+                      fontWeight: FontWeight.w900,
+                      fontFamily: AppValues.fontFamily,
+                    ),
+                    Textview2(
+                      title: competitorQuizResultList[index].UserName,
+                      fontSize: 15.0,
+                      color: AppColors.primaryBtnColor,
+                      fontWeight: FontWeight.w900,
+                      fontFamily: AppValues.fontFamily,
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Textview2(
+                      title: "Obtained Marks",
+                      fontSize: 15.0,
+                      color: AppColors.accent3Color,
+                      fontWeight: FontWeight.w900,
+                      fontFamily: AppValues.fontFamily,
+                    ),
+                    Textview2(
+                      title: competitorQuizResultList[index]
+                          .ObtainedMarks
+                          .toString(),
+                      fontSize: 15.0,
+                      color: AppColors.primaryBtnColor,
+                      fontWeight: FontWeight.w900,
+                      fontFamily: AppValues.fontFamily,
+                    ),
+                  ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -125,11 +151,11 @@ class CompetitionResultScreen extends StatelessWidget {
                     Container(
                       child: Textview2(
                         title: competitorQuizResultList[index]
-                                .ObtainedPercentage
-                                .toString() +
+                            .ObtainedPercentage
+                            .toString() +
                             "%",
                         fontSize: 15.0,
-                        color: AppColors.formContinueButtomColor,
+                        color: AppColors.primaryBtnColor,
                         fontWeight: FontWeight.bold,
                         fontFamily: AppValues.fontFamily,
                       ),

@@ -4,6 +4,7 @@ import 'package:e_quiz/models/attemptquiz/attempt_quiz_vm.dart';
 import 'package:e_quiz/models/attemptquiz/quiz_question.dart';
 import 'package:e_quiz/models/attemptquiz/student.dart';
 import 'package:e_quiz/models/dashboard/competition_quiz_result_model.dart';
+import 'package:e_quiz/models/offlinequiz/sync_offline_quiz.dart';
 import 'package:e_quiz/models/quizdetail/competition_result.dart';
 import 'package:e_quiz/models/attemptquiz/attempted_quiz_model.dart';
 import 'package:e_quiz/models/attemptquiz/student_list_parameter_model.dart';
@@ -34,8 +35,6 @@ import 'package:e_quiz/models/user/user_entity_copy.dart';
 import 'package:e_quiz/models/user/user_model.dart';
 import 'package:e_quiz/utils/constants.dart';
 import 'package:retrofit/retrofit.dart';
-
-
 
 part 'rest_client_api.g.dart';
 
@@ -217,4 +216,8 @@ abstract class RestClientApi {
   @POST("Quiz/GetAllAttemptedQuizes")
   Future<List<AttemptedQuizModel>> GetAllAttemptedQuizes(
       @Body() UserEntity userEntity);
+
+  //Send offline attempted quiz '
+  @POST("Quiz/SyncOfflineQuiz")
+  Future<CommonResult> SyncOfflineQuiz(@Body() SyncOffliveQuiz syncOffliveQuiz);
 }
