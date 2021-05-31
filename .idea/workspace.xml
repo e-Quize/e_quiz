@@ -13,24 +13,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="31ed38ee-efc6-4097-a38f-15df9cf1e594" name="Default Changelist" comment="31/5/2021">
-      <change afterPath="$PROJECT_DIR$/lib/utils/user_singleton.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/e_quiz.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/e_quiz.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/controllers/subject_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/controllers/subject_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/db/user_crud.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/db/user_crud.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/chapter_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/chapter_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/competition_question_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/competition_question_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/competition_quiz_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/competition_quiz_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/competitor_result_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/competitor_result_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/question_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/question_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/self_quiz_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/self_quiz_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/tab_bar_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/tab_bar_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/singleton_notification.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/singleton_notification.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utils/constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/constants.dart" afterDir="false" />
-    </list>
+    <list default="true" id="31ed38ee-efc6-4097-a38f-15df9cf1e594" name="Default Changelist" comment="all qa issues fixed" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -166,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622436592399</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="all qa issues fixed">
+      <created>1622466074120</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1622466074120</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -200,7 +190,8 @@
     <MESSAGE value="new changes" />
     <MESSAGE value="new changes 1" />
     <MESSAGE value="31/5/2021" />
-    <option name="LAST_COMMIT_MESSAGE" value="31/5/2021" />
+    <MESSAGE value="all qa issues fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="all qa issues fixed" />
   </component>
   <component name="WindowStateProjectService">
     <state x="568" y="226" key="#Notifications" timestamp="1621422248722">
@@ -305,10 +296,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1621918645203" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1622436600871">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="361" y="156" key="Vcs.Push.Dialog.v2" timestamp="1622466076192">
+      <screen x="0" y="25" width="1792" height="991" />
     </state>
     <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1622436600871" />
+    <state x="361" y="156" key="Vcs.Push.Dialog.v2/0.25.1792.991@0.25.1792.991" timestamp="1622466076192" />
     <state width="683" height="364" key="XDebugger.FullValuePopup" timestamp="1622025519460">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
