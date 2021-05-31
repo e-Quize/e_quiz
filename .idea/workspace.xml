@@ -10,49 +10,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="31ed38ee-efc6-4097-a38f-15df9cf1e594" name="Default Changelist" comment="new changes 1">
-      <change afterPath="$PROJECT_DIR$/lib/controllers/offline_controller.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/models/offlinequiz/sync_offline_quiz_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/utils/database_helper.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/e_quiz.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/e_quiz.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/controllers/api_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/controllers/api_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/controllers/quiz_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/controllers/quiz_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/controllers/user_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/controllers/user_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/db/init_db.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/db/init_db.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/db/repositiories/sembast_user_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/db/repositiories/sembast_user_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/db/sembast/singleton_sambest.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/offlinequiz/offline_quiz_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/offlinequiz/offline_quiz_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/quizdetail/competition_result.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/quizdetail/competition_result.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/quizdetail/competition_result.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/quizdetail/competition_result.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/authentication/signin_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/authentication/signin_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/authentication/signup2.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/authentication/signup2.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/dashboard/dashboard_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/dashboard/dashboard_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/history/subject_history_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/history/subject_history_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/notification/notification_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/notification/notification_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/chapter_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/chapter_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/competition_question_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/competition_question_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/competition_quiz_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/competition_quiz_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/competitor_result_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/competitor_result_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/detail_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/detail_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/question_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/question_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/select_subject.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/select_subject.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/self_quiz_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/self_quiz_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/self_result_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/self_result_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/quizscreens/student_list_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/quizscreens/student_list_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/service/rest_client_api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/service/rest_client_api.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/service/rest_client_api.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/service/rest_client_api.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/singleton_notification.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/singleton_notification.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-    </list>
+    <list default="true" id="31ed38ee-efc6-4097-a38f-15df9cf1e594" name="Default Changelist" comment="31/5/2021" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="test1" />
+        <entry key="$PROJECT_DIR$" value="offline_storage_usman" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -180,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621514350696</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="31/5/2021">
+      <created>1622436592399</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1622436592399</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -203,7 +168,8 @@
     <MESSAGE value="new change" />
     <MESSAGE value="new changes" />
     <MESSAGE value="new changes 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="new changes 1" />
+    <MESSAGE value="31/5/2021" />
+    <option name="LAST_COMMIT_MESSAGE" value="31/5/2021" />
   </component>
   <component name="WindowStateProjectService">
     <state x="568" y="226" key="#Notifications" timestamp="1621422248722">
@@ -266,14 +232,18 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1621918645203" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1621514356141">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1622436600871">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1621514356141" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1622436600871" />
     <state width="683" height="364" key="XDebugger.FullValuePopup" timestamp="1622025519460">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="683" height="364" key="XDebugger.FullValuePopup/0.0.1366.728@0.0.1366.728" timestamp="1622025519460" />
+    <state x="475" y="97" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1622436928032">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="475" y="97" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/0.0.1366.728@0.0.1366.728" timestamp="1622436928032" />
     <state x="389" y="97" width="587" height="534" key="find.popup" timestamp="1622097942326">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
