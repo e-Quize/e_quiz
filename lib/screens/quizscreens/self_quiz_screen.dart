@@ -345,41 +345,29 @@ class SelfQuizScreen extends StatelessWidget {
   }
 
   Widget listSubjectWidget(BuildContext buildContext, int index) {
-    return Container(
-      margin: EdgeInsets.only(top: 5.0),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onTap: () {
-                  subjectController.selectedIndex = index;
-                  selectedSubjectId =
-                      subjectController.quizSubjectList[index].Id;
-                  if (subjectController.quizSubjectList[index].chapterList ==
-                          null ||
-                      subjectController
-                          .quizSubjectList[index].chapterList.isEmpty) {
-                    subjectController.quizSubjectList[index].checked =
-                        !subjectController.quizSubjectList[index].checked;
-                  }
-                  selectedSubjectName =
-                      subjectController.quizSubjectList[index].SubjectName;
-                  Navigator.of(buildContext).push(RoutePage(builder: (context) {
-                    return ChapterScreen.customConstructor(
-                      selectedSubjectId,
-                      selectedSubjectName,
-                    );
-                  })).then((value) {
-                    subjectController.update();
-                  });
-                },
-                child: Container(
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onTap: () {
+        print('zahid');
+        subjectController.selectedIndex = index;
+        subjectController.quizSubjectList[subjectController.selectedIndex]
+            .chapterList = null;
+        Navigator.of(buildContext).push(RoutePage(builder: (context) {
+          return ChapterScreen();
+        }));
+      },
+      child: Container(
+        margin: EdgeInsets.only(top: 5.0),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
                   padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
                   child: Textview2(
-                    title: subjectController.quizSubjectList[index].SubjectName,
+                    title:
+                        subjectController.quizSubjectList[index].SubjectName,
                     textAlign: TextAlign.center,
                     fontSize: 15.0,
                     color: AppColors.commoneadingtextColor,
@@ -387,78 +375,26 @@ class SelfQuizScreen extends StatelessWidget {
                     fontFamily: AppValues.fontFamily,
                   ),
                 ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  subjectController.selectedIndex = index;
-                  selectedSubjectId =
-                      subjectController.quizSubjectList[index].Id;
-                  subjectController.quizSubjectList[index].checked =
-                      !subjectController.quizSubjectList[index].checked;
-                  selectedSubjectName =
-                      subjectController.quizSubjectList[index].SubjectName;
-                  Navigator.of(buildContext).push(RoutePage(builder: (context) {
-                    return ChapterScreen.customConstructor(
-                      selectedSubjectId,
-                      selectedSubjectName,
-                    );
-                  })).then((value) {
-                    subjectController.update();
-                  });
-                },
-                child: returnIcon(index),
-              )
-            ],
-          ),
-          Divider(
-            height: 3.0,
-            color: AppColors.textBlackColor,
-          ),
-        ],
+                returnIcon(index)
+              ],
+            ),
+            Divider(
+              height: 3.0,
+              color: AppColors.textBlackColor,
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget returnIcon(int index) {
     if (subjectController.quizSubjectList[index].chapterList != null) {
-      if (subjectController.selectedIndex == index &&
-          subjectController.quizSubjectList[index].Id ==
-              subjectController
-                  .quizSubjectList[subjectController.selectedIndex].Id) {
-        if (!subjectController
-            .quizSubjectList[subjectController.selectedIndex].chapterList
-            .where((element) => element.checked)
-            .toList()
-            .isBlank) {
-          return SvgPicture.asset(
-            Constants.BASE_PATH_ICON + "eye.svg",
-            height: 15.0,
-            width: 15.0,
-          );
-        } else {
-          return SvgPicture.asset(
-            Constants.BASE_PATH_ICON + "plus.svg",
-            height: 15.0,
-            width: 15.0,
-          );
-        }
-      } else if (subjectController.selectedIndex != index &&
-          !subjectController.quizSubjectList[index].chapterList
-              .where((element) => element.checked)
-              .toList()
-              .isBlank) {
-        return SvgPicture.asset(
-          Constants.BASE_PATH_ICON + "eye.svg",
-          height: 15.0,
-          width: 15.0,
-        );
-      } else {
-        return SvgPicture.asset(
-          Constants.BASE_PATH_ICON + "plus.svg",
-          height: 15.0,
-          width: 15.0,
-        );
-      }
+      return SvgPicture.asset(
+        Constants.BASE_PATH_ICON + "eye.svg",
+        height: 15.0,
+        width: 15.0,
+      );
     } else {
       return SvgPicture.asset(
         Constants.BASE_PATH_ICON + "plus.svg",

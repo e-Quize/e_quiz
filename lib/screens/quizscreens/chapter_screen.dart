@@ -17,76 +17,73 @@ import 'package:get/get.dart';
 
 //region Class
 class ChapterScreen extends StatelessWidget {
-  int selectedSubjectId = 0;
   var selectedSubjectIds = StringBuffer();
   String numberOfQuestions = "";
-  String subjectName = "";
+
   var _subjectController = Get.find<SubjectController>();
-  //var _chapterController =Get.put(ChapterController());
-
-  // In the constructor, require a Todo.
-  ChapterScreen.customConstructor(this.selectedSubjectId, this.subjectName) {
-    loadChapterBySubjectId(selectedSubjectId);
-
-    _subjectController
-        .quizSubjectList[_subjectController.selectedIndex].chapterList = null;
-  }
-
-  ChapterScreen({this.selectedSubjectIds, this.numberOfQuestions});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: AppColors.primaryBtnColor,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-      ),
-      resizeToAvoidBottomInset: false,
-      body: Stack(
-        children: [
-          BodyBackground(
-            heightTop: WidgetProperties.screenHeight(context) * 0.4,
-            heightBottom: WidgetProperties.screenHeight(context) * 0.4,
-            body: Container(),
+    return WillPopScope(
+      onWillPop: () async {
+        print("Willll");
+        checkSubjectChapters();
+        return false;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0.0,
+          backgroundColor: AppColors.primaryBtnColor,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => checkSubjectChapters(),
           ),
-          Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  alignment: Alignment.center,
-                  child: Textview2(
-                    title: subjectName,
-                    fontSize: 25.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: AppValues.fontFamily,
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                      left: AppValues.horizontalMargin,
-                      right: AppValues.horizontalMargin,
-                      top: 15.0),
-                  child: Material(
-                    elevation: AppValues.cardElevation,
-                    color: Color(0xfff2f2f2),
-                    borderRadius: BorderRadius.all(
-                        Radius.circular(AppValues.commonBodyCardRadius)),
-                    child: Container(
-                      height: WidgetProperties.screenHeight(context) * 0.6,
-                      child: form(context),
+        ),
+        resizeToAvoidBottomInset: false,
+        body: Stack(
+          children: [
+            BodyBackground(
+              heightTop: WidgetProperties.screenHeight(context) * 0.4,
+              heightBottom: WidgetProperties.screenHeight(context) * 0.4,
+              body: Container(),
+            ),
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    child: Textview2(
+                      title: _subjectController
+                          .quizSubjectList[_subjectController.selectedIndex]
+                          .SubjectName,
+                      fontSize: 25.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: AppValues.fontFamily,
                     ),
                   ),
-                ),
-              ],
+                  Container(
+                    margin: EdgeInsets.only(
+                        left: AppValues.horizontalMargin,
+                        right: AppValues.horizontalMargin,
+                        top: 15.0),
+                    child: Material(
+                      elevation: AppValues.cardElevation,
+                      color: Color(0xfff2f2f2),
+                      borderRadius: BorderRadius.all(
+                          Radius.circular(AppValues.commonBodyCardRadius)),
+                      child: Container(
+                        height: WidgetProperties.screenHeight(context) * 0.6,
+                        child: form(context),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -95,6 +92,10 @@ class ChapterScreen extends StatelessWidget {
     return GetBuilder<SubjectController>(
       init: _subjectController,
       id: 'new',
+      initState: (wg) {
+        loadChapterBySubjectId(_subjectController
+            .quizSubjectList[_subjectController.selectedIndex].Id);
+      },
       builder: (_) {
         if (_subjectController.quizSubjectList[_subjectController.selectedIndex]
                 .chapterList ==
@@ -146,7 +147,7 @@ class ChapterScreen extends StatelessWidget {
                   gradient: AppColors.savequizscreenColor,
                   title: 'Save and Back',
                   onPressed: () {
-                    Navigator.pop(context);
+                    checkSubjectChapters();
                   },
                 )
               ],
@@ -171,13 +172,6 @@ class ChapterScreen extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () {
-        // subjectController.quizSubjectList
-        //     .where((element) => element.Id == selectedSubjectId)
-        //     .first
-        //     .chapterList[index]
-        //     .checked = !subjectController.chapterList[index].checked;
-        // _selectedSubjectModel.chapterList[index].checked =
-        //     !_selectedSubjectModel.chapterList[index].checked;
         _subjectController.quizSubjectList[_subjectController.selectedIndex]
                 .chapterList[index].checked =
             !_subjectController
@@ -251,6 +245,25 @@ class ChapterScreen extends StatelessWidget {
       _subjectController.quizSubjectList[_subjectController.selectedIndex]
           .chapterList = listChapters.body;
     _subjectController.update(['new']);
+  }
+
+  checkSubjectChapters() {
+    if (_subjectController
+            .quizSubjectList[_subjectController.selectedIndex].chapterList
+            .where((element) => element.checked)
+            .toList()
+            .length ==
+        0) {
+      _subjectController
+          .quizSubjectList[_subjectController.selectedIndex].checked = false;
+      _subjectController
+          .quizSubjectList[_subjectController.selectedIndex].chapterList = null;
+    } else {
+      _subjectController
+          .quizSubjectList[_subjectController.selectedIndex].checked = true;
+    }
+    _subjectController.update();
+    Navigator.of(Get.context).pop();
   }
 }
 //endregion

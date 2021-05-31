@@ -1,3 +1,5 @@
+import 'package:e_quiz/controllers/history_controller.dart';
+import 'package:e_quiz/controllers/notification_controller.dart';
 import 'package:e_quiz/controllers/quiz_controller.dart';
 import 'package:e_quiz/screens/quizscreens/competitor_result_screen.dart';
 import 'package:e_quiz/utils/colors.dart';
@@ -14,6 +16,8 @@ class CompetitionQuizResult extends StatefulWidget {
 class _CompetitionQuizResultState extends State<CompetitionQuizResult>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
+  var _historyController = Get.find<HistoryController>();
+  var _notificationController = Get.find<NotificationController>();
 
   @override
   void initState() {
@@ -23,8 +27,8 @@ class _CompetitionQuizResultState extends State<CompetitionQuizResult>
 
   @override
   void dispose() {
-    // TODO: implement dispose
-
+    _historyController.selectedReAtemptedQuestionId = null;
+    _notificationController.notificationQuizId = null;
     super.dispose();
   }
 

@@ -80,7 +80,7 @@ class SubjectController extends GetxController {
       SubjectModelParams subjectModelParams) async {
     Result listChapters = await apiController
         .loadActiveChapterListBySubjectIdForQuizFromApi(subjectModelParams);
-    updateUser(listChapters);
+    //updateUser(listChapters);
     return listChapters;
   }
 

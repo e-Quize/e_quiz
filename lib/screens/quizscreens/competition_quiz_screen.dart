@@ -113,6 +113,8 @@ class CompetitionQuizScreen extends StatelessWidget {
     return GetBuilder<SubjectController>(
       initState: (child) {
         quizController.ini();
+        numberOfQuestionsController.text = null;
+        studentController.noOfQuestions = 0;
         getQuizSubjectList();
       },
       builder: (_) {
@@ -217,93 +219,6 @@ class CompetitionQuizScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    // Row(
-                    //   children: <Widget>[
-                    //     Expanded(
-                    //       flex: 1,
-                    //       child: Checkbox(
-                    //           value:
-                    //               subjectController.isCheckedDiffcultQuestion,
-                    //           activeColor: Colors.blue,
-                    //           onChanged: (bool IscheckedDiffcultQuestion) {
-                    //             subjectController
-                    //                 .updateIsCheckedDiffcultQuestion(
-                    //                     IscheckedDiffcultQuestion);
-                    //             subjectController.updateUserBuilder();
-                    //           }),
-                    //     ),
-                    //     Expanded(
-                    //       flex: 14,
-                    //       child: Container(
-                    //         margin: EdgeInsets.only(left: 5.0),
-                    //         child: Text(
-                    //           Constants.GENERATE_DIFFICULT_QUESTION_TEXT,
-                    //           style: TextStyle(
-                    //               color: AppColors.textBlackColor,
-                    //               fontSize: 10.0,
-                    //               fontWeight: FontWeight.bold),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-                    // Row(
-                    //   children: <Widget>[
-                    //     Expanded(
-                    //       flex: 1,
-                    //       child: Checkbox(
-                    //           value: subjectController.isCheckedWrongQuestion,
-                    //           activeColor: Colors.blue,
-                    //           onChanged: (bool isCheckedWrongAnswer) {
-                    //             subjectController.updateIsCheckedWrongAnswer(
-                    //                 isCheckedWrongAnswer);
-                    //             subjectController.updateUserBuilder();
-                    //           }),
-                    //     ),
-                    //     Expanded(
-                    //       flex: 14,
-                    //       child: Container(
-                    //         margin: EdgeInsets.only(left: 5.0),
-                    //         child: Text(
-                    //           Constants.GENERATE_WRONG_QUESTION_TEXT,
-                    //           style: TextStyle(
-                    //               color: AppColors.textBlackColor,
-                    //               fontSize: 10.0,
-                    //               fontWeight: FontWeight.bold),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-                    // Row(
-                    //   children: <Widget>[
-                    //     Expanded(
-                    //       flex: 1,
-                    //       child: Checkbox(
-                    //           value: subjectController.isCheckedSkippedQuestion,
-                    //           activeColor: Colors.blue,
-                    //           onChanged: (bool isCheckedSkippedQuestion) {
-                    //             subjectController
-                    //                 .updateIsCheckedSkippedQuestion(
-                    //                     isCheckedSkippedQuestion);
-                    //             subjectController.updateUserBuilder();
-                    //           }),
-                    //     ),
-                    //     Expanded(
-                    //       flex: 14,
-                    //       child: Container(
-                    //         margin: EdgeInsets.only(left: 5.0),
-                    //         child: Text(
-                    //           Constants.GENERATE_SKIPPED_QUESTION_TEXT,
-                    //           style: TextStyle(
-                    //               color: AppColors.textBlackColor,
-                    //               fontSize: 10.0,
-                    //               fontWeight: FontWeight.bold),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
                     Container(
                       margin: EdgeInsets.only(top: 15.0),
                       child: HeroButton3(
@@ -374,27 +289,15 @@ class CompetitionQuizScreen extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 5.0),
       child: GestureDetector(
+        behavior: HitTestBehavior.translucent,
         onTap: () {
+          print('zahid');
           subjectController.selectedIndex = index;
-          selectedSubjectId = subjectController.quizSubjectList[index].Id;
-          if (subjectController.quizSubjectList[index].chapterList == null ||
-              subjectController.quizSubjectList[index].chapterList.isEmpty) {
-            subjectController.quizSubjectList[index].checked =
-                !subjectController.quizSubjectList[index].checked;
-          }
-          selectedSubjectName =
-              subjectController.quizSubjectList[index].SubjectName;
-          if (!isAlreadyTapped) {
-            isAlreadyTapped = true;
-            Navigator.of(buildContext).push(RoutePage(builder: (context) {
-              return ChapterScreen.customConstructor(
-                selectedSubjectId,
-                selectedSubjectName,
-              );
-            })).then((value) {
-              subjectController.update();
-            });
-          }
+          subjectController.quizSubjectList[subjectController.selectedIndex]
+              .chapterList = null;
+          Navigator.of(buildContext).push(RoutePage(builder: (context) {
+            return ChapterScreen();
+          }));
         },
         child: Column(
           children: [
@@ -429,44 +332,11 @@ class CompetitionQuizScreen extends StatelessWidget {
 
   Widget returnIcon(int index) {
     if (subjectController.quizSubjectList[index].chapterList != null) {
-      if (subjectController.selectedIndex == index &&
-          subjectController.quizSubjectList[index].Id ==
-              subjectController
-                  .quizSubjectList[subjectController.selectedIndex].Id) {
-        if (!subjectController
-            .quizSubjectList[subjectController.selectedIndex].chapterList
-            .where((element) => element.checked)
-            .toList()
-            .isBlank) {
-          return SvgPicture.asset(
-            Constants.BASE_PATH_ICON + "eye.svg",
-            height: 15.0,
-            width: 15.0,
-          );
-        } else {
-          return SvgPicture.asset(
-            Constants.BASE_PATH_ICON + "plus.svg",
-            height: 15.0,
-            width: 15.0,
-          );
-        }
-      } else if (subjectController.selectedIndex != index &&
-          !subjectController.quizSubjectList[index].chapterList
-              .where((element) => element.checked)
-              .toList()
-              .isBlank) {
-        return SvgPicture.asset(
-          Constants.BASE_PATH_ICON + "eye.svg",
-          height: 15.0,
-          width: 15.0,
-        );
-      } else {
-        return SvgPicture.asset(
-          Constants.BASE_PATH_ICON + "plus.svg",
-          height: 15.0,
-          width: 15.0,
-        );
-      }
+      return SvgPicture.asset(
+        Constants.BASE_PATH_ICON + "eye.svg",
+        height: 15.0,
+        width: 15.0,
+      );
     } else {
       return SvgPicture.asset(
         Constants.BASE_PATH_ICON + "plus.svg",
@@ -474,6 +344,30 @@ class CompetitionQuizScreen extends StatelessWidget {
         width: 15.0,
       );
     }
+    //   } else if (subjectController.selectedIndex != index &&
+    //       !subjectController.quizSubjectList[index].chapterList
+    //           .where((element) => element.checked)
+    //           .toList()
+    //           .isBlank) {
+    //     return SvgPicture.asset(
+    //       Constants.BASE_PATH_ICON + "eye.svg",
+    //       height: 15.0,
+    //       width: 15.0,
+    //     );
+    //   } else {
+    //     return SvgPicture.asset(
+    //       Constants.BASE_PATH_ICON + "plus.svg",
+    //       height: 15.0,
+    //       width: 15.0,
+    //     );
+    //   }
+    // } else {
+    //   return SvgPicture.asset(
+    //     Constants.BASE_PATH_ICON + "plus.svg",
+    //     height: 15.0,
+    //     width: 15.0,
+    //   );
+    // }
   }
 
   getQuizSubjectList() async {
@@ -489,7 +383,8 @@ class CompetitionQuizScreen extends StatelessWidget {
     if (selectedSubjectIds.isBlank) {
       ToastClass.showToast("Please Select Subject", ToastGravity.BOTTOM,
           Colors.red, Colors.white, 10.0, Toast.LENGTH_LONG);
-    } else if (studentController.noOfQuestions.isBlank) {
+    } else if (studentController.noOfQuestions == null ||
+        studentController.noOfQuestions == 0) {
       ToastClass.showToast("Please Enter No. of Questions", ToastGravity.BOTTOM,
           Colors.red, Colors.white, 10.0, Toast.LENGTH_LONG);
     } else {

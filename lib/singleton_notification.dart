@@ -1,4 +1,7 @@
-import 'package:e_quiz/screens/quizscreens/competition_question_screen.dart ';
+import 'package:e_quiz/screens/splash_screen.dart';
+
+import 'main.dart';
+import 'screens/quizscreens/competition_question_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
@@ -6,6 +9,7 @@ import 'package:workmanager/workmanager.dart';
 
 class NotificationSingleton {
   NotificationSingleton._privateConstructor();
+
   int quizId;
   static final NotificationSingleton instance =
       NotificationSingleton._privateConstructor();
@@ -39,5 +43,6 @@ class NotificationSingleton {
         new FlutterLocalNotificationsPlugin();
     await flutterLocalNotificationsPlugin.show(1, "Equiz", body, platform,
         payload: type.toString());
+
   }
 }

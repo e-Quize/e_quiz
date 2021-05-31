@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:e_quiz/screens/splash_screen.dart';
+import 'package:e_quiz/utils/routepage.dart';
 import 'package:e_quiz/utils/widgetproperties.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -23,8 +24,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   print('From Background');
-  RemoteNotification notification = message.notification;
-  String aa = notification.body;
+  String aa = message.data["NotificationBody"];
   var _notificationController = Get.put(NotificationController());
   Map model = jsonDecode(aa);
   var pushNotificationModel = PushNotificationModel.fromJson(model);
@@ -36,9 +36,17 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   _notificationController.notificationQuizId = pushNotificationModel.QuizId;
   prefs.setInt('quizId', pushNotificationModel.QuizId);
   NotificationSingleton.instance.quizId = pushNotificationModel.QuizId;
-  if (pushNotificationModel.NotificationType == 2) {
-    WidgetProperties.goToNextPage(Get.context, CompetitionQuestionScreen());
-  }
+  await NotificationSingleton.instance.notify();
+  NotificationSingleton.instance.showNotification(
+      pushNotificationModel.NotificationType,
+      pushNotificationModel.Description);
+/*  if (pushNotificationModel.NotificationType == 2) {
+    runApp(MainScreen());
+    Navigator.of(Get.context).push(RoutePage(builder: (context) {
+      return SplashScreen();
+    }));
+    //  WidgetProperties.goToNextPage(Get.context, CompetitionQuestionScreen());
+  }*/
 }
 
 /// Create a [AndroidNotificationChannel] for heads up notifications
@@ -59,9 +67,7 @@ fcmData() {
   });
 
   FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
-    RemoteNotification notification = message.notification;
-    AndroidNotification android = message.notification?.android;
-    String aa = notification.body;
+    String aa = message.data["NotificationBody"];
     Map model = jsonDecode(aa);
     var pushNotificationModel = PushNotificationModel.fromJson(model);
     FcmTokenModel fcmTokenModel = FcmTokenModel();
@@ -77,13 +83,11 @@ fcmData() {
         pushNotificationModel.Description);
   });
 
-  FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
+ /* FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
     print("neewwwwww");
-    RemoteNotification notification = message.notification;
-    AndroidNotification android = message.notification?.android;
 
     var _notificationController = Get.put(NotificationController());
-    String aa = notification.body;
+    String aa = message.data["NotificationBody"];
     Map model = jsonDecode(aa);
     var pushNotificationModel = PushNotificationModel.fromJson(model);
     FcmTokenModel fcmTokenModel = FcmTokenModel();
@@ -93,11 +97,11 @@ fcmData() {
     print(pushNotificationModel.QuizId.toString());
     _notificationController.notificationQuizId = pushNotificationModel.QuizId;
     //
-    if (pushNotificationModel.NotificationType == 2) {
-      WidgetProperties.goToNextPage(Get.context, CompetitionQuestionScreen());
-    }
+    // if (pushNotificationModel.NotificationType == 2) {
+    //   WidgetProperties.goToNextPage(Get.context, CompetitionQuestionScreen());
+    // }
 
-/*if (notification != null && android != null) {
+*//*if (notification != null && android != null) {
 flutterLocalNotificationsPlugin.show(
 notification.hashCode,
 notification.title,
@@ -112,9 +116,11 @@ channel.description,
 icon: '@mipmap/ic_launcher',
 ),
 ));
-}*/
-  });
+}*//*
+  });*/
 }
+
+BuildContext buildContext;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -6,8 +6,8 @@ class Constants {
   static const String BASE_URL = "https://erp1.cyberisol.com/api/";
   static const String BASE_PATH_ICON = "assets/icons/";
   static const String BASE_PATH_IMAGE = "assets/images/";
-  static const String SELF_TEST_TEXT = "Self Preparation";
-  static const String COMPETITION_TEST_TEXT = "Competition";
+  static const String SELF_TEST_TEXT = "Stand Alone";
+  static const String COMPETITION_TEST_TEXT = "Compete";
   static const String SELECT_QUIZ_TYPE_TEXT = "Please Select Quiz Type";
   static const String SELF_PREPARATION_COMPETITION_TEXT =
       "Self Preparation/Competition";

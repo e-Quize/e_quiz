@@ -8,7 +8,6 @@ import 'package:e_quiz/controllers/notification_controller.dart';
 import 'package:e_quiz/controllers/quiz_controller.dart';
 import 'package:e_quiz/controllers/result_controller.dart';
 import 'package:e_quiz/controllers/subject_controller.dart';
-import 'package:e_quiz/db/repositiories/user_repository.dart';
 import 'package:e_quiz/models/attemptquiz/attempt_quiz_vm.dart';
 import 'package:e_quiz/models/attemptquiz/quiz_question_answer.dart';
 import 'package:e_quiz/models/common/result_model.dart';
@@ -17,7 +16,6 @@ import 'package:e_quiz/screens/dashboard/dashboard_screen.dart';
 import 'package:e_quiz/screens/quizscreens/tab_bar_view.dart';
 import 'package:e_quiz/utils/colors.dart';
 import 'package:e_quiz/utils/constants.dart';
-import 'package:e_quiz/utils/shared.dart';
 import 'package:e_quiz/utils/dialog/loader.dart';
 import 'package:e_quiz/utils/dialog/toastclass.dart';
 import 'package:e_quiz/utils/routepage.dart';
@@ -26,24 +24,19 @@ import 'package:e_quiz/utils/widgetproperties.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html/rich_text_parser.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../../singleton_notification.dart';
-import 'tab_bar.dart';
 
 class CompetitionQuestionScreen extends StatelessWidget {
-
   var _quizController = Get.find<QuizController>();
   var _subjectController = Get.find<SubjectController>();
   var _resultController = Get.put(ResultController());
   var _historyController = Get.put(HistoryController());
   var _notificationController = Get.put(NotificationController());
 
- // UserRepository _userRepository = GetIt.I.get();
+  // UserRepository _userRepository = GetIt.I.get();
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -72,8 +65,7 @@ class CompetitionQuestionScreen extends StatelessWidget {
           init: _quizController,
           dispose: (c) async {
             _quizController.ini();
-            _historyController.selectedReAtemptedQuestionId = null;
-            _notificationController.notificationQuizId = null;
+
             // await SessionManager.setQuizId(null);
             // NotificationSingleton.instance.quizId = null;
           },
@@ -172,10 +164,35 @@ class CompetitionQuestionScreen extends StatelessWidget {
                                                             ),
                                                             CountdownFormatted(
                                                               onFinish: () {
+                                                                // _quizController
+                                                                //     .updateDashboardData();
+                                                                //
+                                                                // if (_quizController
+                                                                //         .quizQuestionList
+                                                                //         .where((element) =>
+                                                                //             element.isAttempted)
+                                                                //         .toList()
+                                                                //         .length >
+                                                                //     0) {
+                                                                //   _resultController
+                                                                //           .skippedQuestionObjectList =
+                                                                //       _quizController
+                                                                //           .skippedQuestionObjectList;
+                                                                // } else {
+                                                                //   _resultController
+                                                                //       .skippedQuestionObjectList
+                                                                //       .addAll(_quizController
+                                                                //           .quizQuestionList);
+                                                                // }
+                                                                _resultController
+                                                                        .quizQuestionList =
+                                                                    _quizController
+                                                                        .quizQuestionList;
+
                                                                 WidgetProperties
                                                                     .goToNextPage(
                                                                         Get.context,
-                                                                        TabbarViewResult());
+                                                                        CompetitionQuizResult());
                                                                 // _quizController.update();
                                                               },
                                                               duration: Duration(
@@ -693,6 +710,8 @@ class CompetitionQuestionScreen extends StatelessWidget {
         //_userRepository.insertList(_quizController.quizQuestionList);
         // getList();
         _quizController.updateUserBuilder();
+        _subjectController.updateIsCheckedCorrectAnswer(
+            _quizController.quizQuestionList.first.CheckAnswersSimultaneously);
         _quizController.quizQuestionList.forEach((element) {
           if (element.Serial == -211 || element.Serial == -214) {
             // ignore: unnecessary_statements
@@ -1073,13 +1092,7 @@ class CompetitionQuestionScreen extends StatelessWidget {
     );
   }
 
-  // void getList() async {
-  //   _quizController.localDbQuestionList =
-  //       await _userRepository.getAllQuestions();
-  //   print("_quizController.quizQuestionList.toString()");
-  // }
-
-  void goBackToPreviousQuestion() {
+  goBackToPreviousQuestion() {
     if (_quizController.questionIndex > 0) {
       _quizController.questionIndex = _quizController.questionIndex - 1;
       isAttempted = _quizController
@@ -1101,32 +1114,5 @@ class CompetitionQuestionScreen extends StatelessWidget {
       //getStyle(_quizController.quizQuestionList[_quizController.questionIndex].SelectedAnswerId);
       _quizController.updateBuilder();
     }
-  }
-
-  getPreviousAnswer() {
-    var value = _quizController
-        .quizQuestionList[_quizController.questionIndex].ActualAnswerId;
-    if (_subjectController.isCheckedCorrectAnswer) {
-      toggle = true;
-    }
-    isAttempted = true;
-
-    answerId = value;
-    quizQuestionAnswer = _quizController
-        .quizQuestionList[_quizController.questionIndex].QuestionAnswerList
-        .where((element) => element.Id == answerId)
-        .first;
-    quizQuestionAnswer.isChecked = true;
-
-    if (_subjectController.isCheckedCorrectAnswer ||
-        (!_subjectController.isCheckedCorrectAnswer && !hasSeenExplanation)) {
-      _quizController.quizQuestionList[_quizController.questionIndex]
-          .isUserAnswer = quizQuestionAnswer.isCorrect;
-    }
-    _quizController.quizQuestionList[_quizController.questionIndex]
-        .isAttempted = isAttempted;
-
-    _groupValue = value;
-    _quizController.updateUserBuilder();
   }
 }

@@ -32,6 +32,7 @@ class CompetitionResultScreen extends StatelessWidget {
           initState: (child) async {
             await getCompetitorQuizResultList();
           },
+
           builder: (_) {
             return Container(
               height: WidgetProperties.screenHeight(Get.context),
@@ -81,7 +82,7 @@ class CompetitionResultScreen extends StatelessWidget {
   }
 
   Widget listCompetitorQuizWidget(BuildContext buildContext, int index) {
-    return  Container(
+    return Container(
       margin: EdgeInsets.all(10.0),
       child: Material(
           shape: RoundedRectangleBorder(
@@ -93,7 +94,7 @@ class CompetitionResultScreen extends StatelessWidget {
           ),
           elevation: 4.0,
           child: Container(
-            height: WidgetProperties.screenHeight(buildContext)*.15,
+            height: WidgetProperties.screenHeight(buildContext) * .15,
             padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -151,8 +152,8 @@ class CompetitionResultScreen extends StatelessWidget {
                     Container(
                       child: Textview2(
                         title: competitorQuizResultList[index]
-                            .ObtainedPercentage
-                            .toString() +
+                                .ObtainedPercentage
+                                .toString() +
                             "%",
                         fontSize: 15.0,
                         color: AppColors.primaryBtnColor,

@@ -7,6 +7,7 @@ import 'package:e_quiz/models/user/refresh_token.dart';
 import 'package:e_quiz/models/user/common_result_copy.dart';
 import 'package:e_quiz/models/user/user_entity_copy.dart';
 import 'package:e_quiz/models/user/user_model.dart';
+import 'package:e_quiz/utils/user_singleton.dart';
 import 'package:sqflite/sqflite.dart';
 
 class UserCrud {
@@ -17,6 +18,7 @@ class UserCrud {
       userEntityCopy.toJson(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
+    UserSingleton.instance.setUser(userEntityCopy);
     db.close();
     return id;
   }
@@ -85,13 +87,20 @@ class UserCrud {
   }
 
   static Future<UserEntityCopy> getUserCopy() async {
-    final Database db = await DBConnection.openAppDatabase();
-    final List<Map<String, dynamic>> maps =
-        await db.query(Structure.USER_TABLE);
-    UserEntityCopy userEntityCopy =
-        (maps.isNotEmpty) ? UserEntityCopy.fromJson(maps[0]) : UserEntityCopy();
-     db.close();
-    return userEntityCopy;
+    if (UserSingleton.instance.userEntityCopy == null) {
+      final Database db = await DBConnection.openAppDatabase();
+
+      final List<Map<String, dynamic>> maps =
+          await db.query(Structure.USER_TABLE);
+      UserEntityCopy userEntityCopy = (maps.isNotEmpty)
+          ? UserEntityCopy.fromJson(maps[0])
+          : UserEntityCopy();
+      db.close();
+      UserSingleton.instance.setUser(userEntityCopy);
+      return userEntityCopy;
+    } else {
+      return UserSingleton.instance.userEntityCopy;
+    }
   }
 
   static Future<int> insertRefreshToken(RefreshToken refreshToken) async {

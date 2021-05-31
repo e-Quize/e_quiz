@@ -47,11 +47,13 @@ class QuestionScreen extends StatelessWidget {
   var _notificationController = Get.put(NotificationController());
 
   var offlineController = OfflineQuizController();
+
   // UserRepository _userRepository = GetIt.I.get();
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   BuildContext buildContext;
+
   //bool flaggedAsDifficult = false;
   bool flaggedAsSkipped = false;
   bool hasSeenExplanation = false;
@@ -74,8 +76,6 @@ class QuestionScreen extends StatelessWidget {
         body: GetBuilder<QuizController>(
           init: _quizController,
           dispose: (c) {
-            _historyController.selectedReAtemptedQuestionId = null;
-            _notificationController.notificationQuizId = null;
             _quizController.ini();
           },
           initState: (child) {
@@ -173,6 +173,33 @@ class QuestionScreen extends StatelessWidget {
                                                             ),
                                                             CountdownFormatted(
                                                               onFinish: () {
+                                                                _quizController
+                                                                    .updateDashboardData();
+
+                                                                /*if (_quizController
+                                                                        .quizQuestionList
+                                                                        .where((element) =>
+                                                                            element.isAttempted)
+                                                                        .toList()
+                                                                        .length >
+                                                                    0) {
+                                                                  _resultController
+                                                                          .skippedQuestionObjectList =
+                                                                      _quizController
+                                                                          .skippedQuestionObjectList;
+                                                                } else {
+                                                                  _resultController
+                                                                      .skippedQuestionObjectList = [];
+                                                                  _resultController
+                                                                      .skippedQuestionObjectList
+                                                                      .addAll(_quizController
+                                                                          .quizQuestionList);
+                                                                }*/
+                                                                _resultController
+                                                                        .quizQuestionList =
+                                                                    _quizController
+                                                                        .quizQuestionList;
+
                                                                 WidgetProperties
                                                                     .goToNextPage(
                                                                         Get.context,
